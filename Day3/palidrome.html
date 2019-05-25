@@ -1,0 +1,24 @@
+<Script>
+function Palindrome(number)
+	{
+		var remainder, temporary, final = 0;
+		
+		temporary = number;
+		while(number>0)
+		{
+			remainder = number%10;
+			number = parseInt(number/10);
+			final = final*10+remainder;
+		}
+		if(final==temporary)
+		{
+			console.log("It is Palindrome Number");
+		}
+		else
+		{
+			console.log(" not palindrome Number");
+		}
+    }
+	var num=parseInt(prompt("enter the Any spalidrome"));
+	Palindrome(num);
+	</Script> 
