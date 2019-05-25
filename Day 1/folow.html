@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mouse trails</title>
+    <Style >
+          html {
+        position:relative;
+        height: 100%;
+        width:100%;
+        background-color:#666;
+      }
+      html:before {
+        content:'';
+        height:100%;
+        vertical-align:middle;
+        width:50%;
+        display:inline-block;
+      }
+      body {
+        display:inline-block;
+        position:relative;
+      
+        width:75vmin;
+        height:75vmin;
+      
+        padding:0;
+        margin:0 0 0 -37.5vmin;
+        vertical-align:middle;
+        
+      }
+      .positioner {
+        position:absolute;
+        height:10%;
+        width:10%;
+      }
+      .ball,.ball2,.ball3,.ball4 {
+        position:absolute;
+        background-color:rgb(150,150,255);
+        width:2%;
+        height:2%;
+        border-radius:50%;
+      }
+      .ball{
+        top:45%;
+        left:45%;
+        -webkit-transition:left .66s ease-in, top  .66s ease;
+        transition:left .36s ease-out, top .36s ease-out;
+       
+      }
+      .ball2{
+        top:45%;
+        left:45%;
+        -webkit-transition:left .55s ease-in-out, top  .55s ease;
+        transition:left 0.3s ease-out, top .3s ease-out;
+       
+      }
+      .ball3{
+        top:45%;
+        left:45%;
+        -webkit-transition:left .44s ease, top  .44s ease;
+        transition:left .35s ease-out, top .35s ease-out;
+        
+      }
+      .ball4{
+        top:45%;
+        left:45%;
+        -webkit-transition:left .33s linear, top  .33s ease;
+        transition:left .32s ease-out, top .32s ease-out;
+       
+      }
+    /* ball */
+      [id^="row-1"],
+      [id^="row-1"]:hover  ~ .ball {
+        left: 1;
+        background-color:#000;
+      }
+      [id^="row-2"],
+      [id^="row-2"]:hover  ~ .ball {
+        left: 10%;
+        background-color:#001;
+      }
+      [id^="row-3"],
+      [id^="row-3"]:hover  ~ .ball {
+        left: 20%;
+        background-color:#002;
+      }
+      [id^="row-4"],
+      [id^="row-4"]:hover  ~ .ball {
+        left: 30%;
+        background-color:#004;
+      }
+      [id^="row-5"],
+      [id^="row-5"]:hover  ~ .ball {
+        left: 40%;
+        background-color:#005;
+      }
+      [id^="row-6"],
+      [id^="row-6"]:hover  ~ .ball {
+        left: 50%;
+        background-color:#006;
+      }
+      [id^="row-7"],
+      [id^="row-7"]:hover  ~ .ball {
+        left: 60%;
+        background-color:#007;
+      }
+      [id^="row-8"],
+      [id^="row-8"]:hover  ~ .ball {
+        left: 70%;
+        background-color:#008;
+      }
+      [id^="row-9"],
+      [id^="row-9"]:hover  ~ .ball {
+        left: 80%;
+        background-color:#009;
+      }
+      [id^="row-10"],
+      [id^="row-10"]:hover  ~ .ball {
+        left: 90%;
+        background-color:#009;
+      }
+      [id$="col-1"],
+      [id$="col-1"]:hover  ~ .ball {
+        top: 0;
+        background-color:#008;
+      }
+      [id$="col-2"],
+      [id$="col-2"]:hover  ~ .ball {
+        top: 10%;
+        background-color:#007;
+      }
+      [id$="col-3"],
+      [id$="col-3"]:hover  ~ .ball {
+        top: 20%;
+        background-color:#006;
+      }
+      [id$="col-4"],
+      [id$="col-4"]:hover  ~ .ball {
+        top: 30%;
+        background-color:#005;
+      }
+      [id$="col-5"],
+      [id$="col-5"]:hover  ~ .ball {
+        top: 40%;
+        background-color:#004;
+      }
+      [id$="col-6"],
+      [id$="col-6"]:hover  ~ .ball {
+        top: 50%;
+        
+      }
+      [id$="col-7"],
+      [id$="col-7"]:hover  ~ .ball {
+        top: 60%;
+        background-color:#002;
+      }
+      [id$="col-8"],
+      [id$="col-8"]:hover  ~ .ball {
+        top: 70%;
+        background-color:#001;
+      }
+      [id$="col-9"],
+      [id$="col-9"]:hover  ~ .ball {
+        top: 80%;
+        background-color:#001;
+      }
+      [id$="col-10"],
+      [id$="col-10"]:hover  ~ .ball {
+        top: 90%;
+        background-color:#000;
+      }
+
+/* ball2 */
+[id^="row-1"],
+      [id^="row-1"]:hover  ~ .ball2 {
+        left: 2;
+        background-color:#010;
+      }
+      [id^="row-2"],
+      [id^="row-2"]:hover  ~ .ball2 {
+        left: 12%;
+        background-color:#020;
+      }
+      [id^="row-3"],
+      [id^="row-3"]:hover  ~ .ball2 {
+        left: 22%;
+        background-color:#030;
+      }
+      [id^="row-4"],
+      [id^="row-4"]:hover  ~ .ball2 {
+        left: 32%;
+        background-color:#040;
+      }
+      [id^="row-5"],
+      [id^="row-5"]:hover  ~ .ball2 {
+        left: 42%;
+        background-color:#050;
+      }
+      [id^="row-6"],
+      [id^="row-6"]:hover  ~ .ball2 {
+        left: 52%;
+        background-color:#060;
+      }
+      [id^="row-7"],
+      [id^="row-7"]:hover  ~ .ball2 {
+        left: 62%;
+        background-color:#070;
+      }
+      [id^="row-8"],
+      [id^="row-8"]:hover  ~ .ball2 {
+        left: 72%;
+        background-color:#080;
+      }
+      [id^="row-9"],
+      [id^="row-9"]:hover  ~ .ball2 {
+        left: 82%;
+        background-color:#090;
+      }
+      [id^="row-10"],
+      [id^="row-10"]:hover  ~ .ball2 {
+        left: 92%;
+        background-color:#090;
+      }
+      [id$="col-1"],
+      [id$="col-1"]:hover  ~ .ball2 {
+        top: 2;
+        background-color:#080;
+      }
+      [id$="col-2"],
+      [id$="col-2"]:hover  ~ .ball2 {
+        top: 12%;
+        background-color:#070;
+      }
+      [id$="col-3"],
+      [id$="col-3"]:hover  ~ .ball2 {
+        top: 22%;
+        background-color:#060;
+      }
+      [id$="col-4"],
+      [id$="col-4"]:hover  ~ .ball2 {
+        top: 32%;
+        background-color:#050;
+      }
+      [id$="col-5"],
+      [id$="col-5"]:hover  ~ .ball2 {
+        top: 42%;
+        background-color:#040;
+      }
+      [id$="col-6"],
+      [id$="col-6"]:hover  ~ .ball2 {
+        top: 52%;
+        background-color:#030;
+      }
+      [id$="col-7"],
+      [id$="col-7"]:hover  ~ .ball2 {
+        top: 62%;
+        background-color:#020;
+      }
+      [id$="col-8"],
+      [id$="col-8"]:hover  ~ .ball2 {
+        top: 72%;
+        background-color:#020;
+      }
+      [id$="col-9"],
+      [id$="col-9"]:hover  ~ .ball2 {
+        top: 82%;
+        background-color:#010;
+      }
+      [id$="col-10"],
+      [id$="col-10"]:hover  ~ .ball2 {
+        top: 92%;
+        background-color:#010;
+      }
+/* ball3 */
+
+[id^="row-1"],
+      [id^="row-1"]:hover  ~ .ball3 {
+        left: 4;
+      }
+      [id^="row-2"],
+      [id^="row-2"]:hover  ~ .ball3 {
+        left: 14%;
+      }
+      [id^="row-3"],
+      [id^="row-3"]:hover  ~ .ball3 {
+        left: 24%;
+      }
+      [id^="row-4"],
+      [id^="row-4"]:hover  ~ .ball3 {
+        left: 34%;
+      }
+      [id^="row-5"],
+      [id^="row-5"]:hover  ~ .ball3 {
+        left: 46%;
+      }
+      [id^="row-6"],
+      [id^="row-6"]:hover  ~ .ball3 {
+        left: 54%;
+      }
+      [id^="row-7"],
+      [id^="row-7"]:hover  ~ .ball3 {
+        left: 64%;
+      }
+      [id^="row-8"],
+      [id^="row-8"]:hover  ~ .ball3 {
+        left: 74%;
+      }
+      [id^="row-9"],
+      [id^="row-9"]:hover  ~ .ball3 {
+        left: 84%;
+      }
+      [id^="row-10"],
+      [id^="row-10"]:hover  ~ .ball3 {
+        left: 94%;
+      }
+      [id$="col-1"],
+      [id$="col-1"]:hover  ~ .ball3 {
+        top: 4;
+      }
+      [id$="col-2"],
+      [id$="col-2"]:hover  ~ .ball3 {
+        top: 14%;
+      }
+      [id$="col-3"],
+      [id$="col-3"]:hover  ~ .ball3 {
+        top: 24%;
+      }
+      [id$="col-4"],
+      [id$="col-4"]:hover  ~ .ball3 {
+        top: 34%;
+      }
+      [id$="col-5"],
+      [id$="col-5"]:hover  ~ .ball3 {
+        top: 44%;
+      }
+      [id$="col-6"],
+      [id$="col-6"]:hover  ~ .ball3 {
+        top: 54%;
+      }
+      [id$="col-7"],
+      [id$="col-7"]:hover  ~ .ball3 {
+        top: 64%;
+      }
+      [id$="col-8"],
+      [id$="col-8"]:hover  ~ .ball3 {
+        top: 74%;
+      }
+      [id$="col-9"],
+      [id$="col-9"]:hover  ~ .ball3 {
+        top: 84%;
+      }
+      [id$="col-10"],
+      [id$="col-10"]:hover  ~ .ball3 {
+        top: 94%;
+      }
+/* ball4 */
+[id^="row-1"],
+      [id^="row-1"]:hover  ~ .ball4 {
+        left: 5;
+      }
+      [id^="row-2"],
+      [id^="row-2"]:hover  ~ .ball4 {
+        left: 15%;
+      }
+      [id^="row-3"],
+      [id^="row-3"]:hover  ~ .ball4 {
+        left: 25%;
+      }
+      [id^="row-4"],
+      [id^="row-4"]:hover  ~ .ball4 {
+        left: 35%;
+      }
+      [id^="row-5"],
+      [id^="row-5"]:hover  ~ .ball4 {
+        left: 45%;
+      }
+      [id^="row-6"],
+      [id^="row-6"]:hover  ~ .ball4 {
+        left: 55%;
+      }
+      [id^="row-7"],
+      [id^="row-7"]:hover  ~ .ball4 {
+        left: 65%;
+      }
+      [id^="row-8"],
+      [id^="row-8"]:hover  ~ .ball4 {
+        left: 75%;
+      }
+      [id^="row-9"],
+      [id^="row-9"]:hover  ~ .ball4 {
+        left: 85%;
+      }
+      [id^="row-10"],
+      [id^="row-10"]:hover  ~ .ball4 {
+        left: 95%;
+      }
+      [id$="col-1"],
+      [id$="col-1"]:hover  ~ .ball4 {
+        top: 5;
+      }
+      [id$="col-2"],
+      [id$="col-2"]:hover  ~ .ball4 {
+        top: 15%;
+      }
+      [id$="col-3"],
+      [id$="col-3"]:hover  ~ .ball4 {
+        top: 25%;
+      }
+      [id$="col-4"],
+      [id$="col-4"]:hover  ~ .ball4 {
+        top: 35%;
+      }
+      [id$="col-5"],
+      [id$="col-5"]:hover  ~ .ball4 {
+        top: 45%;
+      }
+      [id$="col-6"],
+      [id$="col-6"]:hover  ~ .ball4 {
+        top: 55%;
+      }
+      [id$="col-7"],
+      [id$="col-7"]:hover  ~ .ball4 {
+        top: 65%;
+      }
+      [id$="col-8"],
+      [id$="col-8"]:hover  ~ .ball4 {
+        top: 75%;
+      }
+      [id$="col-9"],
+      [id$="col-9"]:hover  ~ .ball4 {
+        top: 85%;
+      }
+      [id$="col-10"],
+      [id$="col-10"]:hover  ~ .ball4 {
+        top: 95%;
+      }
+    </Style>
+</head>
+<body>
+    <div id="row-1-col-1" class="positioner"></div>
+    <div id="row-1-col-2" class="positioner"></div>
+    <div id="row-1-col-3" class="positioner"></div>
+    <div id="row-1-col-4" class="positioner"></div>
+    <div id="row-1-col-5" class="positioner"></div>
+    <div id="row-1-col-6" class="positioner"></div>
+    <div id="row-1-col-7" class="positioner"></div>
+    <div id="row-1-col-8" class="positioner"></div>
+    <div id="row-1-col-9" class="positioner"></div>
+    <div id="row-1-col-10" class="positioner"></div>
+    <div id="row-2-col-1" class="positioner"></div>
+    <div id="row-2-col-2" class="positioner"></div>
+    <div id="row-2-col-3" class="positioner"></div>
+    <div id="row-2-col-4" class="positioner"></div>
+    <div id="row-2-col-5" class="positioner"></div>
+    <div id="row-2-col-6" class="positioner"></div>
+    <div id="row-2-col-7" class="positioner"></div>
+    <div id="row-2-col-8" class="positioner"></div>
+    <div id="row-2-col-9" class="positioner"></div>
+    <div id="row-2-col-10" class="positioner"></div>
+    <div id="row-3-col-1" class="positioner"></div>
+    <div id="row-3-col-2" class="positioner"></div>
+    <div id="row-3-col-3" class="positioner"></div>
+    <div id="row-3-col-4" class="positioner"></div>
+    <div id="row-3-col-5" class="positioner"></div>
+    <div id="row-3-col-6" class="positioner"></div>
+    <div id="row-3-col-7" class="positioner"></div>
+    <div id="row-3-col-8" class="positioner"></div>
+    <div id="row-3-col-9" class="positioner"></div>
+    <div id="row-3-col-10" class="positioner"></div>
+    <div id="row-4-col-1" class="positioner"></div>
+    <div id="row-4-col-2" class="positioner"></div>
+    <div id="row-4-col-3" class="positioner"></div>
+    <div id="row-4-col-4" class="positioner"></div>
+    <div id="row-4-col-5" class="positioner"></div>
+    <div id="row-4-col-6" class="positioner"></div>
+    <div id="row-4-col-7" class="positioner"></div>
+    <div id="row-4-col-8" class="positioner"></div>
+    <div id="row-4-col-9" class="positioner"></div>
+    <div id="row-4-col-10" class="positioner"></div>
+    <div id="row-5-col-1" class="positioner"></div>
+    <div id="row-5-col-2" class="positioner"></div>
+    <div id="row-5-col-3" class="positioner"></div>
+    <div id="row-5-col-4" class="positioner"></div>
+    <div id="row-5-col-5" class="positioner"></div>
+    <div id="row-5-col-6" class="positioner"></div>
+    <div id="row-5-col-7" class="positioner"></div>
+    <div id="row-5-col-8" class="positioner"></div>
+    <div id="row-5-col-9" class="positioner"></div>
+    <div id="row-5-col-10" class="positioner"></div>
+    <div id="row-6-col-1" class="positioner"></div>
+    <div id="row-6-col-2" class="positioner"></div>
+    <div id="row-6-col-3" class="positioner"></div>
+    <div id="row-6-col-4" class="positioner"></div>
+    <div id="row-6-col-5" class="positioner"></div>
+    <div id="row-6-col-6" class="positioner"></div>
+    <div id="row-6-col-7" class="positioner"></div>
+    <div id="row-6-col-8" class="positioner"></div>
+    <div id="row-6-col-9" class="positioner"></div>
+    <div id="row-6-col-10" class="positioner"></div>
+    <div id="row-7-col-1" class="positioner"></div>
+    <div id="row-7-col-2" class="positioner"></div>
+    <div id="row-7-col-3" class="positioner"></div>
+    <div id="row-7-col-4" class="positioner"></div>
+    <div id="row-7-col-5" class="positioner"></div>
+    <div id="row-7-col-6" class="positioner"></div>
+    <div id="row-7-col-7" class="positioner"></div>
+    <div id="row-7-col-8" class="positioner"></div>
+    <div id="row-7-col-9" class="positioner"></div>
+    <div id="row-7-col-10" class="positioner"></div>
+    <div id="row-8-col-1" class="positioner"></div>
+    <div id="row-8-col-2" class="positioner"></div>
+    <div id="row-8-col-3" class="positioner"></div>
+    <div id="row-8-col-4" class="positioner"></div>
+    <div id="row-8-col-5" class="positioner"></div>
+    <div id="row-8-col-6" class="positioner"></div>
+    <div id="row-8-col-7" class="positioner"></div>
+    <div id="row-8-col-8" class="positioner"></div>
+    <div id="row-8-col-9" class="positioner"></div>
+    <div id="row-8-col-10" class="positioner"></div>
+    <div id="row-9-col-1" class="positioner"></div>
+    <div id="row-9-col-2" class="positioner"></div>
+    <div id="row-9-col-3" class="positioner"></div>
+    <div id="row-9-col-4" class="positioner"></div>
+    <div id="row-9-col-5" class="positioner"></div>
+    <div id="row-9-col-6" class="positioner"></div>
+    <div id="row-9-col-7" class="positioner"></div>
+    <div id="row-9-col-8" class="positioner"></div>
+    <div id="row-9-col-9" class="positioner"></div>
+    <div id="row-9-col-10" class="positioner"></div>
+    <div id="row-10-col-1" class="positioner"></div>
+    <div id="row-10-col-2" class="positioner"></div>
+    <div id="row-10-col-3" class="positioner"></div>
+    <div id="row-10-col-4" class="positioner"></div>
+    <div id="row-10-col-5" class="positioner"></div>
+    <div id="row-10-col-6" class="positioner"></div>
+    <div id="row-10-col-7" class="positioner"></div>
+    <div id="row-10-col-8" class="positioner"></div>
+    <div id="row-10-col-9" class="positioner"></div>
+    <div id="row-10-col-10" class="positioner"></div>
+    <div class="ball"></div>
+    <div class="ball2"></div>
+    <div class="ball3"></div>
+    <div class="ball4"></div>
+</body>
+</html>
