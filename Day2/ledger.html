@@ -53,7 +53,7 @@
                         <div class="divTableRow">
 
 
-                            <div id="0" class="divTableCell"><input type="number" name="sn1" value="1" id="1"></div>
+                            <div id="0" class="divTableCell"><input type="number" name="sn1" value="1" id="sn1"></div>
                             <div id="0" class="divTableCell"><input type="text" name="particular1"
                                     value="transaction one" id="particular1"></div>
                             <div id="0" class="divTableCell"><input type="number" name="rf1" value="0001" id="rf1"></div>
@@ -64,8 +64,8 @@
                         <div class="divTableRow">
                             <div id="1" class="divTableCell"><input type="number" name="sn2" value="2" id="sn2"></div>
                             <div id="1" class="divTableCell"><input type="text" name="particular2"
-                                    value="transaction two" id="particular"></div>
-                            <div id="1" class="divTableCell"><input type="number" name="rf2" value="0001" id="re2"></div>
+                                    value="transaction two" id="particular2"></div>
+                            <div id="1" class="divTableCell"><input type="number" name="rf2" value="0001" id="rf2"></div>
                             <div id="1" class="divTableCell"><input type="number" name="dr2" value="0" id="dr2"></div>
                             <div id="1" class="divTableCell"><input type="number" name="cr2" value="2" id="cr2"></div>
                             <div id="1" class="divTableCell"><input type="number" name="ta2" value="2" id="ta2"></div>
@@ -73,7 +73,7 @@
                         <div class="divTableRow">
                             <div id="2" class="divTableCell"><input type="number" name="sn3" value="3" id="sn3"></div>
                             <div id="2" class="divTableCell"><input type="text" name="particular3"
-                                    value="transaction three" id="particular2"></div>
+                                    value="transaction three" id="particular3"></div>
                             <div id="2" class="divTableCell"><input type="number" name="rf3" value="0001" id="rf3"></div>
                             <div id="2" class="divTableCell"><input type="number" name="dr3" value="3" id="dr3"></div>
                             <div id="2" class="divTableCell"><input type="number" name="cr3" value="0" id="cr3"></div>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="divTableRow">
                             <div id="4" class="divTableCell"><input type="number" name="sn5" value="5" id="sn5"></div>
-                            <div id="4" class="divTableCell"><input type="text" name="particular4" value="transaction five" id="particular5"></div>
+                            <div id="4" class="divTableCell"><input type="text" name="particular5" value="transaction five" id="particular5"></div>
                             <div id="4" class="divTableCell"><input type="number" name="rf5" value="0001" id="rf5"></div>
                             <div id="4" class="divTableCell"><input type="number" name="dr5" value="5" id="dr5"></div>
                             <div id="4" class="divTableCell"><input type="number" name="cr5" value="0" id="cr5"></div>
@@ -107,7 +107,7 @@
                             </div>
                             <div id="4" class="divTableCell">
 
-                                <input type="button"  class="button" value="Cr">
+                                <input type="button"  onclick="getCr();" class="button" value="Cr">
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
         </div>
 
     </div>
-
+<div id="demo"></div>
 </body>
 
 </html>
