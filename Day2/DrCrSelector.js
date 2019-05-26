@@ -24,7 +24,7 @@ function getDr() {
     // var drJSON= JSON.stringify(drjson);
     localStorage.setItem('myStorage', JSON.stringify(drjson));
     console.log(drJSON);
-    window.location.assign("DrFromJournal.html")
+    window.location.assign("DrFromLedger.html")
     // self.location("DrFromJournal.html");
 }
 
@@ -46,7 +46,7 @@ function getCr() {
     }
     localStorage.setItem('myStorage2', JSON.stringify(crjson));
     
-    window.location.assign("CrFromJournal.html");
+    window.location.assign("CrFromLedger.html");
 
 }
 
