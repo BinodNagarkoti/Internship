@@ -40,6 +40,8 @@ h1{
     border-style: 1px solid;
 }
 .button:hover{
+    opacity: 0.8;
+    border-radius: 2%;
 background-color: blue;
 }
 input[type="text"],input[type="number"]{

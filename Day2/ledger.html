@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="scale-up-animation.css">
         <link rel="stylesheet" href="footer.css">
         <link rel="stylesheet" href="ledger.css">
+        <script src="DrCrSelector.js"></script>
     </head>
     <title>Accounting</title>
 </head>
@@ -29,72 +30,91 @@
             </ul>
         </div>
         <div class="r-n">
-                <div class="col-n"> <b> Journals Number:</b><input type="number" name="jn" id="jn"></div>
-                <div class="col-n"><b>Date:</b><input type="date" name="jdate" id="jdate"></div>
-                <div class="col-n"><b>Page Number:</b><input type="number" name="pn" id="pn">  </div>        </div>
+            <div class="col-n"> <b> Journals Number:</b><input type="number" name="jn" id="jn"></div>
+            <div class="col-n"><b>Date:</b><input type="date" name="jdate" id="jdate"></div>
+            <div class="col-n"><b>Page Number:</b><input type="number" name="pn" id="pn"> </div>
+        </div>
         <div>
             <h1>Leger of MONEYBEAT </h1>
         </div>
 
         <div class="table">
-           <form action="ledgermesg.html">
-            <div class="divTable">
-                <div class="divTableBody">
-                    <div class="divTableRow">
-                        <div class="divTableHead">S.N.</div>
-                        <div class="divTableHead"> Paricular</div>
-                        <div class="divTableHead">Rf.Number</div>
-                        <div class="divTableHead">Dr</div>
-                        <div class="divTableHead">Cr</div>
-                        <div class="divTableHead">Total Amount</div>
-                    </div>
-                    <div class="divTableRow">
-                        
+            <form action="ledgermesg.html">
+                <div class="divTable">
+                    <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableHead">S.N.</div>
+                            <div class="divTableHead"> Paricular</div>
+                            <div class="divTableHead">Rf.Number</div>
+                            <div class="divTableHead">Dr</div>
+                            <div class="divTableHead">Cr</div>
+                            <div class="divTableHead">Total Amount</div>
+                        </div>
+                        <div class="divTableRow">
 
-                        <div class="divTableCell"><input type="number" name="sn" id="sn"></div>
-                        <div class="divTableCell"><input type="text" name="particular" id="particular"></div>
-                        <div class="divTableCell"><input type="number" name="rf" id="re"></div>
-                        <div class="divTableCell"><input type="number" name="dr" id="dr"></div>
-                        <div class="divTableCell"><input type="number" name="cr" id="cr"></div>
-                        <div class="divTableCell"><input type="number" name="ta" id="ta"></div>
+
+                            <div id="0" class="divTableCell"><input type="number" name="sn1" value="1" id="1"></div>
+                            <div id="0" class="divTableCell"><input type="text" name="particular1"
+                                    value="transaction one" id="particular1"></div>
+                            <div id="0" class="divTableCell"><input type="number" name="rf1" value="0001" id="rf1"></div>
+                            <div id="0" class="divTableCell"><input type="number" name="dr1" value="1" id="dr1"></div>
+                            <div id="0" class="divTableCell"><input type="number" name="cr1" value="0" id="cr1"></div>
+                            <div id="0" class="divTableCell"><input type="number" name="ta1" value="1" id="ta1"></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div id="1" class="divTableCell"><input type="number" name="sn2" value="2" id="sn2"></div>
+                            <div id="1" class="divTableCell"><input type="text" name="particular2"
+                                    value="transaction two" id="particular"></div>
+                            <div id="1" class="divTableCell"><input type="number" name="rf2" value="0001" id="re2"></div>
+                            <div id="1" class="divTableCell"><input type="number" name="dr2" value="0" id="dr2"></div>
+                            <div id="1" class="divTableCell"><input type="number" name="cr2" value="2" id="cr2"></div>
+                            <div id="1" class="divTableCell"><input type="number" name="ta2" value="2" id="ta2"></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div id="2" class="divTableCell"><input type="number" name="sn3" value="3" id="sn3"></div>
+                            <div id="2" class="divTableCell"><input type="text" name="particular3"
+                                    value="transaction three" id="particular2"></div>
+                            <div id="2" class="divTableCell"><input type="number" name="rf3" value="0001" id="rf3"></div>
+                            <div id="2" class="divTableCell"><input type="number" name="dr3" value="3" id="dr3"></div>
+                            <div id="2" class="divTableCell"><input type="number" name="cr3" value="0" id="cr3"></div>
+                            <div id="2" class="divTableCell"><input type="number" name="ta3" value="3" id="ta3"></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div id="3" class="divTableCell"><input type="number" name="sn4" value="4" id="sn4"></div>
+                            <div id="3" class="divTableCell"><input type="text" name="particular3"
+                                    value="transaction four" id="particular4"></div>
+                            <div id="3" class="divTableCell"><input type="number" name="rf4" value="0001" id="rf4"></div>
+                            <div id="3" class="divTableCell"><input type="number" name="dr4" value="0" id="dr4"></div>
+                            <div id="3" class="divTableCell"><input type="number" name="cr4" value="4" id="cr4"></div>
+                            <div id="3" class="divTableCell"><input type="number" name="ta4" value="4" id="ta4"></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div id="4" class="divTableCell"><input type="number" name="sn5" value="5" id="sn5"></div>
+                            <div id="4" class="divTableCell"><input type="text" name="particular4" value="transaction five" id="particular5"></div>
+                            <div id="4" class="divTableCell"><input type="number" name="rf5" value="0001" id="rf5"></div>
+                            <div id="4" class="divTableCell"><input type="number" name="dr5" value="5" id="dr5"></div>
+                            <div id="4" class="divTableCell"><input type="number" name="cr5" value="0" id="cr5"></div>
+                            <div id="4" class="divTableCell"><input type="number" name="ta5" value="5" id="ta5"></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div id="4" class="divTableCell"></div>
+                            <div id="4" class="divTableCell"></div>
+                            <div id="4" class="divTableCell">
+                                <input class="button" type="button" value="submit"></div>
+
+                            <div class="divTableCell">
+                                <input type="button" onclick="getDr();"class="button" value="Dr">
+                            </div>
+                            <div id="4" class="divTableCell">
+
+                                <input type="button"  class="button" value="Cr">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="divTableRow">
-                            <div class="divTableCell"><input type="number" name="sn" id="sn"></div>
-                            <div class="divTableCell"><input type="text" name="particular" id="particular"></div>
-                            <div class="divTableCell"><input type="number" name="rf" id="re"></div>
-                            <div class="divTableCell"><input type="number" name="dr" id="dr"></div>
-                            <div class="divTableCell"><input type="number" name="cr" id="cr"></div>
-                            <div class="divTableCell"><input type="number" name="ta" id="ta"></div>
-                    </div>
-                    <div class="divTableRow">
-                            <div class="divTableCell"><input type="number" name="sn" id="sn"></div>
-                            <div class="divTableCell"><input type="text" name="particular" id="particular"></div>
-                            <div class="divTableCell"><input type="number" name="rf" id="re"></div>
-                            <div class="divTableCell"><input type="number" name="dr" id="dr"></div>
-                            <div class="divTableCell"><input type="number" name="cr" id="cr"></div>
-                            <div class="divTableCell"><input type="number" name="ta" id="ta"></div>
-                    </div>
-                    <div class="divTableRow">
-                        <div class="divTableCell"><input type="number" name="" id=""></div>
-                        <div class="divTableCell"><input type="text" name="" id=""></div>
-                        <div class="divTableCell"><input type="number" name="" id=""></div>
-                        <div class="divTableCell"><input type="number" name="" id=""></div>
-                        <div class="divTableCell"><input type="number" name="" id=""></div>
-                        <div class="divTableCell"><input type="number" name="" id=""></div>
-                    </div>
-                    <div class="divTableRow">
-                            <div class="divTableCell"><input type="number" name="sn" id="sn"></div>
-                            <div class="divTableCell"><input type="text" name="particular" id="particular"></div>
-                            <div class="divTableCell"><input type="number" name="rf" id="re"></div>
-                            <div class="divTableCell"><input type="number" name="dr" id="dr"></div>
-                            <div class="divTableCell"><input type="number" name="cr" id="cr"></div>
-                            <div class="divTableCell"><input type="number" name="ta" id="ta"></div>
-                    </div>
-                   
-                   </div>
-            </div>
-            <input class= "button" type="button" value="submit">
-        </form>
+                </div>
+
+            </form>
 
         </div>
         <div class="row scale-up-bl">
