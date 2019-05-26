@@ -8,10 +8,11 @@
 </head>
 <body>
     <link rel="stylesheet" href="ledger.css">
+    <link rel="stylesheet" href="tabletag.css">
     <body >
     <div class="table" > </div> 
     <form action="">
-        <div class="divTable">
+        <div class="divTable scale-up-bl">
             <div class="divTableBody">
                 <div class="divTableRow">
                     <div class="divTableHead">S.N.</div>
@@ -67,19 +68,31 @@
         </div>
     </form>
     </div>
-
+    <link rel="stylesheet" href="scale-up-animation.css">
 <script>
+    var index=1;
         var obj = JSON.parse(localStorage.getItem('myStorage'));
-     
-        
-        for (i = 1; i <= 5; i++) {
-            if(obj[i]!=null){
-            document.getElementById("sn"+ i).value = obj[i].sn;
-            document.getElementById("rf"+ i).value =obj[i].rf;
-            document.getElementById("particular"+ i).value = obj[i].particular;
-            document.getElementById("dr"+ i).value = obj[i].dr;
-            document.getElementById("ta"+ i).value = obj[i].ta;
+        var temp=[];
+
+        for(j=0;j<=6;j++){
+            if(obj[j]!=null){
+                temp[index]=obj[j];
+                index++;
+             
             }
+        }
+        console.log(temp[1].sn);
+      
+        for (i = 1; i <5; i++) {
+            if(temp[i]!=null){
+
+            document.getElementById("sn"+ i).value = temp[i].sn;
+            document.getElementById("rf"+ i).value =temp[i].rf;
+            document.getElementById("particular"+ i).value = temp[i].particular;
+            document.getElementById("dr"+ i).value = temp[i].dr;
+            document.getElementById("ta"+ i).value = temp[i].ta;
+           
+            } 
         }
     </script>
     </body>
