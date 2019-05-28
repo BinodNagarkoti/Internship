@@ -1,4 +1,4 @@
-
+//rec object class.
 class Rect {
 
 	constructor(x, y, w, h) {
@@ -19,10 +19,10 @@ class Rect {
 	toString() {return "[object Rect]"}
 
 }
-
+//
 class GameObject {
 
-	constructor(game, rect, color="#F00", gravity=false) {
+	constructor(game, rect, color="#F00", gravity=true) {
 		if (!(rect instanceof Rect)) {
 			this.rect = new Rect(rect[0], rect[1], rect[2], rect[3])
 		}
@@ -109,7 +109,7 @@ class GameObject {
 		if (Math.min(t, this.vy) === t) {
 			this.vy = t
 		}
-		this.move(this.vy, 0, 1)
+		this.move(this.vy, 0, 1.2)
 	}
 
 	toString() {return "[Object GameObject]"}
@@ -214,7 +214,7 @@ class GameObject2 {
 class Player extends GameObject {
 	
 	constructor(game, rect) {
-		super(game, rect, "blue", true)
+		super(game, rect, "grey", true)
 	}
 
 	jump() {
