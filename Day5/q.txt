@@ -1,0 +1,8 @@
+Q>find root of quardatic eqn with pseudo code and flow chart
+Q>solve the following  for x using the
+bifrucation and trifrucation
+1. in the interval(0,pi/2) such that 2sine0.9 =10x
+2.  " 0,pi such that 1+cosx = x^3.
+3.find the dot product of two vectors a.b where a = 1.2,-2.3,4.5,6.7 and b=-9.8,-8.7,7.8,6.5;
+ pow(number,powernumber)
+ pow(number,powernumber,modulas)
