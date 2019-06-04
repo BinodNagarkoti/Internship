@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
-def ledger(request):
+def ledger(response):
     return render(response,'ledger.html')
