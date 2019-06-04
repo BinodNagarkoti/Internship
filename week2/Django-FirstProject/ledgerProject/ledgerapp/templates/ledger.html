@@ -23,7 +23,7 @@
         </div>
         
         <div class="table scale-up-bl">
-            <form action="ledgermesg.html">
+            <form action="{% url 'data' %}" >
                 <div class="divTable">
                     <div class="divTableBody">
                         <div class="divTableRow">
@@ -84,14 +84,14 @@
                             <div id="4" class="divTableCell"></div>
                             <div id="4" class="divTableCell"></div>
                             <div id="4" class="divTableCell">
-                                <input class="button" type="button" value="submit"></div>
+                                <input class="button" type="submit" value="submit"></div>
 
                             <div class="divTableCell">
                                 <input type="button" onclick="getDr();"class="button" value="Dr">
                             </div>
                             <div id="4" class="divTableCell">
 
-                                <input type="button"  onclick="getCr();" class="button" value="Cr">
+                                <input type="submit"  onclick="getCr();" class="button" value="Cr">
                             </div>
                         </div>
 

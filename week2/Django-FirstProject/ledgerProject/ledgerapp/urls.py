@@ -18,5 +18,6 @@ from django.urls import path
 from ledgerapp import views
 
 urlpatterns = [
-    path('', views.ledger),
+    path('', views.ledger,name='ledgerpage'),
+    path('data/', views.data,name='data'),
 ]
