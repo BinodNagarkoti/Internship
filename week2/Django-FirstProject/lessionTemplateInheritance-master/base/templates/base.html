@@ -1,4 +1,7 @@
+
 {% load static  %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +9,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Base-OYD</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
-<img src="{% static 'img/OYD.jpg' %}" height='64px' width='64px'>
-    </header>
-    {% block content  %} {% endblock %}
-    <footer>
+        {% block header  %}
+<!-- <img src="{% static 'img/OYD.jpg' %}" height='64px' width='64px'> -->
+<h1>herder part</h1>
+ {% endblock %}
+    </header> 
+    <form action="{% url 'submit' %}">
+    <div class="w3-row">
 
+<div class="w3-third w3-container w3-green">
+    <input type="radio" name="abc" value="a">a <br>
+    <input type="radio" name="abc" value="b">b <br>
+    <input type="radio" name="abc" value="c">c <br>
+</div>
+<div class="w3-third w3-container w3-teal"> 
+    <input type="radio" name="efg" value="a">e <br>
+    <input type="radio" name="efg" value="b">f <br>
+    <input type="radio" name="efg" value="c">g <br>
+</div>
+<div class="w3-third w3-container w3-green">
+    <input type="radio" name="hij" value="a">h <br>
+    <input type="radio" name="hij" value="b">i <br>
+    <input type="radio" name="hij" value="c">j <br>
+</div>
+    </div>
+<input type="submit" value="Submit">
+</form>
+    <footer>
+{% block footer  %} {% endblock %}
     </footer>
 </body>
 </html>
