@@ -18,5 +18,6 @@ from django.urls import path,include
 from base import views
 
 urlpatterns = [
-    path('', views.base),
+    path('', views.radio),
+    path('showData/',views.showData,name='showData'),
 ]
