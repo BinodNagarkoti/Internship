@@ -1,48 +1,51 @@
 
 {% load static  %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Base-OYD</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
 </head>
 <body>
-    <header>
-        {% block header  %}
-<!-- <img src="{% static 'img/OYD.jpg' %}" height='64px' width='64px'> -->
-<h1>herder part</h1>
- {% endblock %}
-    </header> 
-    <form action="{% url 'submit' %}">
-    <div class="w3-row">
+<header>
+<div class = " w3-card">
+<h1><img src="{% static 'img/OYD.jpg' %}" alt="OYD-'Wait for the gift'" height='64px' width='64px'> 
 
-<div class="w3-third w3-container w3-green">
-    <input type="radio" name="abc" value="a">a <br>
-    <input type="radio" name="abc" value="b">b <br>
-    <input type="radio" name="abc" value="c">c <br>
+<span style="color:#EC407A;">OYD</span>-<img src="{% static 'img/WAIT.PNG' %}" alt="'Wait for the gift'" height='20px' width='200px'> </h1>
 </div>
-<div class="w3-third w3-container w3-teal"> 
-    <input type="radio" name="efg" value="a">e <br>
-    <input type="radio" name="efg" value="b">f <br>
-    <input type="radio" name="efg" value="c">g <br>
+
+</header>
+{% block body %}
+
+{% endblock %}
+
+
+<footer>
+<div class = " w3-card">
+
+<div class="w3-row" style="position:absolute;bottom:0;width: 100%;margin-left: 60px">
+        <div class="w3-third w3-container">Contact: +977 98XXXXXXX</div>
+
+    <div class="w3-third w3-container">Tinkune, KTM,Nepal</div>
+    <div class="w3-third w3-container"><img src="{% static 'img/OYD.jpg' %}" alt="OYD-'Wait for the gift'" height='34px' width='34px'> All Rights Reserved &#169 At 2019</div>
+    <div class="footer-social-links column w3-row">
+    <ul>
+<div class="w3-third w3-container"> <li> <a href="#"><img src="{% static 'img/facebook.png' %}" alt="facebook"> Facebook</a></li>
 </div>
-<div class="w3-third w3-container w3-green">
-    <input type="radio" name="hij" value="a">h <br>
-    <input type="radio" name="hij" value="b">i <br>
-    <input type="radio" name="hij" value="c">j <br>
+<div class="w3-third w3-containerr"><li> <a href="#"><img src="{% static 'img/instagram.png' %}" alt="Instagram"> Instagram</a></li>
 </div>
+<div class="w3-third w3-container"><li> <a href="#"> <img src="{% static 'img/twitter.png' %}" alt="Twitter"> Twitter</a></li>
+</div>
+               </ul>
     </div>
-<input type="submit" value="Submit">
-</form>
-    <footer>
-{% block footer  %} {% endblock %}
-    </footer>
+</div>
+</div>
+</footer>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </body>
 </html>
+
