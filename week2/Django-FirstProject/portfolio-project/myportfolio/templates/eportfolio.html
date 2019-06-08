@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'myportfolio/main.css'%}">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-8 description">
+
+                <nav style="height:10% ; width: 100%;position:fixed;left:0;top:0">
+                    <div class=" nav">
+                        <div id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li><a class="active" href="#home" id='a' onclick="activeLink('a');">Home</a></li>
+                                <li><a class="" href="#about" id='ab' onclick="activeLink('ab');">About</a></li>
+                                <li><a class="" href="#education" id='ed' onclick="activeLink('ed');">Education</a></li>
+                                <li><a class="" href="#experience" id='ex' onclick="activeLink('ex');">Experience</a>
+                                </li>
+                                <li><a class="" href="#skill" id='s' onclick="activeLink('s');">Skill</a></li>
+                                <li><a class="" href="#interest" id='i' onclick="activeLink('i');">Interest</a></li>
+                                <li><a class="" href="#achivement" id='ac' onclick="activeLink('ac');">Achivement</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </nav>
+                <div class="row content" id="home">
+                    <div class="heading" id="home">
+                        <h1></h1>
+                        <br>
+
+                    </div>
+
+                    <div class='col-sm-8'>
+
+                        <h1>
+                            <im>I'M</im>
+                        </h1>
+
+                        <h1>
+                            <last>Nagarkoti</last>
+                        </h1>
+
+                        <h1>
+                            <first>Binod</first>
+                        </h1>
+                        <h3><span class="django">I Do Django</span></h3>
+
+                    </div>
+
+                </div>
+
+                <div class="row content" id="about">
+                    <div class="heading" id="about">
+                        <h1></h1>
+                        <br><br><br>
+
+                    </div>
+
+                    <div class='col-sm-8'>
+
+                        <p>Hi, i am Binod Nagarkoti and i live in the Kathmandu city of Nepal. i am a Django programmer.
+                            the best part that i like most is do backend coding because it is so exiciting and
+                            enjoyable. Beside being programmer, i like to travel new places and the best thing about the
+                            traveling is to know how beautifull place that you have visited. the favourite food for me
+                            is chicken. Give me chicken with any other food my first attack will be on chicken. </p>
+
+                    </div>
+
+                </div>
+                <div class="row content" id="">
+                    <div class="heading" id="education">
+                        <h1></h1>
+                        <br><br><br>
+                    </div>
+                    <div class='col-sm-8'>
+                        <h1>Education</h1>
+
+                        <h2>SLC</h2>
+                        <li>Year-2012 AD, 2068 Bs</li>
+                        <li>School Name: NilKantha Secondary Boarding Scholl</li>
+
+                        <h2>Higher Secondary Education Board</h2>
+                        <li>Year- 2014 AD, 2070 BS</li>
+                        <li>School Name: Saipal Academy H.S. School </li>
+
+                        <h2>Bachelore</h2>
+                        <li>Year-2019 AD, 2074 BS </li>
+                        <li>College Nama: College Of Information Technology and Engineering</li>
+
+                    </div>
+                </div>
+                <div class="row content" id="">
+                    <div class="heading" id="experience">
+                        <h1></h1>
+                        <br><br><br>
+                    </div>
+                    <div class='col-sm-8'>
+                        <div class='content'>
+                            <h1>Experience</h1>
+                            <h2>Technical Writer</h2>
+                            <li>Office Name: Datalytics Nepal</li>
+                            {% for exp in exps%}
+                          <h2>  {{ exp.designation }} </h2>
+                          <li> Office Name:{{exp.office}} </li>
+                          <p>{{ exp.date }} </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row content" id="">
+                    <div class="heading" id="skill">
+                        <h1></h1>
+                        <br><br><br>
+                    </div>
+                    <div class='col-sm-8'>
+                        <h1>Programming</h1>
+                        <h2>
+                            <li>C,C++</li>
+                        </h2>
+                        <h2>
+                            <li>C#.Net,ASP.Net</li>
+                        </h2>
+                        <h2>
+                            <li>Core-Java</li>
+                        </h2>
+                        <h2>
+                            <li>PHP</li>
+                        </h2>
+                        <h2>
+                            <li>JavaScript</li>
+                        </h2>
+                        <h2>
+                            <li>HTML And CSS</li>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row content" id="">
+                    <div class="heading" id="interest">
+                        <h1></h1>
+                        <br><br><br>
+                    </div>
+                    <div class='col-sm-8'>
+                        <h1>Interest</h1>
+                        <h2>
+                            <li>JavaScript</li>
+                        </h2>
+                        <h2>
+                            <li>Django</li>
+                        </h2>
+
+                    </div>
+                </div>
+                <div class="row content" id="">
+                    <div class="heading" id="achivement">
+                        <h1></h1>
+                        <br><br><br>
+                    </div>
+                    <div class='col-sm-8'>
+                        <h1>Achivement</h1>
+                        <h2>
+                            <li>Theres no achivement yet but it is in progress</li>
+                        </h2>
+                    </div>
+                </div>
+
+                <p style="text-align: justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam aperiam magnam quas, corrupti
+                    provident non ad inventore est minus at odio molestias ea doloremque mollitia, blanditiis modi eum,
+                    eos sequi?
+                </p>
+                <footer style="height: 12%; width: 100%;position:fixed;left:0;bottom:0" class="container-fluid">
+                    <div class="w3-third w3-container">
+                        <li> <a href="""><img src="{% static 'myportfolio/img/facebook.png' %}" id="foo-icon"
+                                    alt="facebook"> Facebook</a></li>
+                    </div>
+                    <div class="w3-third w3-containerr">
+                        <li> <a href=""><img src="{% static 'myportfolio/img/instagram.png' %}" alt="Instagram"
+                                    id="foo-icon"> Instagram</a></li>
+                    </div>
+                    <div class="w3-third w3-container">
+                        <li> <a href=""> <img src="{% static 'myportfolio/img/twitter.png' %}" alt="Twitter"
+                                    id="foo-icon"> Twitter</a></li>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="col-sm-6" style="height: auto; width: auto;position:fixed;right:-12px;top:53px;">
+            <img height="522px" src="{% static 'myportfolio/img/me.jpeg' %%}" alt="it's me" srcset="">
+        </div>
+    </div>
+    </div>
+    <style>
+
+    </style>
+    <script type="text/javascript">
+        activeLink = (id) => {
+            document.getElementsByTagName("a").classList.remove("active");
+            document.getElementById(id).classList.add("active");
+        }
+    </script>
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</body>
+
+</html>
