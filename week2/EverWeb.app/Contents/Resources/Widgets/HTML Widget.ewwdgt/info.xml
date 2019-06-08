@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>HTML Snippet</PluginName>
+	<PluginVersion>1.1.0</PluginVersion>
+	<ApplicationVersion>1.3</ApplicationVersion>
+	
+
+	
+
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>HTML Snippet</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>560</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>315</integer>
+</item>	
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>AdjustToHeightAndWidth</key>
+	<boolean>1</boolean>
+</item>	
+<item>
+	<key>HTMLCode</key>
+	<string>{!-plhwHTMLCode-!}</string>
+</item>
+
+</dict>
+
+<options>
+
+   
+    <option>
+    <displayName>HTML Code</displayName>
+    <optionName>plhwHTMLCode</optionName>
+    <ControlWidth>260</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>HTML Code</optionDescription>
+    <controlType>6</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>
+    <height>500</height>
+    <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//replace fancy quotes
+value = value.replaceAll(chr(8220),chr(34))
+value = value.replaceAll(chr(8221),chr(34))
+
+//replace single fancy quotes
+value = value.replaceAll(chr(8216),chr(39))
+value = value.replaceAll(chr(8217),chr(39))
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>  
+    </option>
+    
+
+<windowOption>
+<ApplyButton>TRUE</ApplyButton>
+
+</windowOption>
+</options>
+
+
+</widget>

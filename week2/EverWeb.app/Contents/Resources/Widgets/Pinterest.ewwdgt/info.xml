@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Pinterest Pin It</PluginName>
+	<PluginVersion>1.0.0</PluginVersion>
+	<ApplicationVersion>1.0.0</ApplicationVersion>
+	
+	<DefaultWidth>60</DefaultWidth>
+	<DefaultHeight>30</DefaultHeight>
+
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Pinterest Pin It</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>60</integer>
+</item>
+<item>	
+	<key>UniqueHeadCode</key>
+	<string>TRUE</string>
+</item>
+<item>
+	<key>HeadCode</key>
+	<string>
+	<![CDATA[<script type="text/javascript" async src="https://assets.pinterest.com/js/pinit.js"></script>
+	</script>]]>
+	</string>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>30</integer>
+</item>	
+<item>
+	<key>HTMLCode</key>
+	<string>
+<![CDATA[ 
+<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a>
+ ]]>
+</string>
+</item>
+
+<item>	
+<key>HTML Code</key>
+	<array>
+		<string>pinterest.html</string>
+	</array>
+</item>
+
+</dict>
+
+
+<options>
+
+      <option>
+<displayName>Widget Instructions</displayName>
+<optionName>plpinterestpinit</optionName>
+<ControlWidth>250</ControlWidth>
+<controlType>7</controlType>
+<Value></Value>
+<defaultValue>Place one Pin It button anywhere on your page. When the button is clicked on, you will be able to select which image on the page you would like to 'pin'.</defaultValue>
+</option>
+  	 
+</options>
+
+
+</widget>

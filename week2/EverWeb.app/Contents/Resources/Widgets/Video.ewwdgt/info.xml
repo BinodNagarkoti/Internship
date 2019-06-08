@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Video</PluginName>
+	<PluginVersion>2.0.0</PluginVersion>
+	<ApplicationVersion>2.7.9</ApplicationVersion>
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Video</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>560</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>315</integer>
+</item>	
+<item>	
+	<key>MinWidth</key>
+	<integer>40</integer>
+</item>
+<item>	
+	<key>MinHeight</key>
+	<integer>40</integer>
+</item>
+<item>	
+	<key>useJQuery</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>PreventFullWidthAsChildItem</key>
+	<boolean>TRUE</boolean>
+</item>
+
+
+<item>
+	<key>HTMLCode</key>
+	<string><![CDATA[<!--{!-$width-!}--!>
+	<video id="video{!-SHAPEINDEX-!}" width="100%" height="{!-$Height-!}"{!-plvdAutoplay(TRUE)// autoplay//plvdAutoplay-!}{!-plvdLoop(TRUE)// loop//plvdLoop-!} poster="{!-plvdPosterImage-!}">
+	
+	<source type="video/mp4" src="{!-pltsMP4UUID-!}" />
+    <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
+    <source type="video/webm" src="{!-pltsWEBMUUID-!}" />
+    <!-- Ogg/Vorbis for older Firefox and Opera versions -->
+    <source type="video/ogg" src="{!-pltsOGGUUID-!}" />
+	</video>	
+	<script>
+$('#video{!-SHAPEINDEX-!}').mediaelementplayer( {
+    features: [{!-plvdControls(TRUE)//'playpause','progress','current','duration','tracks','volume','fullscreen'//plvdControls-!}],
+    enableKeyboard: true,
+    pauseOtherPlayers: true,
+    keyActions: []
+ 
+});
+
+vol = {!-plvdVolume-!};
+
+switch (vol)
+{
+case 0:
+	$volume = '0.0';
+	break;
+case 10:
+	$volume = '1.0';
+	break;
+default:
+	$volume = '0.' + vol;
+	break;
+}
+
+video = document.getElementById('video{!-SHAPEINDEX-!}');
+video.setVolume($volume);
+video.setMuted({!-plvdMute(FALSE)//false//plvdMute-!}{!-plvdMute(TRUE)//true//plvdMute-!});
+
+
+</script>
+	
+	]]>
+	</string>
+</item>
+
+<item>
+	<key>Javascript</key>
+	<array>
+	<string>mediaelement-and-player.min.js</string>
+	<string>flashmediaelement.swf</string>
+	</array>
+</item>
+
+<item>
+	<key>StyleSheets</key>
+	<array>
+	<string>mediaelementplayer.min.css</string>
+	<string>bigplay.svg</string>
+	<string>bigplay.png</string>
+	<string>loading.gif</string>
+	<string>mejs-controls.svg</string>
+	<string>mejs-controls.png</string>
+	<string>background.png</string>
+	
+	</array>
+</item>
+
+
+</dict>
+
+    <options>
+
+	
+	 <option>
+			  <displayName>Video Files</displayName>
+			  <optionName>plvdVideoFileLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Video Files]]></value>
+  			<defaultValue><![CDATA[Video Files]]></defaultValue>
+	</option>
+  	
+
+	<option>
+    <displayName>Video Description</displayName>
+    <optionName>plvdDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+    <textsize>10</textsize>
+    <Value></Value>
+    <defaultValue>Select your video files below. To ensure compatibility with old web browsers and devices you will need three video formats.</defaultValue>
+    </option>
+    
+    
+    <option>
+    <displayName>MP4 Description</displayName>
+    <resourceFilter>0</resourceFilter>
+    <optionName>plvdDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+     <textsize>10</textsize>
+    <Value></Value>
+    <defaultValue>Select your MP4 video file below.</defaultValue>
+    </option>
+    
+    <option>
+    <displayName>MP4 Video</displayName>
+    <isBold>TRUE</isBold>
+    <optionName>pltsMP4UUID</optionName>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>MP4 Video File</optionDescription>
+    <controlType>9</controlType>
+    <Value>**N/A**</Value>
+    
+    </option>
+    
+        <option>
+			  <displayName>Sep</displayName>
+			  <optionName>plvdLegacyVideoSeparator</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>12</controlType>
+			  
+	</option>
+    
+     <option>
+			  <displayName>Legacy Video Support</displayName>
+			  <optionName>plvdLegacyVideoFileLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Legacy Video Support]]></value>
+  			<defaultValue><![CDATA[Legacy Video Support]]></defaultValue>
+	</option>
+	
+    
+    
+     <option>
+    <displayName>WebM Description</displayName>
+    <optionName>plvdDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+    <Value></Value>
+    <textsize>10</textsize>
+    <defaultValue>For FireFox 4, Chrome and Opera web browsers specify a WebM video.</defaultValue>
+    </option>
+    
+     <option>
+    <displayName>WebM Video</displayName>
+     <isBold>TRUE</isBold>
+    <optionName>pltsWEBMUUID</optionName>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>MP4 Video File</optionDescription>
+    <controlType>9</controlType>
+    <Value>**N/A**</Value>
+    
+    </option>
+    
+     <option>
+    <displayName>OGG Description</displayName>
+    <optionName>plvdDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+    <Value></Value>
+    <textsize>10</textsize>
+    <defaultValue>For FireFox 3 specify an OGG video.</defaultValue>
+    </option>
+    
+    
+     <option>
+    <displayName>OGG Video</displayName>
+     <isBold>TRUE</isBold>
+    <optionName>pltsOGGUUID</optionName>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>MP4 Video File</optionDescription>
+    <controlType>9</controlType>
+    <Value>**N/A**</Value>
+    
+    </option>
+    
+    <option>
+			  <displayName>Sep</displayName>
+			  <optionName>plvdVideoVolumeSeparator</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+	 <option>
+			  <displayName>Video Volume Settings</displayName>
+			  <optionName>plvdVideoVolumeLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Video Volume Settings]]></value>"
+  			<defaultValue><![CDATA[Video Volume Settings]]></defaultValue>
+	</option>
+	
+	
+	<option>
+		<optionName>plvdVolume</optionName>
+		<isBold>TRUE</isBold>
+		<displayName>Default Volume Level</displayName>
+		<defaultValue>5</defaultValue>
+		<optionDescription>Set a default volume</optionDescription>
+		<controlType>2</controlType>
+		<ControlWidth>250</ControlWidth>
+		<minValue>0</minValue>
+		<OnNewLine>TRUE</OnNewLine>
+		<maxValue>10</maxValue>
+		<Value>**N/A**</Value>
+	</option>
+
+	<option>
+		<optionName>plvdMute</optionName>
+		<isBold>FALSE</isBold>
+		<displayName>Mute Sound</displayName>
+		<defaultValue>FALSE</defaultValue>
+		<optionDescription>Mute the video by default</optionDescription>
+		<controlType>4</controlType>
+		<ControlWidth>250</ControlWidth>
+		<Value>**N/A**</Value>
+	</option>
+	
+	
+	 <option>
+			  <displayName>Sep</displayName>
+			  <optionName>plvdVideoSettingsSeparator</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+	 <option>
+			  <displayName>Video Settings</displayName>
+			  <optionName>plvdVideoSettingsLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>250</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Video Settings]]></value>"
+  			<defaultValue><![CDATA[Video Settings]]></defaultValue>
+	</option>
+	
+	
+	<option>
+		<optionName>plvdAutoplay</optionName>
+		<displayName>Auto play video on page load</displayName>
+		<optionDescription>Start playing the video when the page loads</optionDescription>
+		<controlType>4</controlType>
+		<ControlWidth>250</ControlWidth>
+		<Value>**N/A**</Value>
+	</option>
+
+	<option>
+		<optionName>plvdLoop</optionName>
+		<displayName>Loop video</displayName>
+		<optionDescription>Loops the video indefinitely</optionDescription>
+		<controlType>4</controlType>
+		<ControlWidth>250</ControlWidth>
+		<defaultValue>FALSE</defaultValue>
+		<Value>**N/A**</Value>
+	</option>
+
+	<option>
+		<optionName>plvdControls</optionName>
+		<displayName>Show video controls</displayName>
+		<defaultValue>TRUE</defaultValue>
+		<optionDescription>Show/Hides the video controls</optionDescription>
+		<controlType>4</controlType>
+		<ControlWidth>250</ControlWidth>
+		<Value>**N/A**</Value>
+	</option>
+	
+	 <option>
+			  <displayName>Sep</displayName>
+			  <optionName>plvdVideoPosterSeparator</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+	 <option>
+			  <displayName>Video Poster Image</displayName>
+			  <optionName>plvdVideoPosterLabel</optionName>
+			  <controlType>7</controlType>
+			  <controlWidth>250</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Video Poster Image]]></value>"
+  			<defaultValue><![CDATA[Video Poster Image]]></defaultValue>
+	</option>
+	
+	<option>
+		<displayName>Poster Image</displayName>
+		<isBold>TRUE</isBold>
+		<optionName>plvdPosterImage</optionName>
+		<ControlWidth>250</ControlWidth>
+		<optionDescription>Select a default image for the video</optionDescription>
+		<controlType>9</controlType>
+		<resourceFilter>1</resourceFilter>
+		<Value>**N/A**</Value>
+	</option>
+	
+	<option>
+    <displayName>Poster Image Description</displayName>
+    <optionName>plvdPosterImageDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+    <Value></Value>
+    <textsize>10</textsize>
+    <defaultValue>Your poster image sets a default picture for the video. It will not work with a video set to auto play. 
+    
+Using a poster image helps improve your website loading speed.</defaultValue>
+    </option>
+
+</options>
+
+
+</widget>

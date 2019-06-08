@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Text Section</PluginName>
+	<PluginVersion>1.1.0</PluginVersion>
+	<ApplicationVersion>2.8.9</ApplicationVersion>
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Text Section</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>300</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>100</integer>
+</item>
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>UseServerPreview</key>
+	<boolean>FALSE</boolean>
+</item>
+
+<item>	
+	<key>MinWidth</key>
+	<integer>40</integer>
+</item>
+<item>	
+	<key>MinHeight</key>
+	<integer>40</integer>
+</item>
+<item>	
+	<key>AdjustToHeightWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+
+
+
+
+<item>
+	<key>HeadCode</key>
+	<string><![CDATA[
+	
+<style>
+	div#text_box_{!-SHAPEINDEX-!} .tb_button { {!-pltsButtonFontStyles-!} }
+	{!-pltsUseCustomImage(TRUE)//div#text_box_{!-SHAPEINDEX-!} img#pltsTop { margin: {!-pltsImageMargin-!}px;{!-pltsImageAlignment(left)//float:left//pltsImageAlignment-!}{!-pltsImageAlignment(right)//float:right//pltsImageAlignment-!}}//pltsUseCustomImage-!}
+</style>
+              ]]>
+    </string>   
+</item>
+
+<item>
+	<key>HTMLCode</key>
+	<string><![CDATA[<!--{!-$WIDTH-!}-->
+	<div id="text_box_{!-SHAPEINDEX-!}" style="text-align:{!-pltsSectionAlignment-!};{!-pltsUseCustomImageDimensions(TRUE)//min-width:{!-pltsCustomButtonImageWidth-!}px"//pltsUseCustomImageDimensions-!}">
+	{!-pltsUseCustomImage(TRUE)//
+	<img id="pltsTop" style="{!-pltsImageFillStyle-!}" src="{!-pltsImageFileUUID-!}" {!-pltsUseCustomImageDimensions(TRUE)//width="{!-pltsCustomButtonImageWidth-!}" height="{!-pltsCustomButtonImageheight-!}"//pltsUseCustomImageDimensions-!}/>
+	//pltsUseCustomImage-!}{!-pltsImageAlignment(Top)//<br />//pltsImageAlignment-!}
+	
+	{!-pltsStyledEditor-!}
+
+	{!-pltsUseCustomButton(TRUE)//
+	<div style="display: flex;flex-direction:{!-pltsDisplayAsColumn(TRUE)//column//pltsDisplayAsColumn-!}{!-pltsDisplayAsColumn(FALSE)//row//pltsDisplayAsColumn-!};flex-wrap: wrap;justify-content: center;align-items:center;">
+	{@-pltsButtonList//{!-pltsButtonList-!}//pltsButtonList-@}
+	</div>
+	//pltsUseCustomButton-!}
+	</div>
+	]]>
+
+	</string>
+</item>
+
+
+
+
+</dict>
+
+    <options>
+    
+    	 <option>
+			  <displayName>Text Section Widget</displayName>
+			  <optionName>pltsMainLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Text Section Widget]]></value>
+  			<defaultValue><![CDATA[Text Section Widget]]></defaultValue>
+	</option>
+	
+	 <option>
+			  <displayName>Text Section Widget</displayName>
+			  <optionName>pltsMainDescLabel</optionName>
+			  <controlType>7</controlType>
+			  <controlWidth>250</controlWidth>
+			  <textsize>11</textsize>
+			  <value></value>
+  			<defaultValue><![CDATA[Add a cover image with a textbox and an unlimited number of buttons with mouse over effects]]></defaultValue>
+	</option>
+    
+    	<option>
+			<optionName>pltsSectionAlignment</optionName>
+			<displayName>Alignment</displayName>
+			<defaultValue>Center</defaultValue>
+			<optionDescription>Left|Center|Right</optionDescription>
+			<controlType>3</controlType>
+			<ControlWidth>155</ControlWidth>
+			<value>**N/A**</value>
+  		</option>
+    
+  	<option>
+			  <displayName>Sep</displayName>
+			  <optionName>pltsButtonImageSeperator</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Separator</optionDescription>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+	 <option>
+			  <displayName>Image Settings</displayName>
+			  <optionName>pltsImageSectionLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Image Settings]]></value>
+  			<defaultValue><![CDATA[Image Settings]]></defaultValue>
+	</option>
+    
+    
+       <option>
+  		<optionName>pltsUseCustomImage</optionName>
+  		<displayName>Use Custom Image</displayName>
+  		<defaultValue>FALSE</defaultValue>
+  		<optionDescription>Specify an custom image</optionDescription>
+  		<controlType>4</controlType>
+  		<ControlWidth>200</ControlWidth>
+  		<value>**N/A**</value> 
+  		 <Event_Action><![CDATA[
+  		 
+  		 Dim bValue As String = Input("$value")
+  		 
+  		 Dim bSubValue As String = GetControlPropertyValue("pltsUseCustomImageDimensions","value")
+
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pltsImageFileUUID", TRUE)
+  		 	SetControlEnable("pltsUseCustomImageDimensions", TRUE)
+  		 	SetControlEnable("pltsImageMargin", TRUE)
+  		 	SetControlEnable("pltsImageAlignment", TRUE)
+  		 	SetControlEnable("pltsImageFillStyle", TRUE)
+  		 	
+  		 	if bSubValue = "TRUE" then
+				SetControlEnable("pltsCustomButtonImageWidth", TRUE)
+				SetControlEnable("pltsCustomButtonImageheight", TRUE)
+  			End
+  		 	
+  		 else 
+  		 	SetControlEnable("pltsImageFileUUID", FALSE)
+  		 	SetControlEnable("pltsUseCustomImageDimensions", FALSE)
+  		 	SetControlEnable("pltsImageMargin", FALSE)
+  		 	SetControlEnable("pltsImageAlignment", FALSE)
+  		 	SetControlEnable("pltsImageFillStyle", FALSE)
+  		 	
+  		 	//custom height/width
+  		 	SetControlEnable("pltsCustomButtonImageWidth", FALSE)
+  		 	SetControlEnable("pltsCustomButtonImageheight", FALSE)
+  		 end
+  		 
+  		 ]]></Event_Action>
+  		 
+  		 <Event_Open><![CDATA[
+  		 Dim bValue As String = GetControlPropertyValue("pltsUseCustomImage","value")
+  		 Dim bSubValue As String = GetControlPropertyValue("pltsUseCustomImageDimensions","value")
+
+  		 
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pltsImageFileUUID", TRUE)
+  		 	SetControlEnable("pltsUseCustomImageDimensions", TRUE)
+  		 	SetControlEnable("pltsImageMargin", TRUE)
+  		 	SetControlEnable("pltsImageAlignment", TRUE)
+  		 	SetControlEnable("pltsImageFillStyle", TRUE)
+  		 	
+  		 	if bSubValue = "TRUE" then
+				SetControlEnable("pltsCustomButtonImageWidth", TRUE)
+				SetControlEnable("pltsCustomButtonImageheight", TRUE)
+  			End
+  		 	
+  		 	
+  		 else 
+  		 	SetControlEnable("pltsImageFileUUID", FALSE)
+  		 	SetControlEnable("pltsUseCustomImageDimensions", FALSE)
+  		 	SetControlEnable("pltsImageMargin", FALSE)
+  		 	SetControlEnable("pltsImageAlignment", FALSE)
+  		 	SetControlEnable("pltsImageFillStyle", FALSE)
+  		 	
+  		 	//custom height/width
+  		 	SetControlEnable("pltsCustomButtonImageWidth", FALSE)
+  		 	SetControlEnable("pltsCustomButtonImageheight", FALSE)
+  		 end
+  		 
+  		 
+  		 ]]></Event_Open>
+  				
+  	</option>
+    
+    <option>
+    <displayName>Image File</displayName>
+    <isBold>TRUE</isBold>
+    <optionName>pltsImageFileUUID</optionName>
+  	<resourceFilter>1</resourceFilter>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>Image File</optionDescription>
+    <controlType>9</controlType>
+    <Value>**N/A**</Value>
+    <Event_Action><![CDATA[
+    	//calculate the image dimensions automatically
+    	//only if nothing is in the fields
+		Dim StrCurrentWidth As String = GetControlPropertyValue("pltsCustomButtonImageWidth","text")
+		Dim StrCurrentHeight As String = GetControlPropertyValue("pltsCustomButtonImageheight","text")
+		
+		
+		
+		// only update the height and width if they aren't set to a percentage
+		if Instr(StrCurrentWidth,"%") = 0 AND Instr(StrCurrentHeight, "%") = 0 then
+    	
+    	
+			 dim assetId as string = Input("$assetId")
+			Dim intWidth As Double
+			Dim intHeight As Double
+			Dim strDimensions As String = XSGetImageDimensions(assetId)
+			intWidth = val(NthField(strDimensions," ", 1))
+			intHeight = Val(NthField(strDimensions," ", 2))
+			//limit the image size just in case so the widget doesn't expand too much
+			//scale the image if it is too large
+		
+			Dim inMaxWidth, inMaxHeight As Integer
+			Dim TargetWidth, TargetHeight As Integer
+			inMaxWidth = 500
+			inMaxHeight = 500
+		
+			Dim ScaleWidth, ScaleHeight As Double
+
+			Dim OverallScale As Double
+		
+			if IntWidth > inMaxWidth or intHeight > inMaxHeight then
+				// Calculate the horizontal and vertical scale
+				if inMaxWidth > 0 then
+				  ScaleWidth = inMaxWidth/intWidth
+				else
+				  ScaleWidth = 1.0
+				End If
+				if inMaxHeight > 0 then
+				  ScaleHeight = inMaxHeight / intHeight
+				else
+				  ScaleHeight = 1.0
+				end if
+
+				// Use the lower of the both scales, to preserve aspect ratio
+				OverallScale = min(ScaleWidth, ScaleHeight)
+
+				// Calculate new picture size
+				TargetWidth = Max(1.0,intWidth * OverallScale)
+				TargetHeight = max(1.0,intHeight * OverallScale)
+			Else
+				//no resizing is necessary
+				TargetWidth = IntWidth
+				TargetHeight = intHeight
+			End
+		
+
+		
+			 Dim strWidth As String = str(TargetWidth)
+			 Dim strHeight As String = str(TargetHeight)
+			 SetControlPropertyValue("pltsCustomButtonImageWidth","text",strWidth)
+			 SetControlPropertyValue("pltsCustomButtonImageheight","text",strHeight)
+  		 End
+  
+  		 ]]></Event_Action>
+    
+    </option>
+    
+    <option>
+  		<optionName>pltsImageAlignment</optionName>
+  		<displayName>Alignment</displayName>
+  		<defaultValue>Top</defaultValue>
+  		<optionDescription>Left|Top|Right</optionDescription>
+  		<controlType>3</controlType>
+  		<ControlWidth>155</ControlWidth>
+  		<value>**N/A**</value>
+  		
+  	</option>
+  	
+  	<option>
+				<displayName>Padding</displayName>
+				<optionName>pltsImageMargin</optionName>
+				<optionDescription>Button Height</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>5</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				
+			</option>
+			
+				<option>
+			  <displayName>Sep</displayName>
+			  <optionName>pltsButtonImageSeperator</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Separator</optionDescription>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+		 <option>
+			  <displayName>Image Fill Size Settings</displayName>
+			  <optionName>pltsImageFillSizeLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+  			<defaultValue><![CDATA[Image Fill && Size Settings]]></defaultValue>
+	</option>
+		
+			
+			
+		 <option>
+			  <displayName>Custom Dimensions Descriptions</displayName>
+			  <optionName>pltsCustomImageDimensionsDesc</optionName>
+			  <defaultValue></defaultValue>
+			  <ControlWidth>250</ControlWidth>
+			  <controlType>7</controlType>
+			  <value></value>
+			  <textsize>11</textsize>
+  			<defaultValue><![CDATA[Combine the Image Fill Style with custom dimensions below to customize how the image is displayed.]]></defaultValue>
+	</option>
+	
+
+		<option>
+			<optionName>pltsImageFillStyle</optionName>
+			<displayName>Fill Style</displayName>
+			<defaultValue>Contain</defaultValue>
+			<optionDescription>Stretch To Custom Dimensions|Scale to Fit|Scale to Fill|Scale Down|Actual Size</optionDescription>
+			<controlType>3</controlType>
+			<ControlWidth>155</ControlWidth>
+			<value>**N/A**</value>
+			<processingCode><![CDATA[
+					dim Value, name As String 
+					Dim rowText As String
+					name=Input("dictVariableName")
+					value=Input("dictVariableValue")
+					rowText=Input("dictcode")
+					//remove any spaces
+					value = value.trim
+					Dim sResult As String
+					Select Case value
+					
+					Case "Stretch To Custom Dimensions"
+					
+					
+					Case "Scale to Fit"
+						sResult = "object-fit: contain;"
+					Case "Scale to Fill"
+						sResult = "object-fit: cover;"
+					Case "Scale Down"
+						sResult = "object-fit: scale-down;"
+					
+					Case "Actual Size"
+						sResult = "object-fit: none;"
+					End Select
+
+					rowtext = rowText.replaceall("{!-"+name+"-!}",sResult)
+
+					print rowText
+
+					]]></processingCode>  
+  		</option>
+    
+    <option>
+  		<optionName>pltsUseCustomImageDimensions</optionName>
+  		<displayName>Use Custom Image Dimensions</displayName>
+  		<defaultValue>TRUE</defaultValue>
+  		<optionDescription>Specify custom image dimensions</optionDescription>
+  		<controlType>4</controlType>
+  		<ControlWidth>200</ControlWidth>
+  		<value>**N/A**</value> 
+  		 <Event_Action><![CDATA[
+  		 
+  		 Dim bValue As String = Input("$value")
+  		 
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pltsCustomButtonImageWidth", TRUE)
+  		 	SetControlEnable("pltsCustomButtonImageheight", TRUE)
+  		 else 
+  		 	SetControlEnable("pltsCustomButtonImageWidth", FALSE)
+  		 	SetControlEnable("pltsCustomButtonImageheight", FALSE)
+  		 end
+  		 
+  		 ]]></Event_Action>
+  		 
+  		 <Event_Open><![CDATA[
+  		 Dim bValue As String = GetControlPropertyValue("pltsUseCustomImageDimensions","value")
+  		 
+  		 
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pltsCustomButtonImageWidth", TRUE)
+  		 	SetControlEnable("pltsCustomButtonImageheight", TRUE)
+  		 else 
+  		 	SetControlEnable("pltsCustomButtonImageWidth", FALSE)
+  		 	SetControlEnable("pltsCustomButtonImageheight", FALSE)
+  		 end
+  		 
+  		 ]]></Event_Open>
+  				
+  	</option>
+  	
+  	 <option>
+			  <displayName>Custom Dimensions Descriptions</displayName>
+			  <optionName>pltsCustomImageDimensionsDesc</optionName>
+			  <defaultValue></defaultValue>
+			  <ControlWidth>250</ControlWidth>
+			  <controlType>7</controlType>
+			  <value></value>
+			  <textsize>11</textsize>
+  			<defaultValue><![CDATA[Enter just a number to set the size in pixels. Add a % to use a percentage fill option. For example width: 100% will fill the width of the browser with the image. ]]></defaultValue>
+	</option>
+  	
+  	
+  	
+  	    <option>
+    	<displayName>Width:</displayName>
+  
+    	<optionName>pltsCustomButtonImageWidth</optionName>
+    	<ControlWidth>100</ControlWidth>
+    	<defaultValue>300</defaultValue>
+		<minValue>0</minValue>
+    	<controlType>1</controlType>
+    	<Value>**N/A**</Value>
+    
+    </option>
+    
+    <option>
+    	<displayName>Height:</displayName>
+  
+    	<optionName>pltsCustomButtonImageheight</optionName>
+    	<ControlWidth>100</ControlWidth>
+    	<defaultValue>auto</defaultValue>
+		<minValue>0</minValue>
+    	<controlType>1</controlType>
+    	<Value>**N/A**</Value>
+
+    
+    </option>
+    
+    <option>
+			  <displayName>Sep</displayName>
+			  <optionName>pltsTextSeperator</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Separator</optionDescription>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+	 <option>
+			  <displayName>Text Settings</displayName>
+			  <optionName>pltsTextSectionLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Text Settings]]></value>
+  			<defaultValue><![CDATA[Text Settings]]></defaultValue>
+	</option>
+    
+    
+    <option>
+    <displayName>Text</displayName>
+    <optionName>pltsStyledEditor</optionName>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue><![CDATA[<h2>My Header</h2>Enter text under the Widget Settings tab to appear here. You can include an image and unlimited buttons that adjust to the size of the web browser. When the browser is resized to a small width, the buttons can stack one over the other.
+     ]]>
+    </defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>Enter Text...</optionDescription>
+    <controlType>16</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+     <height>300</height>
+     <styleControls>TextFont,TextColors,TextStyle,Align,Links,Lists</styleControls>
+    <Value>**N/A**</Value>
+    <processingCode><![CDATA[
+    //create the default CSS based on our colors
+Dim bExists As Boolean
+Dim cAnchorColor As String = XSGetShapeProperty("optionHyperLinkColor",bExists)
+Dim cAnchorColorOver As String = XSGetShapeProperty("optionHyperlinkMouseOverColor",bExists)
+Dim cAnchorColorVisited As String = XSGetShapeProperty("optionHyperlinkVisitedColor",bExists)
+
+Dim bAnchorBoolean As String = XSGetShapeProperty("optionHyperLinkUnderline",bExists)
+Dim bAnchorBooleanOver As String = XSGetShapeProperty("optionHyperlinkMouseOverUnderline",bExists)
+Dim bAnchorBooleanVisited As String = XSGetShapeProperty("optionHyperlinkVisitedUnderline",bExists)
+
+
+
+
+Dim strFinalLinkCSS as String
+strFinalLinkCSS = strFinalLinkCSS + "<style>"
+strFinalLinkCSS = strFinalLinkCSS + "div#text_box_{!-SHAPEINDEX-!} a {"
+strFinalLinkCSS = strFinalLinkCSS + "color: " + cAnchorColor + ";"
+if bAnchorBoolean = "FALSE" then
+	strFinalLinkCSS = strFinalLinkCSS + "text-decoration: none;"
+else
+	strFinalLinkCSS = strFinalLinkCSS + "text-decoration: underline;"
+End
+strFinalLinkCSS = strFinalLinkCSS + "}"
+
+strFinalLinkCSS = strFinalLinkCSS + "div#text_box_{!-SHAPEINDEX-!} a:hover {"
+strFinalLinkCSS = strFinalLinkCSS + "color: " + cAnchorColorOver + ";"
+if bAnchorBooleanOver = "FALSE" then
+	strFinalLinkCSS = strFinalLinkCSS + "text-decoration: none;"
+else
+	strFinalLinkCSS = strFinalLinkCSS + "text-decoration: underline;"
+End
+strFinalLinkCSS = strFinalLinkCSS + "}"
+
+strFinalLinkCSS = strFinalLinkCSS + "div#text_box_{!-SHAPEINDEX-!} a:visited {"
+strFinalLinkCSS = strFinalLinkCSS + "color: " + cAnchorColorVisited + ";"
+if bAnchorBooleanVisited = "FALSE" then
+	strFinalLinkCSS = strFinalLinkCSS + "text-decoration: none;"
+else
+	strFinalLinkCSS = strFinalLinkCSS + "text-decoration: underline;"
+End
+strFinalLinkCSS = strFinalLinkCSS + "}"
+strFinalLinkCSS = strFinalLinkCSS + "</style>"
+
+// unique header identifier with our actual code
+//avoids the possibility of duplicated header code
+XSAddHeaderCode("buttonCSS", strFinalLinkCSS)
+
+
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces
+value = value.trim
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+					
+    ]]>
+    </processingCode>
+
+    </option>
+    
+    
+    	 <option>
+			  <displayName>Sep</displayName>
+			  <optionName>pltsButtonOptionSeperator</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Separator</optionDescription>
+			  <controlType>12</controlType>
+			  
+	</option>
+	
+	 <option>
+			  <displayName>Custom Buttons</displayName>
+			  <optionName>pltsButtonOptionSectionLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Custom Buttons]]></value>
+  			<defaultValue><![CDATA[Custom Buttons]]></defaultValue>
+	</option>
+    
+    
+    
+    
+     <option>
+  		<optionName>pltsUseCustomButton</optionName>
+  		<displayName>Use Custom Buttons</displayName>
+  		<defaultValue>FALSE</defaultValue>
+  		<optionDescription>Use a custom button</optionDescription>
+  		<controlType>4</controlType>
+  		<ControlWidth>200</ControlWidth>
+  		<value>**N/A**</value> 
+  		 <Event_Action><![CDATA[
+  		 
+  		 Dim bValue As String = Input("$value")
+  		 
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pltsDisplayAsColumn", TRUE)
+  		 	SetControlEnable("pltsButtonList", TRUE)
+  		 	SetControlEnable("BBAdd", TRUE)
+  		 	SetControlEnable("cBBAssets1", TRUE)
+  		 	
+  		 else 
+  		 	SetControlEnable("pltsDisplayAsColumn", FALSE)
+  		 	SetControlEnable("pltsButtonList", FALSE)
+  		 	SetControlEnable("BBAdd", FALSE)
+  		 	SetControlEnable("cBBAssets1", FALSE)
+  		 end
+  		 
+  		 ]]></Event_Action>
+  		 
+  		 <Event_Open><![CDATA[
+  		 Dim bValue As String = GetControlPropertyValue("pltsUseCustomButton","value")
+  		 
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pltsDisplayAsColumn", TRUE)
+  		 	SetControlEnable("pltsButtonList", TRUE)
+  		 	SetControlEnable("BBAdd", TRUE)
+  		 	SetControlEnable("cBBAssets1", TRUE)
+  		 else 
+  		 	SetControlEnable("pltsDisplayAsColumn", FALSE)
+  		 	SetControlEnable("pltsButtonList", FALSE)
+  		 	SetControlEnable("BBAdd", FALSE)
+  		 	SetControlEnable("cBBAssets1", FALSE)
+  		 end
+  		
+  		 
+  		 ]]></Event_Open>
+	</option>
+	
+	
+	  <option>
+  		<optionName>pltsDisplayAsColumn</optionName>
+  		<displayName>Always Arrange Vertically</displayName>
+  		<defaultValue>FALSE</defaultValue>
+  		<optionDescription>Display the buttons as a column</optionDescription>
+  		<controlType>4</controlType>
+  		<ControlWidth>200</ControlWidth>
+  		<value>**N/A**</value> 
+
+	</option>
+	
+	<option>
+			<displayName>Button Font</displayName>
+			<optionName>pltsButtonFontStyles</optionName>
+			<defaultValue>PEZvbnRQYW5lbFN0eWxlIGRlc2NyaXB0aW9uPSJTdHlsZSBJbmZvIj48QmFja0NvbG9yPiNGRkZGRkY8L0JhY2tDb2xvcj48Qm9sZD5GPC9Cb2xkPjxGb250RmFtaWx5IGU9IlQiPlFYSnBZV3c9PC9Gb250RmFtaWx5PjxGb250TmFtZSBlPSJUIj5RWEpwWVd4TlZBPT08L0ZvbnROYW1lPjxGb250U2l6ZT4xNjwvRm9udFNpemU+PEZvcmVDb2xvcj4jY2NjY2NjPC9Gb3JlQ29sb3I+PEl0YWxpYz5GPC9JdGFsaWM+PFN0cmlrZXRocnU+RjwvU3RyaWtldGhydT48VGV4dFNoYWRvdz5GPC9UZXh0U2hhZG93PjxUZXh0U2hhZG93QW5nbGU+MDwvVGV4dFNoYWRvd0FuZ2xlPjxUZXh0U2hhZG93RGlzdGFuY2U+MDwvVGV4dFNoYWRvd0Rpc3RhbmNlPjxUZXh0U2hhZG93T3BhY2l0eT4wPC9UZXh0U2hhZG93T3BhY2l0eT48VGV4dFNoYWRvd1NwcmVhZD4wPC9UZXh0U2hhZG93U3ByZWFkPjxVbmRlcmxpbmU+RjwvVW5kZXJsaW5lPjwvRm9udFBhbmVsU3R5bGU+</defaultValue>
+			<optionDescription>Select the style for the buttons</optionDescription>
+			<controlType>15</controlType>
+			<value>**N/A**</value>
+		</option>
+	
+    
+    
+    
+    
+    <option>
+    	<displayName>Custom Buttons</displayName>
+    	<optionName>pltsButtonList</optionName>
+    	<optionDescription>Button List</optionDescription>
+
+    
+    	<controlType>8</controlType>
+   		<height>800</height>
+   		 <Event_Add><![CDATA[
+			  //we have to add a new control here, but change the name once it is added to a new form control
+			  
+
+			  
+			  //add our control to our list
+			 CallControlMethod("pltsButtonList","cell(lastindex,0) = ""New Button """+chr(13)+"cell(lastindex,0)=cell(lastindex,0)+str(listcount)")
+			 
+			 
+			 //edit the control name right away
+			 CallControlMethod("pltsButtonList","editcell(lastindex,0)")
+			  
+		]]></Event_Add>
+		
+
+		
+		<Event_DoubleClick><![CDATA[
+			  Dim iRow as String =  Input("$Row")
+			  CallControlMethod("pltsButtonList","EditCell("+(iRow)+",0)")
+		 ]]></Event_DoubleClick>
+		
+		<Event_AssetDeleted><![CDATA[
+			  
+			  CallControlMethod("pltsButtonList","listIndex = Listindex")
+		 ]]></Event_AssetDeleted>
+	
+		
+		
+	 <processingRowCode><![CDATA[
+			
+//Export the majority of our HTML code
+Dim i as integer
+dim Value, name As String 
+Dim sResult(-1) As String
+Dim sListContents(-1) As String
+Dim rowText As String
+Dim sFieldName As String
+Dim sControlType As String
+Dim sDefaultValue As String
+
+
+//options
+Dim sControlBackgroundColor As String
+Dim sControlMouseOverBackgroundColor As String
+Dim sControlMouseOverTextColor As String
+
+Dim iBorderSize As Integer
+Dim sBorderColor As String
+
+Dim iBorderOverSize As Integer
+Dim sBorderOverColor As String
+
+
+Dim sControlTextColor As String
+Dim sButtonSize As String
+Dim sEdgeRoundness As String
+Dim sButtonSpacing As String
+Dim sMinWidth as String
+Dim sMaxWidth As String
+Dim intRow As String
+
+
+intRow = Input("dictlistRow")
+name=Input("dictVariableName")
+sFieldName=Input("dictVariableValue")
+rowText=Input("dictcode")
+
+sControlMouseOverBackgroundColor = Input("&pltsMouseOverBackgroundColor")
+sControlMouseOverTextColor = Input("&pltsMouseOverTextColor")
+sControlTextColor = Input("&pltsTextColor")
+if sControlTextColor = "" then
+	sControlTextColor = "#ffffff"
+End
+sControlBackgroundColor = Input("&pltsBackgroundColor")
+if sControlBackgroundColor="" then
+	sControlBackgroundColor = "#ff0000"
+End
+sButtonSize = Input("&pltsButtonSize")
+if sButtonSize = "" Then
+	sButtonSize = "10"
+End 
+
+sEdgeRoundness = Input("&pltsEdgeRoundness")
+sButtonSpacing = Input("&pltsButtonSpacing")
+sMinWidth = Input("&pltsButtonMinWidth")
+sMaxWidth = Input("&pltsButtonMaxWidth")
+
+
+
+
+
+//get our link details
+Dim strLinkData As String = Input("&pltsLinkSettings")
+Dim sLink As String
+Dim sAnchor As String
+Dim sbLinkInNewWindow As String
+XSGetLinkData(strLinkData, sLink, sAnchor, sbLinkInNewWindow)
+
+
+iBorderSize = Val(Input("&pltsButtonBorderSize"))
+sBorderColor = Input("&pltsButtonBorderColor")
+
+iBorderOverSize = Val(Input("&pltsButtonMouseOverBorderSize"))
+sBorderOverColor = Input("&pltsButtonMouseOverBorderColor")
+
+//flexbox item
+sResult.Append "<div "
+sResult.Append "style="""
+sResult.Append "flex-grow:2;"
+sResult.Append "flex-shrink:2;"
+sResult.Append "margin:" + sButtonSpacing + "px;"
+if Val(sMinWidth) > 0 then
+	sResult.Append "min-width:"+sMinWidth+"px;"
+End
+
+if Val(sMaxWidth) > 0 then
+	sResult.Append "max-width:" +sMaxWidth+ "px;"
+End
+
+sResult.Append  """>"
+
+
+sResult.Append "<a"
+
+if sbLinkInNewWindow = "TRUE" then
+	sResult.Append " target=""_blank"""
+End
+			
+sResult.Append " style=""text-decoration:none;"" href=""" + sLink + """>"
+
+sResult.Append "<div class=""tb_button"" "
+//sResult.Append "id=""tb_button_" + intRow + """ "
+sResult.Append "style='"
+sResult.Append "background-color: " + sControlBackgroundColor + ";"
+sResult.Append "padding: " + sButtonSize + "px 10px " + sButtonSize + "px 10px;"
+sResult.Append "border-radius: " + sEdgeRoundness + "px;"
+sResult.Append "text-decoration:none;"
+sResult.Append "text-align:center;"
+
+if iBorderSize > 0 then
+	sResult.Append "border:" + Str(iBorderSize) + "px solid " + sBorderColor +";"
+End
+
+
+sResult.Append "color: " + sControlTextColor + ";"
+sResult.Append "'"
+if (sControlMouseOverBackgroundColor <> sControlBackgroundColor OR sControlTextColor <> sControlMouseOverTextColor) OR (iBorderSize <> iBorderOverSize OR sBorderColor <> sBorderOverColor) then
+	
+	//if we don't have a mouse over background color or text color, then set it to our normal color
+	if sControlMouseOverBackgroundColor = "" then
+		sControlMouseOverBackgroundColor = sControlBackgroundColor
+	End
+	
+	if sControlMouseOverTextColor = "" then
+		sControlMouseOverTextColor = sControlTextColor
+	End
+	
+	
+	sResult.Append " onmouseover=""this.style.background='" + sControlMouseOverBackgroundColor + "';this.style.color='" + sControlMouseOverTextColor + "';this.style.border='" + Str(iBorderOverSize) +"px solid " + sBorderOverColor + "';"""
+	sResult.Append " onmouseout=""this.style.background='"+sControlBackgroundColor+"';this.style.color='"+sControlTextColor+"';this.style.border='" + Str(iBorderSize) +"px solid " + sBorderColor + "';"""
+end
+
+sResult.Append ">"
+sResult.Append sFieldName
+sResult.Append "</div>"
+sResult.Append "</a>"
+
+
+sResult.Append "</div>"//end flexbox item
+
+
+print Join(sResult, "")
+
+	]]></processingRowCode> 
+   		
+   		 
+   		 
+   		  <rowTags>
+  		    <options>
+
+  			  	  
+		
+			 <option>
+				  <displayName>Sep</displayName>
+				  <optionName>pltsButtonGeneralOptions</optionName>
+				  <defaultValue>General Options</defaultValue>
+				  <optionDescription>Separator</optionDescription>
+				  <controlType>12</controlType>			  
+			</option>
+			
+						<option>
+				<displayName>Button Height</displayName>
+				<optionName>pltsButtonSize</optionName>
+				<optionDescription>Button Height</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>10</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				<Value>**N/A**</Value>  
+
+			</option>
+			
+			<option>
+				<displayName>Button Spacing</displayName>
+				<optionName>pltsButtonSpacing</optionName>
+				<optionDescription>Button Spacing</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>10</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				<Value>**N/A**</Value>  
+
+			</option>
+			
+			
+			<option>
+				<displayName>Minimum Width</displayName>
+				<optionName>pltsButtonMinWidth</optionName>
+				<optionDescription>Minimum Width</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>150</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>###</controlMask>
+				<Value>**N/A**</Value>  
+			</option>
+			
+			<option>
+				<displayName>Maximum Width</displayName>
+				<optionName>pltsButtonMaxWidth</optionName>
+				<optionDescription>Maximum Width</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>0</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>#####</controlMask>
+				<Value>**N/A**</Value>  
+			</option>
+			
+
+			<option>
+				<displayName>Edge Roundness</displayName>
+				<optionName>pltsEdgeRoundness</optionName>
+				<optionDescription>Roundness</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>10</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				<Value>**N/A**</Value>  
+
+			</option>
+			
+			<option>
+				<optionName>pltsLinkSettings</optionName>
+				<displayName>Edit Link...</displayName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>Set a custom link for this button</optionDescription>
+				<controlType>17</controlType>
+				<value>**N/A**</value>
+				<preventAnchorEdit>TRUE</preventAnchorEdit> 
+				
+
+			</option>
+
+			
+			
+			<option>
+				  <displayName>Sep</displayName>
+				  <optionName>pltsButtonAppearance</optionName>
+				  <defaultValue>Button Appearance</defaultValue>
+				  <optionDescription>Separator</optionDescription>
+				  <controlType>12</controlType>			  
+			</option>
+			
+			<option>
+				<optionName>pltsBackgroundColor</optionName>
+				<displayName>Background Color</displayName>
+				<defaultValue>#ff0000</defaultValue>
+				<optionDescription>Set a custom background color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+			
+			
+			<option>
+				<optionName>pltsTextColor</optionName>
+				<displayName>Text Color</displayName>
+				<defaultValue>#ffffff</defaultValue>
+				<optionDescription>Set a custom text color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+			
+			<option>
+				<displayName>Border Size</displayName>
+				<optionName>pltsButtonBorderSize</optionName>
+				<optionDescription>Border Size</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>0</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				<Value>**N/A**</Value>  
+
+			</option>
+			
+			<option>
+				<optionName>pltsButtonBorderColor</optionName>
+				<displayName>Border Color</displayName>
+				<defaultValue>#000000</defaultValue>
+				<optionDescription>Set a custom border color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+			
+			
+			
+			<option>
+				  <displayName>Sep</displayName>
+				  <optionName>pltsButtonMouseOverAppearance</optionName>
+				  <defaultValue>Mouse Over Button Appearance</defaultValue>
+				  <optionDescription>Separator</optionDescription>
+				  <controlType>12</controlType>			  
+			</option>
+			
+			
+			
+			<option>
+				<optionName>pltsMouseOverBackgroundColor</optionName>
+				<displayName>Background Color</displayName>
+				<defaultValue>#00ff00</defaultValue>
+				<optionDescription>Set a mouse over custom color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+			
+			<option>
+				<optionName>pltsMouseOverTextColor</optionName>
+				<displayName>Text Color</displayName>
+				<defaultValue>#ffffff</defaultValue>
+				<optionDescription>Set a custom text color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+			
+			<option>
+				<displayName>Border Size</displayName>
+				<optionName>pltsButtonMouseOverBorderSize</optionName>
+				<optionDescription>Border Size</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>0</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				<Value>**N/A**</Value>  
+				
+			</option>
+			
+			<option>
+				<optionName>pltsButtonMouseOverBorderColor</optionName>
+				<displayName>Border Color</displayName>
+				<defaultValue>#000000</defaultValue>
+				<optionDescription>Set a custom border color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+
+
+		     </options>
+		     
+		    
+		  </rowTags>
+		  </option>
+
+    
+   <windowOption>
+  <help>
+  <videoURL>https://www.youtube.com/embed/LLMENAaf0w8?rel=0
+  </videoURL>
+  </help>
+  
+  </windowOption>
+
+</options>
+
+
+
+
+</widget>

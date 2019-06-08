@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>FlexBox</PluginName>
+	<PluginVersion>1.1.1</PluginVersion>
+	<ApplicationVersion>2.8.9</ApplicationVersion>
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>FlexBox</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>500</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>365</integer>
+</item>
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>MinHeight</key>
+	<integer>20</integer>
+</item>	
+
+<item>	
+	<key>MinWidth</key>
+	<integer>300</integer>
+</item>	
+	
+<item>	
+	<key>AdjustToHeightWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+
+
+<item>
+	<key>HeadCode</key>
+	<string><![CDATA[ 
+	<style>
+		div#ewfx-flex-container_{!-SHAPEINDEX-!} *  {
+			box-sizing: border-box;
+			
+			
+		}
+		
+		div#ewfx-flex-container_{!-SHAPEINDEX-!}  {
+			width:100%;
+			display: flex;
+			flex-wrap: {!-plfbWrapObjects-!};
+			flex-direction: row;
+			justify-content: {!-plfbControlAlignment-!}; 
+			align-items: center;
+		}
+		
+		div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfx-row {
+			flex-shrink: 2;
+			flex-grow: 2;
+		
+		}
+		
+		div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfx-row .ewfx-videoWrapper {
+			position: relative;
+			padding-bottom: 56.25%; /* 16:9 */
+			padding-top: 25px;
+			height: 0;
+		}
+		div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfx-row .ewfx-videoWrapper iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+	</style>
+	]]>
+	
+    </string>   
+</item>
+<item>	
+	<key>HTMLCode</key>
+	<string> 
+	<![CDATA[
+		<!--{!-$WIDTH-!}-->
+		
+		<div id="ewfx-flex-container_{!-SHAPEINDEX-!}">
+		{@-plfbControlList//{!-plfbControlList-!}//plfbControlList-@}
+		</div>
+
+        ]]>
+        </string>
+</item>
+</dict>
+
+<options>
+
+<option>
+		<displayName>FlexBox Widget</displayName>
+		<value><![CDATA[FlexBox Widget]]></value>
+  		<isBold>TRUE</isBold>
+  		<ControlWidth>255</ControlWidth>
+		<optionName>plfbMainLabel</optionName>
+		<defaultValue>FlexBox Widget</defaultValue>
+		<controlType>7</controlType>	  
+</option>
+
+
+  <option>
+				<displayName>Alignment</displayName>
+				<optionName>plfbControlAlignment</optionName>
+				<defaultValue>Center</defaultValue>
+				<optionDescription>Left|Center|Right</optionDescription>
+			 
+				<controlType>3</controlType>
+				
+				<processingCode>
+				
+				<![CDATA[
+					dim Value, name As String 
+					Dim rowText As String
+					name=Input("dictVariableName")
+					value=Input("dictVariableValue")
+					rowText=Input("dictcode")
+					
+					Dim sResult As String
+					
+					Select Case Value
+					Case "Left"
+						sResult = "flex-start"
+					Case "Center"
+						sResult = "center"
+					Case "Right"
+						sResult = "flex-end"
+					End Select
+					
+					rowtext = rowText.replaceall("{!-"+name+"-!}",sResult)
+					
+					print rowText
+				
+				]]></processingCode>
+				
+				
+
+	</option>
+
+
+
+
+<option>
+		  <displayName>Sep</displayName>
+		  <optionName>plfbControlSep</optionName>
+		  <defaultValue></defaultValue>
+		  <controlType>12</controlType>
+			  
+</option>
+
+
+  <option>
+  		<optionName>plfbWrapObjects</optionName>
+  		<displayName>Wrap Objects</displayName>
+  		<defaultValue>Wrap</defaultValue>
+  		<optionDescription>Wrap|Reverse Wrap|No Wrap</optionDescription>
+  		<controlType>3</controlType>
+  		<ControlWidth>150</ControlWidth>
+  		<value>**N/A**</value>
+  		 <processingCode><![CDATA[
+					dim Value, name As String 
+					Dim rowText As String
+					name=Input("dictVariableName")
+					value=Input("dictVariableValue")
+					rowText=Input("dictcode")
+					
+					Dim sResult As String
+					
+					Select Case Value
+					Case "Wrap"
+						sResult = "wrap"
+					Case "Reverse Wrap"
+						sResult = "wrap-reverse"
+					Case "No Wrap"
+						sResult = "nowrap"
+					End Select
+					
+					rowtext = rowText.replaceall("{!-"+name+"-!}",sResult)
+					
+					
+					
+					
+					//here we can add the Colors for our links
+					
+
+    //create the default CSS based on our colors
+Dim bExists As Boolean
+Dim cAnchorColor As String = XSGetShapeProperty("optionHyperLinkColor",bExists)
+Dim cAnchorColorOver As String = XSGetShapeProperty("optionHyperlinkMouseOverColor",bExists)
+Dim cAnchorColorVisited As String = XSGetShapeProperty("optionHyperlinkVisitedColor",bExists)
+
+Dim bAnchorBoolean As String = XSGetShapeProperty("optionHyperLinkUnderline",bExists)
+Dim bAnchorBooleanOver As String = XSGetShapeProperty("optionHyperlinkMouseOverUnderline",bExists)
+Dim bAnchorBooleanVisited As String = XSGetShapeProperty("optionHyperlinkVisitedUnderline",bExists)
+
+
+
+
+Dim strFinalLinkCSS(-1) as String
+strFinalLinkCSS.Append "<style>"
+strFinalLinkCSS.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} a {"
+strFinalLinkCSS.Append "color: " + cAnchorColor + ";"
+if bAnchorBoolean = "FALSE" then
+	strFinalLinkCSS.Append "text-decoration: none;"
+else
+	strFinalLinkCSS.Append "text-decoration: underline;"
+End
+strFinalLinkCSS.Append "}"
+
+strFinalLinkCSS.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} a:hover {"
+strFinalLinkCSS.Append "color: " + cAnchorColorOver + ";"
+if bAnchorBooleanOver = "FALSE" then
+	strFinalLinkCSS.Append "text-decoration: none;"
+else
+	strFinalLinkCSS.Append "text-decoration: underline;"
+End
+strFinalLinkCSS.Append "}"
+
+strFinalLinkCSS.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} a:visited {"
+strFinalLinkCSS.Append "color: " + cAnchorColorVisited + ";"
+if bAnchorBooleanVisited = "FALSE" then
+	strFinalLinkCSS.Append "text-decoration: none;"
+else
+	strFinalLinkCSS.Append "text-decoration: underline;"
+End
+strFinalLinkCSS.Append "}"
+strFinalLinkCSS.Append "</style>"
+
+// unique header identifier with our actual code
+//avoids the possibility of duplicated header code
+Dim strFinalCode As String = Join(strFinalLinkCSS, "")
+XSAddHeaderCode("linkColorsCSS", strFinalCode)
+
+
+//end code to add link colors to the widget
+
+
+
+					print rowText
+
+					]]></processingCode>	
+  		 
+  	</option>
+
+
+<option>
+		  <displayName>Sep</displayName>
+		  <optionName>plfbControlsSep</optionName>
+		  <defaultValue></defaultValue>
+		  <controlType>12</controlType>
+			  
+</option>
+
+<option>
+		<displayName>Embedded Objects</displayName>
+		<value><![CDATA[Embedded Objects]]></value>
+  		<isBold>TRUE</isBold>
+  		<ControlWidth>255</ControlWidth>
+		<optionName>plfbControlsLabel</optionName>
+		<defaultValue>Embedded Objects</defaultValue>
+		<controlType>7</controlType>	  
+</option>
+   
+    
+	<option>
+    	<displayName>Embedded Objects</displayName>
+    	<optionName>plfbControlList</optionName>
+    	<optionDescription>Embedded Objecys</optionDescription>
+		<duplicateButton>TRUE</duplicateButton>
+    
+    	<controlType>8</controlType>
+   		<height>1700</height>
+   		 <Event_Add><![CDATA[
+			  //we have to add a new control here
+			  
+			  //get our control type from our drop down menu
+			  Dim sControlType As String = GetControlPropertyValue("plfbControlType","text")
+			  
+			  //add our control to our list
+			 CallControlMethod("plfbControlList","cell(lastindex,0) = """+sControlType+" """+chr(13)+"cell(lastindex,0)=cell(lastindex,0)+str(listcount)")
+			 
+			 
+			 //edit the control name right away
+			 CallControlMethod("plfbControlList","editcell(lastindex,0)")
+			
+			  
+		]]></Event_Add>
+		
+
+		
+		<Event_DoubleClick><![CDATA[
+			  Dim iRow as String =  Input("$Row")
+			  CallControlMethod("plfbControlType","EditCell("+(iRow)+",0)")
+		 ]]></Event_DoubleClick>
+		
+		<Event_Change><![CDATA[
+				//show or hide controls based on selection
+
+Dim sControlType As String = GetControlPropertyValue("plfbControlType","text")
+Select case sControlType
+Case "Styled Text"
+
+	SetControlEnable("plfbControlStyledText",TRUE)
+	SetControlEnable("plfbVideoURL",FALSE)
+	SetControlEnable("plfbImage",FALSE)
+	SetControlEnable("plfbImageLink",FALSE)
+	SetControlEnable("plfbOverLayStyledTextEffect",FALSE)
+	SetControlEnable("plfbFadeBackgroundColor",FALSE)
+	SetControlEnable("plfbOverLayStyledText",FALSE)
+	
+
+	 
+
+Case "Image"
+	SetControlEnable("plfbControlStyledText",FALSE)
+	SetControlEnable("plfbVideoURL",FALSE)
+	SetControlEnable("plfbImage",TRUE)
+	SetControlEnable("plfbImageLink",TRUE)
+	SetControlEnable("plfbOverLayStyledTextEffect",TRUE)
+
+	Dim bValue As String = GetControlPropertyValue("plfbOverLayStyledText", "value")
+	if bValue = "TRUE" then
+		SetControlEnable("plfbOverLayStyledTextEffect",TRUE)
+		SetControlEnable("plfbFadeBackgroundColor",TRUE)
+	Else
+		SetControlEnable("plfbOverLayStyledTextEffect",False)
+		SetControlEnable("plfbFadeBackgroundColor",False)
+	End
+Case "Video"
+
+	SetControlEnable("plfbControlStyledText",FALSE)
+	SetControlEnable("plfbVideoURL",TRUE)
+	SetControlEnable("plfbImage",FALSE)
+	SetControlEnable("plfbImageLink",FALSE)
+	SetControlEnable("plfbOverLayStyledTextEffect",FALSE)
+	SetControlEnable("plfbFadeBackgroundColor",FALSE)
+	SetControlEnable("plfbOverLayStyledText",FALSE)
+End Select 
+				
+				]]></Event_Change>
+
+		
+		
+		
+		<processingRowCode><![CDATA[
+
+			
+dim Value, name As String 
+Dim sResult(-1) As String
+Dim rowText As String
+Dim intRow As Integer
+Dim bNewColumn As Boolean
+Dim optimizedThumbImage As string
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+intRow = Val(Input("dictlistRow"))
+
+Dim strControlType As String
+Dim strContent As String
+
+Dim strWrapOption As String = Input("&plfbWrapObjects")
+Dim strFlexBasis As String = Input("&plfbControlDefaultWidth")
+Dim strMaxWidth As String = Input("&plfbControlMaxWidth")
+Dim strMinWidth As String = Input("&plfbControlMinWidth")
+Dim intMargin As Integer = Val(Input("&plfbControlMargin"))
+Dim strVAlign As String = Input("&plfbControlVAlign")
+Dim strHAlign As String = Input("&plfbControlHAlign")
+
+//we need to fix min and max width if they haven't specified a % or px
+if val(strMaxWidth) > 0 then
+	if Right(strMaxWidth, 1) <> "%" and right(strMaxWidth, 2) <> "px" then
+		strMaxWidth = strMaxWidth + "px"
+	End
+End
+
+if val(strMinWidth) > 0 then
+	if Right(strMinWidth, 1) <> "%" and right(strMinWidth, 2) <> "px" then
+		strMinWidth = strMinWidth + "px"
+	End
+End
+
+if val(strFlexBasis) > 0 then
+	if Right(strFlexBasis, 1) <> "%" and right(strFlexBasis, 2) <> "px" then
+		strFlexBasis = strFlexBasis + "px"
+	End
+End
+
+strControlType =  Input("&plfbControlType")
+
+sResult.Append "<div class=""ewfx-row"" "
+sResult.Append "style="""
+sResult.Append "flex-basis: " + strFlexBasis + ";"
+
+if strMaxWidth <> "" and Val(strMaxWidth) > 0 then
+	sResult.Append "max-width: " + strMaxWidth + ";"
+End
+
+if strMinWidth <> "" and Val(strMinWidth) > 0 then
+	sResult.Append "min-width: " + strMinWidth + ";"
+End
+
+if intMargin > 0 then
+	sResult.Append "margin: " + str(intMargin) + "px;"
+End
+
+
+if strVAlign.Lenb > 0 then
+
+	
+	Select Case strVAlign
+	Case "Default"
+		sResult.Append "align-self: auto;"
+	Case "Top"
+		if strWrapOption = "Reverse Wrap" then
+			sResult.Append "align-self: flex-end;" //opposite for reverse wrap
+		Else
+			sResult.Append "align-self: flex-start;"
+		End
+	Case "Middle"
+		sResult.Append "align-self: center;"
+	
+	Case "Bottom"
+		
+		if strWrapOption = "Reverse Wrap" then
+			sResult.Append "align-self: flex-start;" //opposite for reverse wrap
+		Else
+			
+			sResult.Append "align-self: flex-end;"
+		End
+	End Select 
+	
+End
+
+if strHAlign.Lenb > 0 then
+	Select Case strHAlign
+	Case "Default"
+		
+	Case "Left"
+		sResult.Append "text-align: left;"
+	Case "Center"
+		sResult.Append "text-align: center;"
+	
+	Case "Right"
+		sResult.Append "text-align: right;"
+	
+	End Select 
+
+End
+
+
+
+
+
+sResult.Append """"
+sResult.Append ">" + chr(13)
+
+Dim strTextContent As String
+
+strTextContent = Input("&plfbControlStyledText")
+
+
+sResult.Append "<div class=""ewfb-container-"+str(intRow)+""">"
+
+Select Case strControlType
+
+Case "Styled Text"
+	
+
+Case "Video"
+		//sResult.Append "Video"
+	Dim sVideoURL As String = Input("&plfbVideoURL")
+		//<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/V9p1k5wAVvU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	
+	
+	//parse the url properly if needed
+	if sVideoURL.Instr("http") > 0 then
+		
+		
+		if sVideoURL.instr("?v=") > 0 then
+			//https://www.youtube.com/watch?v=r3exolMmz_Y
+			Dim intStart As Integer = sVideoURL.instr("?v=")
+			Dim intEnd As Integer = sVideoURL.Instr(intStart,"&")
+			
+			if intEnd = 0 then
+				// go all the way to the end
+				sVideoURL = Mid(sVideoURL, intStart + 3)
+
+			Else
+			
+				sVideoURL = Mid(sVideoURL, intStart + 3, intEnd - intStart)
+			End
+			
+			
+		
+		Elseif sVideoURL.instr(10,"/") > 0 then
+			//https://youtu.be/r3exolMmz_Y
+			Dim intStart As Integer = sVideoURL.instr(10,"/")
+			Dim intEnd As Integer = sVideoURL.Instr(intStart,"?")
+			
+			if intEnd = 0 then
+				// go all the way to the end
+				sVideoURL = Mid(sVideoURL, intStart + 1)
+
+			Else
+			
+				sVideoURL = Mid(sVideoURL, intStart + 1, intEnd - intStart)
+			End
+		
+		
+		ENd
+		
+	
+	End
+
+	sResult.Append  "<div class=""ewfx-videoWrapper"">"
+	sResult.Append  "<iframe width=""560"" height=""315"" src=""https://www.youtube.com/embed/"+sVideoURL+"?rel=0&hd=1"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen>"
+	sResult.Append "</iframe>"
+	sResult.Append "</div>"
+	
+Case "Image"
+	strContent = Input("&plfbImage")
+	
+	
+	Dim strLinkData As String = Input("&plfbImageLink")
+	Dim sLink As String
+	Dim sAnchor As String
+	Dim sbLinkInNewWindow As String
+	
+	XSGetLinkData(strLinkData, sLink, sAnchor, sbLinkInNewWindow)
+	
+	if sLink.Lenb > 0 then
+		sResult.Append "<a"
+		
+		if sbLinkInNewWindow = "TRUE" then
+			sResult.Append " target=""_blank"""
+		End
+		
+		sResult.Append " style=""text-decoration:none;"" href=""" + sLink + """>"
+		
+	End
+	
+	sResult.Append "<img src=""{!-plfbImage-!}"""
+	sResult.Append " style="""
+	sResult.Append "max-width: 100%;"
+	sResult.Append """"
+		
+	sResult.Append "/>"
+	
+	if sLink.Lenb > 0 then
+		sResult.Append "</a>"
+	End
+
+	
+	
+End Select
+
+	Dim sCSSButton(-1) As String
+	Dim useButton As String = Input("&plfbUseButton")
+	Dim ButtonCaption As String = Input("&plfbButtonText")
+	
+		Dim bOverlayStyledText As String =  Input("&plfbOverLayStyledText")
+		
+		sResult.Append "<div class=""ewfb-overlay"">"
+		sResult.Append "<div class=""ewfb-image-desc"">"
+		If strTextContent.Lenb > 0 then
+			sResult.Append strTextContent
+		End
+			
+		
+		
+		if bOverlayStyledText = "TRUE" then
+			//if we are doing the overlay style, we need to generate the correct html
+			
+			Dim strHoverEffect As String = Input("&plfbOverLayStyledTextEffect")
+			Dim strFadeColor As String = Input("&plfbFadeBackgroundColor")
+			
+			sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfb-container-" + str(intRow) + " {" + chr(13)
+			sCSSButton.Append "position: relative;" + chr(13)
+			sCSSButton.Append "}"+ chr(13)
+			
+			sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfb-container-" + str(intRow) + " .ewfb-overlay {" + chr(13)
+			sCSSButton.Append "position: absolute;" + chr(13)	
+					
+			sCSSButton.Append "background-color: "+strFadeColor+";" + chr(13)
+			
+			sCSSButton.Append "overflow: hidden;" + chr(13)
+			
+			Select Case strHoverEffect
+			Case "Fade In"
+				sCSSButton.Append "top: 0;" + chr(13)
+				sCSSButton.Append "bottom: 0;" + chr(13)
+				sCSSButton.Append "left: 0;" + chr(13)
+				sCSSButton.Append "right: 0;" + chr(13)
+				sCSSButton.Append "width: 100%;" + chr(13)
+				sCSSButton.Append "height:100%;" + chr(13)
+				sCSSButton.Append "opacity: 0;" + chr(13)
+			
+			Case "Slide To Bottom"
+				sCSSButton.Append "bottom: 100%;" + chr(13)
+				sCSSButton.Append "left: 0;" + chr(13)
+				sCSSButton.Append "right: 0;" + chr(13)
+				sCSSButton.Append "width: 100%;" + chr(13)
+				sCSSButton.Append "height:0;" + chr(13)
+			Case "Slide To Top"
+				sCSSButton.Append "bottom: 0;" + chr(13)
+				sCSSButton.Append "left: 0;" + chr(13)
+				sCSSButton.Append "right: 0;" + chr(13)
+				sCSSButton.Append "width: 100%;" + chr(13)
+				sCSSButton.Append "height:0;" + chr(13)
+				
+			Case "Slide To Left"
+				sCSSButton.Append "bottom: 0;" + chr(13)
+				sCSSButton.Append "left: 100%;" + chr(13)
+				sCSSButton.Append "right: 0;" + chr(13)
+				sCSSButton.Append "width: 0;" + chr(13)
+				sCSSButton.Append "height:100%;" + chr(13)
+				
+			Case "Slide to Right"
+				sCSSButton.Append "bottom: 0;" + chr(13)
+				sCSSButton.Append "left: 0;" + chr(13)
+				sCSSButton.Append "right: 0;" + chr(13)
+				sCSSButton.Append "width: 0;" + chr(13)
+				sCSSButton.Append "height:100%;" + chr(13)
+			
+			End Select 
+			
+			sCSSButton.Append "transition: .5s ease;" + chr(13)
+			sCSSButton.Append "}" + chr(13)
+			
+			
+			sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfb-container-" + str(intRow) + ":hover .ewfb-overlay {" + chr(13)
+			//Fade In|Slide To Bottom|Slide To Top|Slide to Right|Slide To Left|Opacity Change
+			Select Case strHoverEffect
+			Case "Fade In"
+				sCSSButton.Append "opacity: 1;"
+			Case "Slide To Bottom"
+				sCSSButton.Append "bottom: 0;" + chr(13)
+				sCSSButton.Append "height: 100%;" + chr(13)
+			
+			Case "Slide To Top"
+				sCSSButton.Append "height: 100%;"
+			Case "Slide To Left"
+				sCSSButton.Append "width: 100%;"
+				sCSSButton.Append "left: 0;"
+			Case "Slide to Right"
+				sCSSButton.Append " width: 100%;"
+			
+			Case "Opacity Change"
+				 sCSSButton.Append "opacity: 0.3;"
+
+			End Select
+			
+			sCSSButton.Append "}"+ chr(13)
+			
+		
+			
+			//fix for image
+			sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfb-container-" + str(intRow) + " img {" + chr(13)
+			sCSSButton.Append "display:block;"+ chr(13)
+			sCSSButton.Append "}"+ chr(13)
+
+			sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfb-container-" + str(intRow) + " .ewfb-overlay .ewfb-image-desc {" + chr(13)
+
+			sCSSButton.Append "position: absolute;" + chr(13)
+			sCSSButton.Append "top: 50%;" + chr(13)
+			sCSSButton.Append "left: 50%;" + chr(13)
+			sCSSButton.Append "-webkit-transform: translate(-50%, -50%);" + chr(13)
+			sCSSButton.Append "-ms-transform: translate(-50%, -50%);" + chr(13)
+			sCSSButton.Append "transform: translate(-50%, -50%);" + chr(13)
+			sCSSButton.Append "}"+ chr(13)
+			
+		
+		
+		End
+				
+		//add our button if we have one
+		
+		if useButton = "TRUE" And ButtonCaption.Lenb > 0  then
+			//create the css for our button
+			
+			Dim nColButtonBackground As String =  Input("&plfbBackgroundColor")
+			Dim nColTextColor As String =  Input("&plfbTextColor")
+			Dim hColButtonBackground As String =  Input("&plfbHoverBackgroundColor")
+			Dim hColTextColor As String =  Input("&plfbHoverTextColor")
+			Dim strBorderRadius As String = Input("&plfbEdgeRoundness")
+			Dim sFontXML As String =  Input("&plfbButtonFontStyles")
+			
+			//get our link details
+			Dim strLinkData As String = Input("&plfbButtonLink")
+			Dim sLink As String
+			Dim sAnchor As String
+			Dim sbLinkInNewWindow As String
+			
+			XSGetLinkData(strLinkData, sLink, sAnchor, sbLinkInNewWindow)
+			
+			
+			//Dim sLink As String = Input("&plfbButtonLink.URL")
+			//Dim sbLinkInNewWindow as String = Input("&plfbButtonLink.inNewWindow")
+			
+			Dim sFontCSS As String = XSGetFontCSSFromXML(sFontXML)
+			
+			Dim fontFamily As String
+			
+			sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfx-row .ewfb-button-" + str(intRow) + " {"
+			sCSSButton.Append "background-color: " + nColButtonBackground + ";"	
+			sCSSButton.Append "padding: 10px 10px 10px 10px;"
+			sCSSButton.Append "text-align: center;"
+			sCSSButton.Append " -webkit-transition-duration: 0.2s;"
+   			sCSSButton.Append "transition-duration: 0.2s;"
+   			sCSSButton.Append "cursor: pointer;"
+   			sCSSButton.Append "border-radius: " + strBorderRadius+"px;"
+   			sCSSButton.Append sFontCSS
+   			sCSSButton.Append "color: " + nColTextColor + ";"
+   			sCSSButton.Append "white-space: nowrap;"
+		 	sCSSButton.Append "}" + chr(13)
+		 	
+		 	sCSSButton.Append "div#ewfx-flex-container_{!-SHAPEINDEX-!} .ewfx-row .ewfb-button-" + str(intRow) + ":hover {"
+			sCSSButton.Append "background-color: " + hColButtonBackground + ";"
+			sCSSButton.Append "color: " + hColTextColor + ";"
+		 	sCSSButton.Append "}"  + chr(13)
+		 	
+		 	//replace our css code
+		 	//rowtext = rowText.replaceall("{!-ButtonCSS-!}",sCSSButton)
+		 	
+		 	
+			//html code for button. Open in new window by default for now
+			sResult.Append "<a"
+			
+			if sbLinkInNewWindow = "TRUE" then
+				sResult.Append " target=""_blank"""
+			End
+			
+			sResult.Append " style=""text-decoration:none;"" href=""" + sLink + """>"
+			sResult.Append "<div class=""ewfb-button-" + str(intRow)+""">"
+			sResult.Append ButtonCaption
+	
+			sResult.Append "</div>"
+			sResult.Append "</a>"
+			
+
+		End
+		
+		if sCSSButton.Ubound > -1 then
+		
+			XSAddHeaderCode("Button" + str(intRow), "<style>" + Join(sCSSButton,"") + "</style>")
+			
+		End
+
+		
+
+	
+sResult.Append "</div>"
+sResult.Append "</div>"
+	
+
+sResult.Append "</div>"
+
+//replace any left over CSS button code
+sResult.Append "</div>"
+
+//output our code
+print Join(sResult,"")
+
+			
+			]]></processingRowCode>  
+   		
+   		 
+   		 
+   		  <rowTags>
+  		    <options>
+
+  			  <option>
+				<displayName>Object Type</displayName>
+				<optionName>plfbControlType</optionName>
+				<defaultValue>0</defaultValue>
+				<optionDescription>Styled Text|Image|Video</optionDescription>
+			 
+				<controlType>3</controlType>
+				<Event_UserSelected><![CDATA[
+				//show or hide controls based on selection
+
+
+Dim sControlType As String = GetControlPropertyValue("plfbControlType","text")
+
+Select case sControlType
+Case "Styled Text"
+
+	SetControlEnable("plfbControlStyledText",TRUE)
+	SetControlEnable("plfbVideoURL",FALSE)
+	SetControlEnable("plfbImage",FALSE)
+	SetControlEnable("plfbImageLink",FALSE)
+	SetControlEnable("plfbOverLayStyledTextEffect",FALSE)
+	SetControlEnable("plfbFadeBackgroundColor",FALSE)
+	SetControlEnable("plfbOverLayStyledText",FALSE)
+	
+
+	 
+
+Case "Image"
+	SetControlEnable("plfbControlStyledText",FALSE)
+	SetControlEnable("plfbVideoURL",FALSE)
+	SetControlEnable("plfbImage",TRUE)
+	SetControlEnable("plfbImageLink",TRUE)
+	SetControlEnable("plfbOverLayStyledTextEffect",TRUE)
+
+	
+	Dim bValue As String = GetControlPropertyValue("plfbOverLayStyledText", "value")
+	if bValue = "TRUE" then
+		SetControlEnable("plfbOverLayStyledTextEffect",TRUE)
+		SetControlEnable("plfbFadeBackgroundColor",TRUE)
+	Else
+		SetControlEnable("plfbOverLayStyledTextEffect",False)
+		SetControlEnable("plfbFadeBackgroundColor",False)
+	End
+
+
+Case "Video"
+
+	SetControlEnable("plfbControlStyledText",FALSE)
+	SetControlEnable("plfbVideoURL",TRUE)
+	SetControlEnable("plfbImage",FALSE)
+	SetControlEnable("plfbImageLink",FALSE)
+	SetControlEnable("plfbOverLayStyledTextEffect",FALSE)
+	SetControlEnable("plfbFadeBackgroundColor",FALSE)
+	SetControlEnable("plfbOverLayStyledText",FALSE)
+End Select 
+				
+				]]></Event_UserSelected>				
+			  </option>
+			  
+			  
+			  <option>
+				  <displayName>Sep</displayName>
+				  <optionName>plfbControlSizing</optionName>
+				  <defaultValue>Object Sizing Options</defaultValue>
+				  <isBold>TRUE</isBold>
+				  <controlType>12</controlType>
+			  
+			</option>
+			
+			  <option>
+				<optionName>plfbControlDefaultWidth</optionName>
+				<displayName>Default Width:</displayName>
+				<defaultValue>200</defaultValue>
+				<optionDescription>Default width of control</optionDescription>
+				<controlType>2</controlType>
+				<maxValue>2000</maxValue>
+				<minValue>0</minValue>
+				 <controlType>1</controlType>
+				<textFieldMaxLength>5</textFieldMaxLength>
+				
+				<ControlWidth>100</ControlWidth>
+
+			</option>
+			  
+			<option>
+				<optionName>plfbControlMinWidth</optionName>
+				<displayName>Minimum Width:</displayName>
+				<defaultValue>150</defaultValue>
+				<optionDescription>Minimum width of control</optionDescription>
+				<controlType>2</controlType>
+				<maxValue>2000</maxValue>
+				<minValue>0</minValue>
+				 <controlType>1</controlType>
+				<textFieldMaxLength>5</textFieldMaxLength>
+				
+				<ControlWidth>100</ControlWidth>
+
+			</option>
+			
+			<option>
+				<optionName>plfbControlMaxWidth</optionName>
+				<displayName>Maximum Width:</displayName>
+				<defaultValue>200</defaultValue>
+				<optionDescription>Maximum width of control</optionDescription>
+				<controlType>2</controlType>
+				<maxValue>2000</maxValue>
+				<minValue>0</minValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>5</textFieldMaxLength>
+				
+				<ControlWidth>100</ControlWidth>
+
+			</option>
+  
+  			 <option>
+				<optionName>plfbControlMargin</optionName>
+				<displayName>Spacing:</displayName>
+				<defaultValue>5</defaultValue>
+				<optionDescription>Spacing around image</optionDescription>
+				<controlType>2</controlType>
+				<maxValue>100</maxValue>
+				<minValue>0</minValue>
+				 <controlType>1</controlType>
+				<textFieldMaxLength>3</textFieldMaxLength>
+				<controlMask>###</controlMask>
+				<ControlWidth>100</ControlWidth>
+
+			</option>
+			
+			
+			 <option>
+				  <displayName>Sep</displayName>
+				  <optionName>plfbControlAlignmentSep</optionName>
+				  <defaultValue>Control Alignment</defaultValue>
+				  <isBold>TRUE</isBold>
+				  <controlType>12</controlType>
+			  
+			</option>
+			
+			 <option>
+				<displayName>Vertical</displayName>
+				<optionName>plfbControlVAlign</optionName>
+				<defaultValue>Default</defaultValue>
+				<optionDescription>Default|Top|Middle|Bottom</optionDescription>
+			 
+				<controlType>3</controlType>
+				 <processingCode><![CDATA[
+					dim Value, name As String 
+					Dim rowText As String
+					name=Input("dictVariableName")
+					value=Input("dictVariableValue")
+					rowText=Input("dictcode")
+					
+					Dim sResult As String
+					
+					Select Case Value
+					Case "Default"
+						sResult = "auto"
+					Case "Top"
+						sResult = "flex-start"
+					Case "Middle"
+						sResult = "center"
+					Case "Bottom"
+						sResult = "flex-end"
+					End Select
+					
+					rowtext = rowText.replaceall("{!-"+name+"-!}",sResult)
+
+					print rowText
+
+					]]></processingCode>  
+			</option>
+			
+			<option>
+				<displayName>Horizontal</displayName>
+				<optionName>plfbControlHAlign</optionName>
+				<defaultValue>Default</defaultValue>
+				<optionDescription>Default|Left|Center|Right</optionDescription>
+			 
+				<controlType>3</controlType>
+
+			</option>
+
+  
+			  
+			  
+			   <option>
+				  <displayName>Sep</displayName>
+				  <optionName>plfbControloptions</optionName>
+				  <defaultValue>Control Content</defaultValue>
+				  <isBold>TRUE</isBold>
+				  <controlType>12</controlType>
+			  
+			</option>
+			  
+			  <option>
+				<optionName>plfbControlStyledText</optionName>
+				<displayName>Styled Text for the Object</displayName>
+				<defaultValue>Enter your custom text for this embedded control from the Widget Settings tab in the Inspector</defaultValue>
+				<optionDescription>Enter your text here...</optionDescription>
+				<controlType>16</controlType>
+				<styleControls>TextFont,TextColors,TextStyle,Align,Links,Lists,RemoveFormating</styleControls>
+				<ControlWidth>200</ControlWidth>
+				<value>**N/A**</value>
+			 </option>
+			 
+			 <option>
+				  <displayName>Sep</displayName>
+				  <optionName>plfbVideoSettingsSep</optionName>
+				  <defaultValue>Video Settings</defaultValue>
+				  <isBold>TRUE</isBold>
+				  <controlType>12</controlType>
+			  
+			</option>
+			 
+			  <option>
+				<displayName>Video URL</displayName>
+				<optionName>plfbVideoURL</optionName>
+				<ControlWidth>250</ControlWidth>
+				<defaultValue></defaultValue>
+				<OnNewLine>TRUE</OnNewLine>
+				<optionDescription>Youtube Video URL</optionDescription>
+				<controlType>1</controlType>
+				<textFieldMaxLength>0</textFieldMaxLength>
+				<regexMatch>KFw/dj18eW91dHUuYmVcLykoW2EtejAtOVwtX10rKShcJnxcc3wkKQ==</regexMatch>
+				<regexMatchSubExpression>2</regexMatchSubExpression>
+			</option>
+			 
+	 		 <option>
+				  <displayName>Sep</displayName>
+				  <optionName>plfbImageSettingsSep</optionName>
+				  <defaultValue>Image Settings</defaultValue>
+				  <isBold>TRUE</isBold>
+				  <controlType>12</controlType>
+			  
+			</option>
+
+			
+				<option>
+					<optionName>plfbImage</optionName>
+					<displayName>Image</displayName>
+					<resourceFilter>1</resourceFilter>
+					<optionDescription>Select an Image</optionDescription>
+					<controlType>9</controlType>
+					<value>**N/A**</value>
+				</option>
+				
+			<option>
+				<optionName>plfbImageLink</optionName>
+				<displayName>Set a link for this image:</displayName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>Set a custom link for this image</optionDescription>
+				<controlType>17</controlType>
+				<value>**N/A**</value>
+				<preventAnchorEdit>TRUE</preventAnchorEdit> 
+				
+
+			</option>
+				
+				
+			<option>
+				<displayName>Overlay Styled Text On Mouse Over</displayName>
+				<optionName>plfbOverLayStyledText</optionName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>On mouse over for the image, overlay the styled text</optionDescription>
+				<controlType>4</controlType>
+				
+				<Event_Action><![CDATA[
+				//show or hide controls based on selection
+
+Dim sControlType As String = GetControlPropertyValue("plfbControlType","text")
+Dim bValue As String = GetControlPropertyValue("plfbOverLayStyledText", "value")
+
+if bValue = "TRUE" And sControlType = "Image" then
+	SetControlEnable("plfbOverLayStyledTextEffect",TRUE)
+	SetControlEnable("plfbFadeBackgroundColor",TRUE)
+Else
+	SetControlEnable("plfbOverLayStyledTextEffect",FALSE)
+	SetControlEnable("plfbFadeBackgroundColor",FALSE)
+
+End
+				
+				]]></Event_Action>
+								
+			</option>
+			
+			<option>
+				<displayName>Mouse Over Overlay Effect</displayName>
+				<optionName>plfbOverLayStyledTextEffect</optionName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>Fade In|Slide To Bottom|Slide To Top|Slide to Right|Slide To Left</optionDescription>
+				<controlType>3</controlType>
+			</option>
+			
+			<option>
+				<optionName>plfbFadeBackgroundColor</optionName>
+				<displayName>Hover Overlay Color</displayName>
+				<defaultValue>#0068BB</defaultValue>
+				<optionDescription>Set a custom fade color</optionDescription>
+				<controlType>5</controlType>
+			</option>
+			
+			
+			 <option>
+				  <displayName>Sep</displayName>
+				  <optionName>plfbButtonSettingsSep</optionName>
+				  <defaultValue>Button Settings</defaultValue>
+				  <isBold>TRUE</isBold>
+				  <controlType>12</controlType>
+			  
+			</option>
+			
+			<option>
+				<displayName>Use Button</displayName>
+				<optionName>plfbUseButton</optionName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>Add a button</optionDescription>
+				<controlType>4</controlType>
+				<textFieldMaxLength>0</textFieldMaxLength>
+			</option>
+			
+			 <option>
+				<displayName>Button Text</displayName>
+				<optionName>plfbButtonText</optionName>
+				<ControlWidth>250</ControlWidth>
+				<defaultValue>Click Here</defaultValue>
+				<OnNewLine>TRUE</OnNewLine>
+				<optionDescription>Caption for Button</optionDescription>
+				<controlType>1</controlType>
+			</option>
+			
+			<option>
+				<optionName>plfbBackgroundColor</optionName>
+				<displayName>Background Color</displayName>
+				<defaultValue>#ff0000</defaultValue>
+				<value>#ff0000</value>
+				<optionDescription>Set a custom background color</optionDescription>
+				<controlType>5</controlType>
+				<asRGB>1</asRGB>
+				
+			</option>
+			
+			
+			<option>
+				<optionName>plfbTextColor</optionName>
+				<displayName>Text Color</displayName>
+				<defaultValue>#ffffff</defaultValue>
+				<value>#ffffff</value>
+				<optionDescription>Set a custom text color</optionDescription>
+				<controlType>5</controlType>
+				 
+			</option>
+			
+			<option>
+				<optionName>plfbHoverBackgroundColor</optionName>
+				<displayName>Background Color Hover</displayName>
+				<defaultValue>#00ff00</defaultValue>
+				<optionDescription>Set a custom background color</optionDescription>
+				<controlType>5</controlType>
+				<value>#00ff00</value> 
+			</option>
+			
+			
+			<option>
+				<optionName>plfbHoverTextColor</optionName>
+				<displayName>Text Color Hover</displayName>
+				<defaultValue>#ffffff</defaultValue>
+				<optionDescription>Set a custom text color</optionDescription>
+				<controlType>5</controlType>
+				<value>**N/A**</value> 
+			</option>
+			
+			<option>
+				<displayName>Edge Roundness</displayName>
+				<optionName>plfbEdgeRoundness</optionName>
+				<optionDescription>Roundness</optionDescription>
+				<ControlWidth>100</ControlWidth>
+				<defaultValue>10</defaultValue>
+				<controlType>1</controlType>
+				<textFieldMaxLength>2</textFieldMaxLength>
+				<controlMask>##</controlMask>
+				 
+			</option>
+			
+			<option>
+				<optionName>plfbButtonLink</optionName>
+				<displayName>Edit Link...</displayName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>Set a custom link for this Button</optionDescription>
+				<controlType>17</controlType>
+				<value>**N/A**</value>
+				<preventAnchorEdit>TRUE</preventAnchorEdit> 
+				
+
+			</option>
+			
+			<option>
+			<displayName>Button Style</displayName>
+			<optionName>plfbButtonFontStyles</optionName>
+			<defaultValue>PEZvbnRQYW5lbFN0eWxlIGRlc2NyaXB0aW9uPSJTdHlsZSBJbmZvIj48QmFja0NvbG9yPiNGRkZGRkY8L0JhY2tDb2xvcj48Qm9sZD5GPC9Cb2xkPjxGb250RmFtaWx5IGU9IlQiPlFYSnBZV3c9PC9Gb250RmFtaWx5PjxGb250TmFtZSBlPSJUIj5RWEpwWVd4TlZBPT08L0ZvbnROYW1lPjxGb250U2l6ZT4xNjwvRm9udFNpemU+PEZvcmVDb2xvcj4jY2NjY2NjPC9Gb3JlQ29sb3I+PEl0YWxpYz5GPC9JdGFsaWM+PFN0cmlrZXRocnU+RjwvU3RyaWtldGhydT48VGV4dFNoYWRvdz5GPC9UZXh0U2hhZG93PjxUZXh0U2hhZG93QW5nbGU+MDwvVGV4dFNoYWRvd0FuZ2xlPjxUZXh0U2hhZG93RGlzdGFuY2U+MDwvVGV4dFNoYWRvd0Rpc3RhbmNlPjxUZXh0U2hhZG93T3BhY2l0eT4wPC9UZXh0U2hhZG93T3BhY2l0eT48VGV4dFNoYWRvd1NwcmVhZD4wPC9UZXh0U2hhZG93U3ByZWFkPjxVbmRlcmxpbmU+RjwvVW5kZXJsaW5lPjwvRm9udFBhbmVsU3R5bGU+</defaultValue>
+			<optionDescription>Select the style for the buttons</optionDescription>
+			<controlType>15</controlType>
+			<value>**N/A**</value>
+			<dontAutoChangeValue>TRUE</dontAutoChangeValue>
+			
+			
+		</option>
+			
+			
+
+		     </options>
+		     
+		    
+		  </rowTags>
+   		
+   		
+    </option>
+    
+    
+   
+    
+
+  <windowOption>
+  <help>
+  <videoURL>
+https://www.youtube.com/embed/UyDNF7li03k?rel=0
+  </videoURL>
+  </help>
+  
+  </windowOption>
+  
+  	
+
+  	
+
+
+
+</options>
+
+
+</widget>

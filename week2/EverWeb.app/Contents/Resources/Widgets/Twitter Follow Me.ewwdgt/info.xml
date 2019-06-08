@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Twitter Follow Me</PluginName>
+	<PluginVersion>1.0.0</PluginVersion>
+	<ApplicationVersion>1.0.0</ApplicationVersion>
+	
+	<DefaultWidth>450</DefaultWidth>
+	<DefaultHeight>80</DefaultHeight>
+
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Twitter Follow Me</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>137</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>20</integer>
+</item>	
+<item>	
+	<key>MinWidth</key>
+	<integer>137</integer>
+</item>
+<item>	
+	<key>MinHeight</key>
+	<integer>20</integer>
+</item>
+<item>
+	<key>HTMLCode</key>
+	<string>&lt;a href=&quot;https://twitter.com/{!-pltfollowme-!}&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;false&quot;&gt;Follow @{!-pltfollowme-!}&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=&quot;https://platform.twitter.com/widgets.js&quot;;fjs.parentNode.insertBefore(js,fjs);}}(document,&quot;script&quot;,&quot;twitter-wjs&quot;);&lt;/script&gt;</string>
+</item>
+
+
+</dict>
+<options>
+
+   
+    <option>
+    <displayName>Twitter Handle</displayName>
+    <optionName>pltfollowme</optionName>
+    <ControlWidth>200</ControlWidth>
+    <defaultValue>ragesw</defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>Twitter URL</optionDescription>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <regexMatch>KEB8XikoW15cc10qKQ==</regexMatch>
+	<regexMatchSubExpression>2</regexMatchSubExpression>
+    </option>
+
+</options>
+
+
+</widget>

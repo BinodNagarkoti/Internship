@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Google Maps</PluginName>
+	<PluginVersion>1.0.0</PluginVersion>
+	<ApplicationVersion>1.0.0</ApplicationVersion>
+	
+	<DefaultWidth>450</DefaultWidth>
+	<DefaultHeight>80</DefaultHeight>
+
+	
+	
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Google Maps</string>
+</item>
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>425</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>350</integer>
+</item>
+
+<item>
+	<key>HTMLCode</key>
+	<string>&lt;!--{!-$width-!}--&gt;&lt;iframe width=&quot;100%&quot; height=&quot;{!-$Height-!}&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot; src=&quot;https://www.google.com/maps?f=q&amp;amp;source=s_q&amp;amp;hl=en&amp;amp;geocode=&amp;amp;q={!-plgmAddress-!}&amp;amp;ie=UTF8&amp;amp;output=embed&quot;&gt;&lt;/iframe&gt;</string>
+</item>
+
+	
+</dict>
+
+
+<options>
+    <option>
+    <displayName>Address</displayName>
+    <optionName>plgmAddress</optionName>
+    <ControlWidth>255</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>Address</optionDescription>
+    <controlType>6</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>    
+</option> 
+
+<windowOption>
+	<ApplyButton>TRUE</ApplyButton>
+
+</windowOption>
+</options>
+
+
+</widget>

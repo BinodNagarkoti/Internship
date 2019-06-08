@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Live Photo</PluginName>
+	<PluginVersion>1.0.0</PluginVersion>
+	<ApplicationVersion>2.3.1</ApplicationVersion>
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Live Photo</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>300</integer>
+</item>
+<item>	
+	<key>UseServerPreview</key>
+	<boolean>TRUE</boolean>
+</item>
+
+<item>	
+	<key>DefaultHeight</key>
+	<integer>300</integer>
+</item>	
+<item>	
+	<key>MinWidth</key>
+	<integer>40</integer>
+</item>
+<item>	
+	<key>MinHeight</key>
+	<integer>40</integer>
+</item>
+<item>	
+	<key>useJQuery</key>
+	<boolean>TRUE</boolean>
+</item>
+
+
+<item>
+	<key>HTMLCode</key>
+	<string><![CDATA[
+	
+	<div data-live-photo data-photo-src="{!-plalpImageFileUUID-!}" data-video-src="{!-plalpVideoFileUUID-!}" style="width: {!-$Width-!}px; height: {!-$Height-!}px"> </div>
+	
+	]]>
+	</string>
+</item>
+
+<item>
+	<key>Javascript</key>
+	<array>
+	<string>https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js</string>
+	</array>
+</item>
+
+
+
+
+</dict>
+
+    <options>
+ <option>
+			  <displayName>Media Files</displayName>
+			  <optionName>plalpResourcesLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Media Files]]></value>
+  			<defaultValue><![CDATA[Media Files]]></defaultValue>
+	</option>
+  	
+
+	
+
+	<option>
+    <displayName>Live Photos Description</displayName>
+    <optionName>plvdDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+    <Value></Value>
+    <defaultValue>Live Photos taken from an iPhone can easily be embedded on your EverWeb website. From Photos.app select the Live Photo you want to use and go to the File menu->Export->Export Unmodified Original Photo. 
+    
+A JPG file and a .mov file will be exported. You will need to specify both files below.</defaultValue>
+    </option>
+    
+    
+	
+	
+    
+    <option>
+    <displayName>Image File</displayName>
+    <isBold>TRUE</isBold>
+    <optionName>plalpImageFileUUID</optionName>
+   <resourceFilter>1</resourceFilter>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>Image File</optionDescription>
+    <controlType>9</controlType>
+    <Value>**N/A**</Value>
+    
+    </option>
+    
+    <option>
+    <displayName>Live Photos Description</displayName>
+    <optionName>plvdDescription</optionName>
+    <ControlWidth>255</ControlWidth>
+    <controlType>7</controlType>
+    <Value></Value>
+    <defaultValue>Specify the .MOV video file that was exported from Photos.app along with your image file above.</defaultValue>
+    </option>
+    
+      <option>
+    <displayName>Video File</displayName>
+    <isBold>TRUE</isBold>
+    <optionName>plalpVideoFileUUID</optionName>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>MP4 Video File</optionDescription>
+    <controlType>9</controlType>
+    <Value>**N/A**</Value>
+    
+    </option>
+    
+   <windowOption>
+  <help>
+  <videoURL>
+  http://www.youtube.com/embed/zJrMljAFqr8?rel=0
+  </videoURL>
+  </help>
+  
+  </windowOption>
+
+</options>
+
+
+
+
+</widget>

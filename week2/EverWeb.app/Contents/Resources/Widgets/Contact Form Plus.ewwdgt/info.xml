@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Contact Form Advanced</PluginName>
+	<PluginVersion>1.5.0</PluginVersion>
+	<ApplicationVersion>2.6.9</ApplicationVersion>
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Contact Form Advanced</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>300</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>365</integer>
+</item>
+
+<item>	
+	<key>MinHeight</key>
+	<integer>265</integer>
+</item>	
+
+<item>	
+	<key>MinWidth</key>
+	<integer>300</integer>
+</item>	
+<item>	
+<key>useJQuery</key>
+	<boolean>TRUE</boolean>
+</item>
+
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+
+<item>
+	<key>HeadCode</key>
+	<string><![CDATA[
+	<script>
+	 $(window).ready(function() {
+	$('#form_{!-SHAPEINDEX-!}').simpleContactForm (
+	{
+	url : "{!-PHPRELPATH-!}/ew_contactform-{!-UUID-S-!}.php",
+	type: "POST",  
+	subject : "{!-pladcEmailSubject-!}",    
+	clearAfterSend : true,	 			
+	errorClass : "error",								
+	success : function() {
+	alert('{!-pladcSuccessMessage-!}');
+	}
+		
+});
+
+ });
+</script>
+<style>
+	form.ew_custom_contact_{!-SHAPEINDEX-!} div.controltipstyle { {!-pladcfControlTipStyle-!} }
+	form.ew_custom_contact_{!-SHAPEINDEX-!} div.header {padding:5px 0 0 0;margin:0px}
+	form.ew_custom_contact_{!-SHAPEINDEX-!} div.lone { {!-pladcfHeaderLevel1-!} }
+	form.ew_custom_contact_{!-SHAPEINDEX-!} div.ltwo { {!-pladcfHeaderLevel2-!} }
+	
+	form.ew_custom_contact_{!-SHAPEINDEX-!} div.descriptionstyle { {!-pladcfDescriptionStyle-!} }
+	form.ew_custom_contact_{!-SHAPEINDEX-!} label {color:{!-%FontColor-!};font-family:{!-%fontfamilycss-!};font-size:{!-%FontSize-!}px }
+	form.ew_custom_contact_{!-SHAPEINDEX-!} label {padding:10px 0 5px 0}
+	form.ew_custom_contact_{!-SHAPEINDEX-!} form.ew_custom_contact_{!-SHAPEINDEX-!} select {color:{!-%FontColor-!};font-family:{!-%fontfamilycss-!};font-size:{!-%FontSize-!}px }
+	form.ew_custom_contact_{!-SHAPEINDEX-!} .btn-align {{!-plcfSubmitButtonAlign(Left)//float:left//plcfSubmitButtonAlign-!}{!-plcfSubmitButtonAlign(Center)//text-align:center;//plcfSubmitButtonAlign-!}{!-plcfSubmitButtonAlign(Right)//float:right//plcfSubmitButtonAlign-!}}
+	form.ew_custom_contact_{!-SHAPEINDEX-!} .btn-align input:focus {outline: none;}
+
+</style>
+              ]]>
+    </string>   
+</item>
+<item>	
+	<key>HTMLCode</key>
+	<string> 
+	<![CDATA[
+		<!--{!-$WIDTH-!}--!>
+		<form class="ew_cfad ew_custom_contact_{!-SHAPEINDEX-!}" id="form_{!-SHAPEINDEX-!}">
+		{@-pladcfControlList//{!-pladcfControlList-!}//pladcfControlList-@}
+		<div class="btn-align"><p>
+			<label style="display:none" for="er">*er:</label>
+			{!-pladcUseCustomImage(TRUE)//<div><input type="image" name="submit" src="{!-pladcCustomButtonImage-!}" onmouseout="this.src='{!-pladcCustomButtonImage-!}'" {!-pladcCustomButtonImageOver-!} {!-pladcCustomButtonImageDown-!} onmouseup="this.src='{!-pladcCustomButtonImage-!}'" border="0" alt="Submit" width="{!-pladcCustomButtonImageWidth-!}" height="{!-pladcCustomButtonImageHeight-!}" /></div>//pladcUseCustomImage-!}
+			{!-pladcUseCustomImage(FALSE)//<button type="submit">{!-plcfCaptionSubmit-!}</button>//pladcUseCustomImage-!}
+         </p>
+         </div>
+		
+		
+		 </form>
+        ]]>
+        </string>
+</item>
+<item>
+	<key>Javascript</key>
+	<array>
+	<string>ew_contactform.js</string>
+	</array>
+</item>
+
+<item>
+	<key>StyleSheets</key>
+	<array>
+	<string>ew_contactform_ad.css</string>
+	</array>
+</item>
+
+<item>
+	<key>PHPContent</key>
+	<array>
+	<string>ew_contactform-%UUID-S%.php</string>
+	<string>ew_mailer.php</string>
+	</array>
+</item>
+
+</dict>
+
+<options>
+
+ <option>
+			  <displayName>Contact Form Advanced</displayName>
+			  <optionName>pladcMainLabel</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+			  <value><![CDATA[Contact Form Advanced]]></value>
+  			<defaultValue><![CDATA[Contact Form Advanced]]></defaultValue>
+	</option>
+
+
+<option>
+    <displayName>Email Address to Send Form to</displayName>
+    <optionName>pladcEmailAddress</optionName>
+    <optionDescription>Email to send the form to</optionDescription>
+    <ControlWidth>255</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>  
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces from the email
+value = value.trim
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>  
+</option>
+
+<option>
+		  <displayName>Sep</displayName>
+		  <optionName>pladcEmailShowSeparator</optionName>
+		  <defaultValue></defaultValue>
+		  <controlType>12</controlType>
+			  
+</option>
+
+<option>
+		<displayName>SMTP Settings</displayName>
+		<value><![CDATA[SMTP Settings]]></value>
+  		<isBold>TRUE</isBold>
+  		<ControlWidth>255</ControlWidth>
+		<optionName>pladcSMTPSettingsLabel</optionName>
+		<defaultValue>SMTP Settings</defaultValue>
+		<controlType>7</controlType>	  
+</option>
+
+<option>
+		<displayName>SMTP Settings</displayName>
+		<value><![CDATA[SMTP Settings]]></value>
+  		<isBold>FALSE</isBold>
+  		<ControlWidth>255</ControlWidth>
+		<optionName>pladcSMTPSettingsDesc</optionName>
+		<defaultValue>Using your own email SMTP settings improves reliability of sending emails. Ask your web hosting provider for your SMTP settings if you don't have them.</defaultValue>
+		<controlType>7</controlType>
+		<textsize>10</textsize>
+		
+</option>
+
+<option>
+		<displayName>More Help</displayName>
+		<value><![CDATA[More Help]]></value>
+  		<isBold>FALSE</isBold>
+  		<ControlWidth>255</ControlWidth>
+		<optionName>pladcSMTPMoreHelp</optionName>
+		<defaultValue>More Help</defaultValue>
+		<controlType>11</controlType>	
+		<Event_Action><![CDATA[
+			XSShowURL("http://billing.ragesw.com/knowledgebase.php?action=displayarticle&id=245")
+			 
+	 	]]></Event_Action> 
+</option>
+
+
+
+<option>
+    <displayName>Server</displayName>
+    <optionName>pladcSMTPServer</optionName>
+    <optionDescription>mail.domain.com</optionDescription>
+    <ControlWidth>255</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>  
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces
+value = value.trim
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			]]></processingCode>  
+</option>
+
+<option>
+    <displayName>Username</displayName>
+    <optionName>pladcSMTPUsername</optionName>
+    <optionDescription>SMTP Username</optionDescription>
+    <ControlWidth>255</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>  
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces
+value = value.trim
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			]]></processingCode>  
+</option>
+
+<option>
+    <displayName>Password</displayName>
+    <optionName>pladcSMTPPassword</optionName>
+    <optionDescription>SMTP Password</optionDescription>
+    <ControlWidth>255</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>  
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces
+value = value.trim
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			]]></processingCode> 
+			
+			<Event_Open><![CDATA[
+			
+			 SetControlPropertyValue("pladcSMTPPassword","password","TRUE")
+
+	 	]]></Event_Open>  
+</option>
+
+<option>
+    <displayName>Port</displayName>
+    <optionName>pladcSMTPPort</optionName>
+    <optionDescription>SMTP Port</optionDescription>
+    <ControlWidth>135</ControlWidth>
+    <defaultValue></defaultValue>
+    <controlType>1</controlType>
+    <textFieldMaxLength>5</textFieldMaxLength>
+    <controlMask>#####</controlMask>
+    <Value>**N/A**</Value>  
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces
+value = value.trim
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			]]></processingCode>  
+</option>
+
+
+  <option>
+				<displayName>Security</displayName>
+				<optionName>pladcfSMTPSecurity</optionName>
+				<defaultValue>0</defaultValue>
+				<optionDescription>None|ssl|tls</optionDescription>
+			 
+				<controlType>3</controlType>
+
+				
+	</option>
+			  
+
+<option>
+		  <displayName>Sep</displayName>
+		  <optionName>pladcEmailSettingsShowSeparator</optionName>
+		  <defaultValue></defaultValue>
+		  <controlType>12</controlType>
+			  
+</option>
+   
+
+<option>
+    <displayName>Email Subject</displayName>
+    <optionName>pladcEmailSubject</optionName>
+    <optionDescription>Subject of the email when you receive it</optionDescription>
+    <defaultValue>A new message from your website</defaultValue>
+    <controlType>1</controlType>
+    <OnNewLine>TRUE</OnNewLine>
+    <ControlWidth>255</ControlWidth>
+    <Value>**N/A**</Value>  
+    <processingCode><![CDATA[		
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"\r")
+value = value.replaceAll(chr(10),"\n")
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+	
+	]]></processingCode>
+    
+      
+</option> 
+
+
+
+
+
+<option>
+    <displayName>Email Sent Success Message</displayName>
+    <optionName>pladcSuccessMessage</optionName>
+    <optionDescription>Message to show when email is sent</optionDescription>
+    <defaultValue>Your message has been sent!</defaultValue>
+    <controlType>1</controlType>
+    <OnNewLine>TRUE</OnNewLine>
+    <ControlWidth>255</ControlWidth>
+    <Value>**N/A**</Value>  
+    <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"\r")
+value = value.replaceAll(chr(10),"\n")
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>
+    
+      
+</option> 
+
+
+ <option>
+		  <displayName>Sep</displayName>
+		  <optionName>pladcEmailShowSeparator</optionName>
+		  <defaultValue></defaultValue>
+		  <controlType>12</controlType>
+			  
+</option>
+   
+    
+	<option>
+    	<displayName>Form Controls</displayName>
+    	<optionName>pladcfControlList</optionName>
+    	<optionDescription>Form controls</optionDescription>
+
+    
+    	<controlType>8</controlType>
+   		<height>700</height>
+   		 <Event_Add><![CDATA[
+			  //we have to add a new control here, but change the name once it is added to a new form control
+			  
+			  //get our control type from our drop down menu
+			  Dim sControlType As String = GetControlPropertyValue("pladcfControlType","text")
+			  
+			  //add our control to our list
+			 CallControlMethod("pladcfControlList","cell(lastindex,0) = ""New Form Control """+chr(13)+"cell(lastindex,0)=cell(lastindex,0)+str(listcount)")
+			 
+			 
+			 //edit the control name right away
+			 CallControlMethod("pladcfControlList","editcell(lastindex,0)")
+			  
+			  //based on the control type, lets add some options
+			  //for checkboxes, popupmenus and radio buttons we will add some default options
+			  If sControlType="Checkbox" or sControlType="Radio Button" or sControlType="Drop Down Menu" then
+			  	
+			  	CallControlMethod("pladcfControlOptionList","addrow(""Option 1"")")
+			  	CallControlMethod("pladcfControlOptionList","addrow(""Option 2"")")
+			  End
+			  
+		]]></Event_Add>
+		
+
+		
+		<Event_DoubleClick><![CDATA[
+			  Dim iRow as String =  Input("$Row")
+			  CallControlMethod("pladcfControlList","EditCell("+(iRow)+",0)")
+		 ]]></Event_DoubleClick>
+		
+		<Event_Change><![CDATA[
+				//disable our listbox depending on which control we have
+
+
+Dim sControlType As String = GetControlPropertyValue("pladcfControlType","text")
+//Checkbox|Date|Drop Down Menu|Email|Number|Phone Number|Radio Button|TextBox|Text Area|URL
+
+
+Select case sControlType
+Case "Checkbox","Drop Down Menu","Radio Button"
+	SetControlEnable("pladcfControlOptionList", TRUE)
+	SetControlEnable("pladcfControlOptionAddOption", TRUE)
+	SetControlEnable("pladcfControlOptionRemoveOption", TRUE)
+	SetControlEnable("pladcfControlDefaultValue", FALSE)
+
+else
+	
+	SetControlEnable("pladcfControlOptionList", FALSE)
+	SetControlEnable("pladcfControlOptionAddOption", FALSE)
+	SetControlEnable("pladcfControlOptionRemoveOption", FALSE)
+	SetControlEnable("pladcfControlDefaultValue", TRUE)
+
+	
+
+End select
+				
+				]]></Event_Change>
+		
+		
+		<processingRowCode><![CDATA[
+
+//here we output our actual form field code based on the type of control it is		
+//It is our main method for creating the proper HTML
+Dim i as integer
+dim Value, name As String 
+Dim sResult As String
+Dim sListContents(-1) As String
+Dim rowText As String
+Dim bIsRequired As String
+Dim sFieldName As String
+Dim sControlType As String
+Dim sDefaultValue As String
+Dim bNoLineBreak As Boolean
+
+name=Input("dictVariableName")
+sFieldName=Input("dictVariableValue")
+rowText=Input("dictcode")
+
+sControlType = Input("&pladcfControlType")
+sDefaultValue =  Input("&pladcfControlDefaultValue")
+
+//clean up our field name to use it as a input name attribute
+//should remove all non-letters and numbers
+//this is for the html name of the field
+Dim sInternalInputName As String = sFieldName.lowercase
+sInternalInputName = sInternalInputName.replaceAll(" ","-")
+sInternalInputName = XSRemoveNot(sInternalInputName,"abcdefghijklmnopqrstuvwxyz0123456789-_")
+
+if Lenb(sInternalInputName) = 0 then
+' give it a value if there is not one
+	sInternalInputName = "field-"+Left(Str(rnd()* 10000),4)
+End if
+
+//replace all & with &amp;
+sInternalInputName = replaceAll(sInternalInputName,"&","&amp;")
+
+//is the field required?
+bIsRequired = Input("&pladcfControlRequiredSelection")
+
+
+
+If sControlType.Left(6) <> "Header" then
+
+	// fix up our field name. We can't use these characters
+	sFieldName = XSRemove(sFieldName,"&|/<>'")
+
+	sResult = "<label for="""+sInternalInputName+""" class=""field-caption"">"+sFieldName
+	//sResult = sFieldName 
+
+	//put a star for a required field
+	if bIsRequired = "TRUE" Then
+		sResult = sResult + "*"
+	End
+
+	sResult = sResult + "</label>"
+End
+
+
+
+//Checkbox|Date|Drop Down Menu|Email|Number|Phone Number|Radio Button|TextBox|Text Area|URL
+Select Case sControlType
+Case "Header 1"
+	sResult = "<div class=""header lone"">" + sFieldName + "</div>"
+	bNoLineBreak = TRUE
+Case "Header 2"
+	sResult = "<div class=""header ltwo"">" + sFieldName + "</div>"
+	bNoLineBreak = TRUE
+Case "Description"
+	sResult = "<div class=""header descriptionstyle"">" + sFieldName + "</div>"
+	bNoLineBreak = TRUE
+Case "Email"
+	sResult = sResult + "<input type=""email"" value="""+sDefaultValue+""" width=""100%"" id="""+sInternalInputName+""""
+	
+	if bIsRequired = "TRUE" Then
+		//we add the HTML required flag for built in validation
+		sResult = sResult + "required class=""required"""
+	End
+	
+	 sResult = sResult + "/>"
+Case "Phone Number"
+	sResult = sResult + "<input type=""tel"" value="""+sDefaultValue+""" width=""100%"" id="""+sInternalInputName+""""
+	
+	if bIsRequired = "TRUE" Then
+		//we add the HTML required flag for built in validation
+		sResult = sResult + "required class=""required"""
+	End
+	
+	 sResult = sResult + "/>"
+Case "URL"
+	sResult = sResult + "<input type=""url"" value="""+sDefaultValue+""" width=""100%"" id="""+sInternalInputName+""""
+	
+	if bIsRequired = "TRUE" Then
+		//we add the HTML required flag for built in validation
+		sResult = sResult + "required class=""required"""
+	End
+	
+	 sResult = sResult + "/>"
+Case "Number"
+	sResult = sResult + "<input type=""number"" value="""+sDefaultValue+""" width=""100%"" id="""+sInternalInputName+""""
+	
+	if bIsRequired = "TRUE" Then
+		//we add the HTML required flag for built in validation
+		sResult = sResult + "required class=""required"""
+	End
+	
+	 sResult = sResult + "/>"
+
+Case "Date"
+	sResult = sResult + "<input type=""date"" width=""100%"" value="""+sDefaultValue+""" id="""+sInternalInputName+""""
+	
+	if bIsRequired = "TRUE" Then
+		//we add the HTML required flag for built in validation
+		sResult = sResult + "required class=""required"""
+	End
+	
+	 sResult = sResult + "/>"
+Case "TextBox"
+	sResult = sResult + "<input type=""text"" value="""+sDefaultValue+""" width=""100%"" id="""+sInternalInputName+""""
+	
+	if bIsRequired = "TRUE" Then
+		//we add the HTML required flag for built in validation
+		sResult = sResult + "required class=""required"""
+	End
+	
+	 sResult = sResult + "/>"
+Case "Checkbox"
+	//need to get our checkbox options here
+	
+	
+	Dim sControlOptions As String = Input("&pladcfControlOptionList")
+	
+	sListContents = XSListboxGetAllRows(sControlOptions,0,FALSE,FALSE)
+	
+	Dim sListCheckedContents(-1) As String = XSListboxGetAllRows(sControlOptions,0,TRUE,FALSE)
+	Dim sCheckedAddition As String
+	Dim sOptionValue As String
+	if 	sListContents <> nil and sListContents.Ubound > -1 then		
+		for i = 0 to sListContents.ubound
+			
+			if sListCheckedContents.indexOf(sListContents(i)) > -1 then
+				//it should be selected
+				sCheckedAddition = " checked=""checked"""
+			else
+				sCheckedAddition = ""
+			End
+			
+			//make sure we have the right format for the value
+			sOptionValue = XSRemoveNot(sListContents(i),"abcdefghijklmnopqrstuvwxyz0123456789-_")
+			if sOptionValue.Lenb = 0 then
+				sOptionValue = "value-"+Str(i)
+			End
+		
+		
+			sResult  = sResult + "<input type=""checkbox"" value="""+sOptionValue+""" width=""100%"" data_section="""+sInternalInputName+""" id="""+sInternalInputName+"_"+sOptionValue+""""+sCheckedAddition+">" 
+			
+			sResult  = sResult + "<label for="""+sInternalInputName+"_"+sOptionValue+"""> "+sListContents(i)+"</label>"
+			
+			//make sure each option is on a new line. In the future we can have an option to specify if we want it on a new line or not
+			sResult  = sResult + "<br />"
+		Next
+	end
+	
+Case "Radio Button"
+	//sResult  = sResult +  "<input type=""radio"" value=""testing"" width=""100%"" id="""+sInternalInputName+""" />"
+	
+	Dim sControlOptions As String = Input("&pladcfControlOptionList")
+	
+	sListContents = XSListboxGetAllRows(sControlOptions,0,FALSE,FALSE)
+			
+			
+	Dim sListCheckedContents(-1) As String = XSListboxGetAllRows(sControlOptions,0,TRUE,FALSE)
+	Dim sCheckedAddition As String
+	Dim sOptionValue as String
+	
+	if 	sListContents <> nil and sListContents.Ubound > -1 then		
+		for i = 0 to sListContents.ubound
+		
+			if sListCheckedContents.indexOf(sListContents(i)) > -1 then
+				//it should be selected
+				sCheckedAddition = " checked=""checked"""
+			else
+				sCheckedAddition = ""
+			End
+			
+			//make sure we have the right format for the value
+			sOptionValue = XSRemoveNot(sListContents(i),"abcdefghijklmnopqrstuvwxyz0123456789-_")
+			if sOptionValue.Lenb = 0 then
+				sOptionValue = "value-"+Str(i)
+			End
+		
+			sResult  = sResult +  "<input type=""radio"" value="""+sOptionValue+""" width=""100%"" name="""+sInternalInputName+""" id="""+sInternalInputName+"_"+sOptionValue+""""+ sCheckedAddition+">"
+			
+			sResult  = sResult + "<label for="""+sInternalInputName+"_"+sOptionValue+"""> "+sListContents(i)+"</label>"
+			
+			//make sure each option is on a new line. In the future we can have an option to specify if we want it on a new line or not
+			sResult  = sResult + "<br />"
+		Next
+	end
+Case "Text Area"
+	sResult  = sResult +  "<textarea id="""+sInternalInputName+""">"+sDefaultValue+"</textarea>"
+	
+
+Case "Drop Down Menu"
+	sResult  = sResult +  "<select name="""+sInternalInputName+""">"
+	
+	Dim sControlOptions As String = Input("&pladcfControlOptionList")
+	
+	sListContents = XSListboxGetAllRows(sControlOptions,0,FALSE,FALSE)
+				
+	Dim sListCheckedContents(-1) As String = XSListboxGetAllRows(sControlOptions,0,TRUE,FALSE)
+	Dim sCheckedAddition As String
+	
+	if 	sListContents <> nil and sListContents.Ubound > -1 then		
+		for i = 0 to sListContents.ubound
+		
+			if sListCheckedContents.indexOf(sListContents(i)) > -1 then
+				//it should be selected
+				sResult = sResult + "<option selected=""selected"">"
+			else
+				sResult = sResult + "<option>"
+			End
+		
+			
+			sResult = sResult + sListContents(i)
+			sResult = sResult + "</option>"
+	
+		Next
+	end
+	sResult  = sResult + "</select>"
+else 
+	//sResult = Input("&pladcfControlOptionList")
+	//sResult = "{!-pladcfControlOptionList-!}"
+end select
+
+//draw our control instructions/tip
+Dim sControlTip As String
+
+sControlTip = Input("&pladcfControlTip")
+
+if sControlTip.Lenb > 0 then
+	sResult = sResult + "<div class=""controltipstyle"">" + sControlTip + "</div>"
+else
+	if Not bNoLineBreak then
+		sResult = sResult + "<br />"
+	End
+end
+
+print sResult//rowText.replace("{!-"+name+"-!}",sResult)
+
+			
+			]]></processingRowCode>  
+   		
+   		 
+   		 
+   		  <rowTags>
+  		    <options>
+
+  			  <option>
+				<displayName>Control Type</displayName>
+				<optionName>pladcfControlType</optionName>
+				<defaultValue>0</defaultValue>
+				<optionDescription>Checkbox|Date|Description|Drop Down Menu|Email|Header 1|Header 2|Number|Phone Number|Radio Button|TextBox|Text Area|URL</optionDescription>
+			 
+				<controlType>3</controlType>
+				<Event_UserSelected><![CDATA[
+				//disable our listbox depending on which control we have
+
+
+Dim sControlType As String = GetControlPropertyValue("pladcfControlType","text")
+//Checkbox|Date|Drop Down Menu|Email|Number|Phone Number|Radio Button|TextBox|Text Area|URL
+
+Select case sControlType
+Case "Checkbox","Drop Down Menu","Radio Button"
+	SetControlEnable("pladcfControlOptionList", TRUE)
+	SetControlEnable("pladcfControlOptionAddOption", TRUE)
+	SetControlEnable("pladcfControlOptionRemoveOption", TRUE)
+	SetControlEnable("pladcfControlDefaultValue", FALSE)
+	
+Case  "Header 1", "Header 2", "Description"
+	SetControlEnable("pladcfControlDefaultValue", FALSE)
+	SetControlEnable("pladcfControlOptionList", FALSE)
+	SetControlEnable("pladcfControlOptionAddOption", FALSE)
+	SetControlEnable("pladcfControlOptionRemoveOption", FALSE)
+
+
+else
+	
+	SetControlEnable("pladcfControlOptionList", FALSE)
+	SetControlEnable("pladcfControlOptionAddOption", FALSE)
+	SetControlEnable("pladcfControlOptionRemoveOption", FALSE)
+	SetControlEnable("pladcfControlDefaultValue", TRUE)
+
+	
+
+End select
+				
+				]]></Event_UserSelected>
+				
+			  </option>
+			  
+  
+  
+			  <option>
+			  <displayName>Option List</displayName>
+			  <optionName>pladcfControlOptionList</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Enter options for your control</optionDescription>
+			  <controlType>10</controlType>
+			  <Event_Open><![CDATA[
+			  //open event code, let's set some properties
+			 	
+			 	 //disable headers for form control sorting
+		 
+				SetControlPropertyValue("pladcfControlList","hasHeading","False")
+
+			 	
+			 	SetControlPropertyValue("pladcfControlOptionList","EnableDragReorder","TRUE")
+			 	SetControlPropertyValue("pladcfControlOptionList","defaultRowheight","23")
+			 	SetControlPropertyValue("pladcfControlOptionList","textfont","smallsystem")
+			 	
+			 	
+			 	CallControlMethod("pladcfControlOptionList","ColumnType(0)= 2")
+			 	
+			 	CallControlMethod("pladcfControlList","ColumnType(0)= 3")
+			  ]]></Event_Open>
+			  
+			  <Event_DoubleClick><![CDATA[
+			  Dim iRow as String =  Input("$Row")
+			  CallControlMethod("pladcfControlOptionList","EditCell("+(iRow)+",0)")
+			  
+			   ]]></Event_DoubleClick>
+
+				<Cell_Action><![CDATA[
+				//make sure only one item is selected
+				Dim sControlType As String = GetControlPropertyValue("pladcfControlType","text")
+				//get our selected row
+				Dim sRow As String = Input("$row")
+				//print sControlType
+				Select Case sControlType
+				
+				Case "Radio Button", "Drop Down Menu", "Checkbox"
+				
+					CallControlMethod("pladcfControlOptionList","DeselectAllCheckedItemsExceptRowOnCheck("+sRow+",0)")
+			 		
+			  	else
+			  
+			  
+			  	end
+			   ]]></Cell_Action>
+  
+			  </option>
+
+		     
+		       <option>
+			  <displayName>Add Option</displayName>
+			  <optionName>pladcfControlOptionAddOption</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Press to add an option to your form control</optionDescription>
+			  <controlType>11</controlType>
+			  <Event_Action><![CDATA[
+			  
+			 
+					//add a new option to our options list
+			 	CallControlMethod("pladcfControlOptionList","listindex=-1")
+			 	CallControlMethod("pladcfControlOptionList","addrow(""Option "")"+chr(13)+"cell(lastindex,0)=cell(lastindex,0)+str(listcount)")
+				CallControlMethod("pladcfControlOptionList","editcell(lastindex,0)")
+
+				//save our row tags for the selected option
+				//XSSaveAssetListRowTags()
+			
+			 
+			  ]]></Event_Action>
+			  </option>
+			  
+			   <option>
+			   <displayName>Remove Option</displayName>
+			  <optionName>pladcfControlOptionRemoveOption</optionName>
+			  <defaultValue></defaultValue>
+			  <optionDescription>Press to add an option to your form control</optionDescription>
+			  <controlType>11</controlType>
+			  <Event_Action><![CDATA[
+			  
+			 
+				
+				CallControlMethod("pladcfControlOptionList","RemoveSelectedRows()")
+
+				//save our row tags for the selected option
+				XSSaveAssetListRowTags(TRUE)
+			
+			 
+			  ]]></Event_Action>
+			  </option>
+			  
+			  <option>
+				<optionName>pladcfControlDefaultValue</optionName>
+				<displayName>Default value (for text controls)</displayName>
+				<defaultValue></defaultValue>
+				<optionDescription>Set the default value</optionDescription>
+				<controlType>6</controlType>
+				<ControlWidth>200</ControlWidth>
+				<value>**N/A**</value>
+			 </option>
+			 
+	 
+
+			 <option>
+				<optionName>pladcfControlRequiredSelection</optionName>
+				<displayName>Required field</displayName>
+				<defaultValue>FALSE</defaultValue>
+				<optionDescription>Set whether or not this option is required to submit the form</optionDescription>
+				<controlType>4</controlType>
+				<ControlWidth>200</ControlWidth>
+				<value>**N/A**</value>
+				
+		<Event_Open><![CDATA[
+		
+		 
+		 //add a default control to our form if there are no controls
+		 
+		Dim iListCount As String = GetControlPropertyValue("pladcfControlList","listcount")
+		if iListCount = "0" then
+		 
+		 
+			 CallControlMethod("pladcfControlList","addrow(""Name"")")
+			 CallControlMethod("pladcfControlList","listindex=lastindex")
+			CallControlMethod("pladcfControlType","SelectText(""TextBox"")")
+		
+			 CallControlMethod("pladcfControlList","addrow(""Email"")")
+			 CallControlMethod("pladcfControlList","listindex=lastindex")
+			CallControlMethod("pladcfControlType","SelectText(""email"")")
+			
+			 CallControlMethod("pladcfControlList","addrow(""Message"")")
+			 CallControlMethod("pladcfControlList","listindex=lastindex")
+			CallControlMethod("pladcfControlType","SelectText(""Text Area"")")
+		
+			XSSaveAssetListRowTags(TRUE)
+		end
+
+		
+		 
+		 
+		]]></Event_Open>
+			</option>
+			
+			
+			 <option>
+				<optionName>pladcfControlTip</optionName>
+				<displayName>Control Instructions/Tip</displayName>
+				<optionDescription>Set a </optionDescription>
+				<controlType>6</controlType>
+				<ControlWidth>200</ControlWidth>
+				<value>**N/A**</value>
+			 </option>
+			
+			
+
+		     </options>
+		     
+		    
+		  </rowTags>
+   		
+   		
+    </option>
+    
+    
+    <option>
+		  <displayName>Sep</displayName>
+		  <optionName>pladcAppearanceSep</optionName>
+		  <defaultValue></defaultValue>
+		  <controlType>12</controlType>
+			  
+	</option>
+	<option>
+		<displayName>Fonts and Styles</displayName>
+		<value><![CDATA[Fonts and Styles]]></value>
+  		<isBold>TRUE</isBold>
+  		<ControlWidth>255</ControlWidth>
+		<optionName>pladcFontsStylesLabel</optionName>
+		<defaultValue>Fonts and Styles</defaultValue>
+		<controlType>7</controlType>	  
+	</option>
+    
+	<option>
+		<displayName>Control Tip Style</displayName>
+		<optionName>pladcfControlTipStyle</optionName>
+		<defaultValue>PEZvbnRQYW5lbFN0eWxlIGRlc2NyaXB0aW9uPSJTdHlsZSBJbmZvIj48QmFja0NvbG9yPiNGRkZGRkY8L0JhY2tDb2xvcj48Qm9sZD5GPC9Cb2xkPjxGb250RmFtaWx5IGU9IlQiPlFYSnBZV3c9PC9Gb250RmFtaWx5PjxGb250TmFtZSBlPSJUIj5RWEpwWVd4TlZBPT08L0ZvbnROYW1lPjxGb250U2l6ZT4xMDwvRm9udFNpemU+PEZvcmVDb2xvcj4jY2NjY2NjPC9Gb3JlQ29sb3I+PEl0YWxpYz5GPC9JdGFsaWM+PFN0cmlrZXRocnU+RjwvU3RyaWtldGhydT48VGV4dFNoYWRvdz5GPC9UZXh0U2hhZG93PjxUZXh0U2hhZG93QW5nbGU+MDwvVGV4dFNoYWRvd0FuZ2xlPjxUZXh0U2hhZG93RGlzdGFuY2U+MDwvVGV4dFNoYWRvd0Rpc3RhbmNlPjxUZXh0U2hhZG93T3BhY2l0eT4wPC9UZXh0U2hhZG93T3BhY2l0eT48VGV4dFNoYWRvd1NwcmVhZD4wPC9UZXh0U2hhZG93U3ByZWFkPjxVbmRlcmxpbmU+RjwvVW5kZXJsaW5lPjwvRm9udFBhbmVsU3R5bGU+</defaultValue>
+		<optionDescription>Select the style for the control tip</optionDescription>
+		<controlType>15</controlType>
+		<value>**N/A**</value>
+	</option>
+	
+	<option>
+		<displayName>Header Level 1</displayName>
+		<optionName>pladcfHeaderLevel1</optionName>
+		<defaultValue>PEZvbnRQYW5lbFN0eWxlIGRlc2NyaXB0aW9uPSJTdHlsZSBJbmZvIj48QmFja0NvbG9yPiNGRkZGRkY8L0JhY2tDb2xvcj48Qm9sZD5UPC9Cb2xkPjxGb250RmFtaWx5IGU9IlQiPlFYSnBZV3c9PC9Gb250RmFtaWx5PjxGb250TmFtZSBlPSJUIj5RWEpwWVd4TlZBPT08L0ZvbnROYW1lPjxGb250U2l6ZT4yNDwvRm9udFNpemU+PEZvcmVDb2xvcj4jMDAwMDAwPC9Gb3JlQ29sb3I+PEl0YWxpYz5GPC9JdGFsaWM+PFN0cmlrZXRocnU+RjwvU3RyaWtldGhydT48VGV4dFNoYWRvdz5GPC9UZXh0U2hhZG93PjxUZXh0U2hhZG93QW5nbGU+MDwvVGV4dFNoYWRvd0FuZ2xlPjxUZXh0U2hhZG93RGlzdGFuY2U+MDwvVGV4dFNoYWRvd0Rpc3RhbmNlPjxUZXh0U2hhZG93T3BhY2l0eT4wPC9UZXh0U2hhZG93T3BhY2l0eT48VGV4dFNoYWRvd1NwcmVhZD4wPC9UZXh0U2hhZG93U3ByZWFkPjxVbmRlcmxpbmU+RjwvVW5kZXJsaW5lPjwvRm9udFBhbmVsU3R5bGU+DQo=</defaultValue>
+		<optionDescription>Select the style for the control tip</optionDescription>
+		<controlType>15</controlType>
+		<value>**N/A**</value>
+	</option>
+	
+	<option>
+		<displayName>Header Level 2</displayName>
+		<optionName>pladcfHeaderLevel2</optionName>
+		
+		<defaultValue>PEZvbnRQYW5lbFN0eWxlIGRlc2NyaXB0aW9uPSJTdHlsZSBJbmZvIj48QmFja0NvbG9yPiNGRkZGRkY8L0JhY2tDb2xvcj48Qm9sZD5UPC9Cb2xkPjxGb250RmFtaWx5IGU9IlQiPlFYSnBZV3c9PC9Gb250RmFtaWx5PjxGb250TmFtZSBlPSJUIj5RWEpwWVd4TlZBPT08L0ZvbnROYW1lPjxGb250U2l6ZT4yMDwvRm9udFNpemU+PEZvcmVDb2xvcj4jMDAwMDAwPC9Gb3JlQ29sb3I+PEl0YWxpYz5GPC9JdGFsaWM+PFN0cmlrZXRocnU+RjwvU3RyaWtldGhydT48VGV4dFNoYWRvdz5GPC9UZXh0U2hhZG93PjxUZXh0U2hhZG93QW5nbGU+MDwvVGV4dFNoYWRvd0FuZ2xlPjxUZXh0U2hhZG93RGlzdGFuY2U+MDwvVGV4dFNoYWRvd0Rpc3RhbmNlPjxUZXh0U2hhZG93T3BhY2l0eT4wPC9UZXh0U2hhZG93T3BhY2l0eT48VGV4dFNoYWRvd1NwcmVhZD4wPC9UZXh0U2hhZG93U3ByZWFkPjxVbmRlcmxpbmU+RjwvVW5kZXJsaW5lPjwvRm9udFBhbmVsU3R5bGU+</defaultValue>
+		
+		<optionDescription>Select the style for the control tip</optionDescription>
+		<controlType>15</controlType>
+		<value>**N/A**</value>
+	</option>
+	
+	<option>
+		<displayName>Description</displayName>
+		<optionName>pladcfDescriptionStyle</optionName>
+		<defaultValue>PEZvbnRQYW5lbFN0eWxlIGRlc2NyaXB0aW9uPSJTdHlsZSBJbmZvIj48QmFja0NvbG9yPiNGRkZGRkY8L0JhY2tDb2xvcj48Qm9sZD5UPC9Cb2xkPjxGb250RmFtaWx5IGU9IlQiPlFYSnBZV3c9PC9Gb250RmFtaWx5PjxGb250TmFtZSBlPSJUIj5RWEpwWVd4TlZBPT08L0ZvbnROYW1lPjxGb250U2l6ZT4xNDwvRm9udFNpemU+PEZvcmVDb2xvcj4jMDAwMDAwPC9Gb3JlQ29sb3I+PEl0YWxpYz5GPC9JdGFsaWM+PFN0cmlrZXRocnU+RjwvU3RyaWtldGhydT48VGV4dFNoYWRvdz5GPC9UZXh0U2hhZG93PjxUZXh0U2hhZG93QW5nbGU+MDwvVGV4dFNoYWRvd0FuZ2xlPjxUZXh0U2hhZG93RGlzdGFuY2U+MDwvVGV4dFNoYWRvd0Rpc3RhbmNlPjxUZXh0U2hhZG93T3BhY2l0eT4wPC9UZXh0U2hhZG93T3BhY2l0eT48VGV4dFNoYWRvd1NwcmVhZD4wPC9UZXh0U2hhZG93U3ByZWFkPjxVbmRlcmxpbmU+RjwvVW5kZXJsaW5lPjwvRm9udFBhbmVsU3R5bGU+</defaultValue>
+		<optionDescription>Select the style for the description</optionDescription>
+		<controlType>15</controlType>
+		<value>**N/A**</value>
+	</option>
+	
+    <option>
+		  <displayName>Sep</displayName>
+		  <optionName>pladcAppearanceSubmit</optionName>
+		  <defaultValue>Submit Button</defaultValue>
+		  <controlType>12</controlType>
+			  
+	</option>
+    
+    <option>
+   		<displayName>Submit Caption</displayName>
+		<optionName>plcfCaptionSubmit</optionName>
+		<optionDescription>Caption for Submit button</optionDescription>
+		<defaultValue>Submit</defaultValue>
+		<controlType>1</controlType>
+		<Value>**N/A**</Value>    
+	</option>
+	<option>
+   		<displayName>Alignment</displayName>
+		<optionName>plcfSubmitButtonAlign</optionName>
+		<optionDescription>Left|Center|Right</optionDescription>
+		<defaultValue>Right</defaultValue>
+		<controlType>3</controlType>
+		<Value>**N/A**</Value>    
+	</option>
+	
+	  <option>
+  		<optionName>pladcUseCustomImage</optionName>
+  		<displayName>Use Custom Button Image</displayName>
+  		<defaultValue>FALSE</defaultValue>
+  		<optionDescription>Use a custom image for your buttons</optionDescription>
+  		<controlType>4</controlType>
+  		<ControlWidth>200</ControlWidth>
+  		<value>**N/A**</value>
+  		<Event_Action><![CDATA[
+  		Dim bValue As String = Input("$value")
+  		 
+  		 if bValue = "TRUE" then
+  		 	SetControlEnable("pladcCustomButtonImage", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageOver", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageDown", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageWidth", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageheight", TRUE)
+  		 else 
+  		 	SetControlEnable("pladcCustomButtonImage", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageOver", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageDown", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageWidth", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageheight", FALSE)
+  		 end
+  		 ]]></Event_Action>
+  		 
+  		 <Event_Open><![CDATA[
+  		 
+  		 Dim bValue As String = GetControlPropertyValue("pladcUseCustomImage","value")
+  		 
+  		  if bValue = "TRUE" then
+  		 	SetControlEnable("pladcCustomButtonImage", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageOver", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageDown", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageWidth", TRUE)
+  		 	SetControlEnable("pladcCustomButtonImageheight", TRUE)
+  		 else 
+  		 	SetControlEnable("pladcCustomButtonImage", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageOver", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageDown", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageWidth", FALSE)
+  		 	SetControlEnable("pladcCustomButtonImageheight", FALSE)
+  		 end
+  		 
+  		 ]]></Event_Open>	
+  		 
+  	</option>
+  	
+  	<option>
+    	<displayName>Custom Image:</displayName>
+  
+    	<optionName>pladcCustomButtonImage</optionName>
+    	<ControlWidth>250</ControlWidth>
+    	<defaultValue></defaultValue>
+    	<OnNewLine>TRUE</OnNewLine>
+    	<optionDescription>Custom Image</optionDescription>
+    	<resourceFilter>1</resourceFilter>
+    	<controlType>9</controlType>
+    	<Value>**N/A**</Value>
+    	<Event_Action><![CDATA[
+    	//calculate the image dimensions automatically
+  		 dim assetId as string = Input("$assetId")
+  		Dim intWidth As Double
+  		Dim intHeight As Double
+  		Dim strDimensions As String = XSGetImageDimensions(assetId)
+  		intWidth = val(NthField(strDimensions," ", 1))
+  		intHeight = Val(NthField(strDimensions," ", 2))
+  		 Dim strWidth As String = str(intWidth)
+  		 Dim strHeight As String = str(intHeight)
+  		 SetControlPropertyValue("pladcCustomButtonImageWidth","text",strWidth)
+  		 SetControlPropertyValue("pladcCustomButtonImageheight","text",strHeight)
+  		 
+  
+  		 ]]></Event_Action>
+    
+    </option>
+    
+    <option>
+    	<displayName>Image Over:</displayName>
+  
+    	<optionName>pladcCustomButtonImageOver</optionName>
+    	<ControlWidth>250</ControlWidth>
+    	<defaultValue></defaultValue>
+    	<OnNewLine>TRUE</OnNewLine>
+    	<optionDescription>Custom Image</optionDescription>
+    	<resourceFilter>1</resourceFilter>
+    	<controlType>9</controlType>
+    	<Value>**N/A**</Value>
+    	 <processingCode><![CDATA[
+			dim Value, name As String 
+			Dim rowText As String
+			name=Input("dictVariableName")
+			value=Input("dictVariableValue")
+			rowText=Input("dictcode")
+
+			
+			if value.lenb > 0 then
+				//if we specify a image let's out put the code
+				Dim StrResult As String = "onmouseover=""this.src='" +value +"'"" onmouseup=""this.src='"+value+"'"""
+
+				rowText = rowText.replaceall("{!-"+name+"-!}", StrResult)
+	
+				print rowText
+			else
+	
+				print rowText.replaceall("{!-"+name+"-!}","")
+			end
+		]]></processingCode>
+    	
+    
+    </option>
+    
+    <option>
+    	<displayName>Image Down:</displayName>
+  
+    	<optionName>pladcCustomButtonImageDown</optionName>
+    	<ControlWidth>250</ControlWidth>
+    	<defaultValue></defaultValue>
+    	<OnNewLine>TRUE</OnNewLine>
+    	<optionDescription>Custom Image</optionDescription>
+    	<resourceFilter>1</resourceFilter>
+    	<controlType>9</controlType>
+    	<Value>**N/A**</Value>
+    	<processingCode><![CDATA[
+			dim Value, name As String
+			Dim rowText As String
+			name=Input("dictVariableName")
+			value=Input("dictVariableValue")
+			rowText=Input("dictcode")
+
+			
+			
+			
+
+
+			
+			if value.lenb > 0 then
+				//if we specify a image let's output the code
+				Dim StrResult As String = "onmousedown=""this.src='"+value+"'"""
+				
+			
+			
+			
+				rowText = rowText.replaceall("{!-"+name+"-!}", StrResult)
+	
+				print rowText
+			else
+	
+				print rowText.replaceall("{!-"+name+"-!}","")
+			end
+		]]></processingCode>
+    	
+    
+    </option>
+    
+    <option>
+    	<displayName>Width:</displayName>
+  
+    	<optionName>pladcCustomButtonImageWidth</optionName>
+    	<ControlWidth>100</ControlWidth>
+    	<defaultValue></defaultValue>
+    	<defaultValue>100%</defaultValue>
+		<minValue>0</minValue>
+    	<controlType>1</controlType>
+    	<Value>**N/A**</Value>
+    	 <processingCode><![CDATA[
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+
+
+//check to make sure we have a value and return a full URL
+if value.lenb > 0 then
+	
+
+	rowText = rowText.replaceall("{!-"+name+"-!}", value)
+	
+	print rowText
+else
+	
+	print rowText.replaceall("{!-"+name+"-!}","")
+end
+
+			  ]]></processingCode>
+    
+    
+    </option>
+    
+    <option>
+    	<displayName>Height:</displayName>
+  
+    	<optionName>pladcCustomButtonImageheight</optionName>
+    	<ControlWidth>100</ControlWidth>
+    	<defaultValue>100%</defaultValue>
+    	<defaultValue></defaultValue>
+		<minValue>0</minValue>
+    	<controlType>1</controlType>
+    	<Value>**N/A**</Value>
+    	
+    	 <processingCode><![CDATA[
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+
+//check to make sure we have a value and return a full URL
+if value.lenb > 0 then
+	
+
+	rowText = rowText.replaceall("{!-"+name+"-!}", value)
+	
+	print rowText
+else
+	
+	print rowText.replaceall("{!-"+name+"-!}","")
+end
+
+			  ]]></processingCode>
+    
+    </option>
+    
+
+  <windowOption>
+  <help>
+  <videoURL>
+  https://www.youtube.com/embed/8UrSYpN_Nt8?rel=0
+  </videoURL>
+  </help>
+  
+  </windowOption>
+  
+  	
+
+  	
+
+
+
+</options>
+
+
+</widget>

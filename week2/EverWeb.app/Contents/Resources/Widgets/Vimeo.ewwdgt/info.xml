@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Vimeo Video</PluginName>
+	<PluginVersion>2.0.0</PluginVersion>
+	<ApplicationVersion>2.7.9</ApplicationVersion>
+</info>
+
+<dict>
+<item>
+	<key>Plugin Name</key>
+	<string>Vimeo Video</string>
+</item>
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>560</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>315</integer>
+</item>	
+<item>	
+	<key>AdjustToHeightOnFullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>PreventFullWidthAsChildItem</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>
+	<key>HTMLCode</key>
+	<string><![CDATA[{!-maxdemcss-!}{!-responsivecss-!}<!--{!-$width-!}--!>
+<iframe src="https://player.vimeo.com/video/{!-plvimeovideourl-!}" width="{!-$fwidth-!}" height="{!-$Height-!}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+{!-endresponsivecss-!}{!-endmaxdemcss-!}]]></string>
+</item>
+
+</dict>
+
+<options>
+	 <option>
+			  <displayName>Vimeo Video</displayName>
+			  <optionName>plviWidgetName</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <isBold>TRUE</isBold>
+			  <controlWidth>250</controlWidth>
+  			<defaultValue><![CDATA[Vimeo Video]]></defaultValue>
+	</option>
+
+    <option>
+    <displayName>Video URL</displayName>
+    <optionName>plvimeovideourl</optionName>
+    <ControlWidth>250</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <optionDescription>Vimeo Video URL</optionDescription>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>
+    <processingCode><![CDATA[
+    //we need to parse the URL and  get the ending numher after the /
+dim Value, name As String 
+Dim sResult As String
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+
+
+Dim iFieldCount As Integer = value.CountFields("/")
+sResult = value.NthField("/", iFieldCount)
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",sResult)
+
+
+ //if we are full width, include our responsive code
+    Dim bIsFullWidth As Boolean = XSShapeIsFullWidth()
+    if bIsFullWidth then	
+		rowtext = rowText.replace("{!-responsivecss-!}","<div class=""ew-video-responsive"">")
+		rowtext = rowText.replace("{!-endresponsivecss-!}","</div>")
+		//if we are full width we should give it a proper height of 315px
+		rowtext = rowText.replace("{!-$height-!}","315")
+	Else
+		rowtext = rowText.replace("{!-responsivecss-!}","")
+		rowtext = rowText.replace("{!-endresponsivecss-!}","")
+	End
+
+print rowText
+    
+    ]]></processingCode>  
+    
+    
+    </option>
+    
+    <option>
+		  <displayName>Sep</displayName>
+		  <optionName>plviResponsiveSettingsSep</optionName>
+		  <defaultValue>Responsive Settings</defaultValue>
+		  
+		  <isBold>TRUE</isBold>
+		  <controlType>12</controlType>
+	  
+	</option>
+    
+    <option>
+			  <displayName>Responsive Settings</displayName>
+			  <optionName>plviResponsiveSettingsSep</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <isBold>TRUE</isBold>
+  				<defaultValue><![CDATA[Responsive Settings]]></defaultValue>
+	</option>
+		
+	<option>
+			  <displayName>Responsive Description</displayName>
+			  <optionName>plviResponsiveSettingsDesc</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>250</controlWidth>
+			  <textsize>10</textsize>
+  			<defaultValue><![CDATA[When designing in Responsive Mode you can use the following additional settings.]]></defaultValue>
+	</option>
+	
+    <option>
+				<optionName>plviMaxWidth</optionName>
+				<displayName>Maximum Width:</displayName>
+				<optionDescription>Maximum width of the video for responsive pages</optionDescription>
+				<controlType>2</controlType>
+				<minValue>100</minValue>
+				 <controlType>1</controlType>
+				<textFieldMaxLength>5</textFieldMaxLength>
+				<controlMask>#####</controlMask>
+				<ControlWidth>100</ControlWidth>
+				
+				<processingCode><![CDATA[
+    
+				//if we are full width, include our responsive code
+				Dim bIsFullWidth As Boolean = XSShapeIsFullWidth()
+				Dim rowText As String = Input("dictcode")
+				Dim name, value as string
+				name=Input("dictVariableName")
+				value=Input("dictVariableValue")
+				if bIsFullWidth and value.lenb > 0 and val(value) > 0 then	
+					rowtext = rowText.replace("{!-maxdemcss-!}","<div class=""ew-video-dim"" style=""max-width:"+value+"px;"">")
+					rowtext = rowText.replace("{!-endmaxdemcss-!}","</div>")
+				Else
+					rowtext = rowText.replace("{!-maxdemcss-!}","")
+					rowtext = rowText.replace("{!-endmaxdemcss-!}","")
+				End
+	
+				print rowText
+				]]></processingCode>  
+	</option>
+	<option>
+			  <displayName>Max Width Description</displayName>
+			  <optionName>plviMaxWidthDesc</optionName>
+			  <defaultValue></defaultValue>
+			  <controlType>7</controlType>
+			  <controlWidth>200</controlWidth>
+			  <textsize>10</textsize>
+			  <controlWidth>250</controlWidth>
+  			<defaultValue><![CDATA[Set this to 0 to make the video always full width. Otherwise set the desired maximum width of the video in pixels.]]></defaultValue>
+	</option>
+   
+    
+</options>
+
+
+</widget>

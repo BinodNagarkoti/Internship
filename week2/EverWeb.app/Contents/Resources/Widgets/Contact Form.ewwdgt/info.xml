@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+<info>
+
+	<PluginName>Contact Form</PluginName>
+	<PluginVersion>1.0.0</PluginVersion>
+	<ApplicationVersion>1.0.0</ApplicationVersion>
+	
+	<DefaultWidth>450</DefaultWidth>
+	<DefaultHeight>80</DefaultHeight>
+
+</info>
+
+<dict>
+
+
+
+<item>
+	<key>Plugin Name</key>
+	<string>Contact Form</string>
+</item>
+<item>	
+	<key>DefaultWidth</key>
+	<integer>300</integer>
+</item>
+<item>	
+	<key>DefaultHeight</key>
+	<integer>265</integer>
+</item>
+<item>
+	<key>FullWidth</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>	
+	<key>MinHeight</key>
+	<integer>265</integer>
+</item>	
+
+<item>	
+	<key>MinWidth</key>
+	<integer>300</integer>
+</item>	
+<item>	
+	<key>useJQuery</key>
+	<boolean>TRUE</boolean>
+</item>
+<item>
+	<key>HeadCode</key>
+	<string><![CDATA[
+	<script>
+	 $(window).ready(function() {
+	$('#form_{!-SHAPEINDEX-!}').simpleContactForm (
+	{
+	url : "{!-PHPRELPATH-!}/ew_contactform.php",
+	type: "POST",  
+	subject : "New message from your website",    
+	clearAfterSend : true,	 			
+	errorClass : "error",								
+	success : function() {
+	alert('{!-plcfSuccessMessage-!}');
+	}
+		
+});
+
+ });
+</script>
+<style>
+	form.ew_custom_contact_{!-SHAPEINDEX-!} label {color:{!-%FontColor-!};font-family:{!-%FontName-!};font-size:{!-%FontSize-!}px }
+</style>
+              ]]>
+            </string>   
+</item>
+<item>	
+	<key>HTMLCode</key>
+	<string> 
+	<![CDATA[
+			<!--{!-$Width-!}-->
+			<form class="ew_cf ew_custom_contact_{!-SHAPEINDEX-!}" id="form_{!-SHAPEINDEX-!}">
+                    <p style="margin-top:0px">
+                        <label for="contact_name">*{!-plcfCaptionName-!}</label>
+                        <input id="contact_name" type="text" class="required"/>
+                    </p>
+                    {!-plcfShowPhoneNumber(TRUE)//<p>
+                        <label for="contact_phone">{!-plcfCaptionPhone-!}</label>
+                        <input id="contact_phone" type="tel" />
+                    </p>//plcfShowPhoneNumber-!}
+                    <p>
+                        <label for="contact_email">*{!-plcfCaptionEmail-!}</label>
+                        <input id="contact_email" type="email" class="email"/>
+                    </p>
+                    <p>
+                        <label for="contact_msg">*{!-plcfCaptionMessage-!}</label>
+                        <textarea id="contact_msg" class="required"></textarea>
+                    </p>
+                    	<label style="display:none" for="er">*er:</label>
+                    	<input value="{!-plcfEmail-!}" type="hidden" id="er" />
+                    	
+                    <p>
+                        <button type="submit">
+                            {!-plcfCaptionSubmit-!}
+                        </button>
+                    </p>
+                </form>
+        ]]>
+        </string>
+</item>
+<item>
+	<key>Javascript</key>
+	<array>
+	<string>ew_contactform.js</string>
+	</array>
+</item>
+
+<item>
+	<key>StyleSheets</key>
+	<array>
+	<string>ew_contactform.css</string>
+	</array>
+</item>
+
+<item>
+	<key>PHPContent</key>
+	<array>
+	<string>ew_contactform.php</string>
+	</array>
+</item>
+
+</dict>
+<options>
+    <option>
+    <displayName>Email Address</displayName>
+    <optionName>plcfEmail</optionName>
+    <optionDescription>Enter your email address</optionDescription>
+    <ControlWidth>255</ControlWidth>
+    <defaultValue></defaultValue>
+    <OnNewLine>TRUE</OnNewLine>
+    <controlType>1</controlType>
+    <textFieldMaxLength>0</textFieldMaxLength>
+    <Value>**N/A**</Value>  
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//remove any spaces from the email
+value = value.trim
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>  
+</option> 
+
+<option>
+    <displayName>Show Phone Number</displayName>
+    <optionName>plcfShowPhoneNumber</optionName>
+    <optionDescription>Show phone number field</optionDescription>
+    <defaultValue>FALSE</defaultValue>
+    <controlType>4</controlType>
+    <Value>**N/A**</Value>    
+</option> 
+
+<option>
+    <displayName>Email Sent Success Message</displayName>
+    <optionName>plcfSuccessMessage</optionName>
+    <optionDescription>Message to show when email is sent</optionDescription>
+    <defaultValue>Your message has been sent!</defaultValue>
+    <controlType>1</controlType>
+    <OnNewLine>TRUE</OnNewLine>
+    <ControlWidth>255</ControlWidth>
+    <Value>**N/A**</Value>  
+    <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"\r")
+value = value.replaceAll(chr(10),"\n")
+
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>
+    
+      
+</option> 
+
+
+<option>
+	<optionName>Form Field Captions</optionName>
+	<ControlWidth>255</ControlWidth>
+	<controlType>7</controlType>
+	<defaultvalue>Form Field Captions</defaultvalue>
+</option>
+
+<option>
+    <displayName>Name</displayName>
+    <optionName>plcfCaptionName</optionName>
+    <optionDescription>Caption for First name</optionDescription>
+    <defaultValue>Name:</defaultValue>
+    <controlType>1</controlType>
+    <Value>**N/A**</Value>
+    
+    
+      <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"")
+value = value.replaceAll(chr(10),"")
+value = XSRemoveNot(value,"abcdefghijklmnopqrstuvwxyz0123456789-_ ")
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>
+    
+    
+</option> 
+
+<option>
+    <displayName>Email</displayName>
+    <optionName>plcfCaptionEmail</optionName>
+    <optionDescription>Caption for Email</optionDescription>
+    <defaultValue>Email:</defaultValue>
+    <controlType>1</controlType>
+    <Value>**N/A**</Value>  
+    
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"")
+value = value.replaceAll(chr(10),"")
+value = XSRemoveNot(value,"abcdefghijklmnopqrstuvwxyz0123456789-_ ")
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode>  
+</option> 
+
+<option>
+    <displayName>Phone</displayName>
+    <optionName>plcfCaptionPhone</optionName>
+    <optionDescription>Caption for Phone</optionDescription>
+    <defaultValue>Phone:</defaultValue>
+    <controlType>1</controlType>
+    <Value>**N/A**</Value>   
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"")
+value = value.replaceAll(chr(10),"")
+value = XSRemoveNot(value,"abcdefghijklmnopqrstuvwxyz0123456789-_ ")
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode> 
+</option>
+<option>
+    <displayName>Message</displayName>
+    <optionName>plcfCaptionMessage</optionName>
+    <optionDescription>Caption for Message</optionDescription>
+    <defaultValue>Message:</defaultValue>
+    <controlType>1</controlType>
+    <Value>**N/A**</Value>   
+     <processingCode><![CDATA[
+			
+dim Value, name As String 
+Dim rowText As String
+name=Input("dictVariableName")
+value=Input("dictVariableValue")
+rowText=Input("dictcode")
+//escape any single quotes
+value = value.replaceAll("'","\'")
+
+//remove any line breaks
+
+value = value.replaceAll(chr(13),"")
+value = value.replaceAll(chr(10),"")
+value = XSRemoveNot(value,"abcdefghijklmnopqrstuvwxyz0123456789-_ ")
+
+rowtext = rowText.replaceall("{!-"+name+"-!}",value)
+
+print rowText
+
+			
+			
+			]]></processingCode> 
+</option> 
+
+<option>
+    <displayName>Submit</displayName>
+    <optionName>plcfCaptionSubmit</optionName>
+    <optionDescription>Caption for Submit button</optionDescription>
+    <defaultValue>Submit</defaultValue>
+    <controlType>1</controlType>
+    <Value>**N/A**</Value>    
+</option> 
+
+
+</options>
+
+</widget>
