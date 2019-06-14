@@ -2,7 +2,9 @@
 .row.content {
     height: 1500px
 }
-
+body{
+    background-image: url("myportfolio/img/me.jpeg")
+}
 /* Set gray background color and 100% height */
 .sidenav {
     background-color: #f1f1f1;
@@ -10,12 +12,25 @@
 }
 
 /* Set black background color, white text and some padding */
-footer {
-    background-color: #555;
-    color: white;
+.footer{
+    color: black;
+    background-color: #472f2f;
     padding: 15px;
-}
+    height: 12%; 
+    width: 100%;
+    position:fixed;
+    left:0;
+    bottom:0;
 
+    
+}
+body{
+    background:transparent;
+}
+.me{
+
+    opacity: 0.60;
+}
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
     .sidenav {
@@ -30,21 +45,28 @@ footer {
 .description {
     opacity: 0.8;
 }
-.nav {
-    color: black;
-    background-color: #472f2f;
+.nav,.footer {
+    color: #472f2f;
+    background: transparent;
+}
+
+.nav{
+    height:10% ; width: 100%;position:fixed;left:0;top:0;
+
 }
 li a {
     text-decoration-color: black;
     text-anchor: middle;
 }
-.active {
-    background-color: aliceblue;
-}
+
 #foo-icon{
     height: 32px;
     width: 32px;
 }
+.profile_img{
+    height: auto; width: auto;position:fixed;right:-12px;top:53px;
+}
+
 html {
     scroll-behavior: smooth;
 }
