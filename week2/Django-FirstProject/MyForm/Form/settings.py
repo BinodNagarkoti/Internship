@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'baseForm.apps.BaseformConfig',
     'LoginForm.apps.LoginformConfig',
     'RegisterForm.apps.RegisterformConfig',
-
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
