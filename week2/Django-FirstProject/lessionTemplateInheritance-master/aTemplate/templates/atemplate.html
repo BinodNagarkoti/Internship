@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Base-OYD</title>
-</head>
-<body>
-    <header>
-        {% block header  %}
+{% extends "base.html" %}
 
+{% block body %}
+<div class ="rest w3-card-4">
+    <p> hi iam template A and  values are that i am getting are:  {{ values1 }}, {{ values2 }},{{ values3 }}   </p>
+</div>
+    
+{% endblock %}
 
- {% endblock %}
-    </header>
-
-    <footer>
-{% block footer  %} {% endblock %}
-    </footer>
-</body>
-</html>

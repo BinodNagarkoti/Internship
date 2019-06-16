@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Base-OYD</title>
+   
+</head>
+<body>
+{% block body %}
+    <form action="{% url 'showData' %}">
+    <div class="w3-row">
+
+<div class="w3-third w3-container w3-card-4">
+    <input type="radio" name="abc" value="a" >a <br>
+    <input type="radio" name="abc" value="b">b <br>
+    <input type="radio" name="abc" value="c">c <br>
+</div>
+<div class="w3-third w3-container w3-card-4"> 
+    <input type="radio" name="efg" value="e">e <br>
+    <input type="radio" name="efg" value="f">f <br>
+    <input type="radio" name="efg" value="g">g <br>
+</div>
+<div class="w3-third w3-container w3-card-4">
+    <input type="radio" name="hij" value="h">h <br>
+    <input type="radio" name="hij" value="i">i <br>
+    <input type="radio" name="hij" value="j">j <br>
+</div>
+    </div>
+<input type="submit" value="Submit">
+</form>
+
+
+{% endblock %}
+    
+ </body>
+ </html>
