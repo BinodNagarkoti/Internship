@@ -1,0 +1,32 @@
+
+
+#control {
+    color: black;
+    background: transparent;
+    position: absolute;
+    text-align: center;
+    width: 1%;
+    top: 0;
+    right: 76%;
+  }
+  
+  #control:hover ~ #target{
+    position: absolute;
+    bottom: 0;
+    left:0;
+
+  }
+ 
+  #target {
+    border: 1px solid maroon;
+    text-align: center;
+    width: 25%;
+    opacity: 1;
+ 
+    -webkit-transition: opacity 1000ms linear;
+
+
+    transition: opacity 1000ms linear;
+    transition-timing-function: ease-in-out;
+  }
+
