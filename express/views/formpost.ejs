@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>Form submission</title>
+</head>
+
+<body>
+        <% include partials/nav.ejs %>
+    <h1>Form with post request</h1>
+    <form action="formsubmitpost/" method="post">
+        <label for="Name">Name</label>
+        <input type="text" placeholder="name" name="name">
+        <label for="email">email</label>        
+        <input type="text" placeholder="email" name="email">
+        <input id="button" type="submit" value="Sumbit">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+body{
+    background-color: aqua;
+}
+h1{
+    color: rgb(116, 133, 133);
+    text-align: center;
+}
+form{
+    display:grid ;
+    margin: 5px;
+
+}
+form input{
+    width: 100px;
+    margin: 2px;
+    padding:5px;
+}
+#button{
+    padding-bottom: 50px;
+}
