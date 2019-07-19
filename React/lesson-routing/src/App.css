@@ -11,6 +11,10 @@ html {
   position: relative;
   background-size: cover;
 }
+span{
+  font-weight: bold;
+
+}
 .body{
   margin:0;
   padding:0;

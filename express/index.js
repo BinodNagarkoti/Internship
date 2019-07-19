@@ -1,7 +1,7 @@
 const express = require('express')
 const fs =require('fs')
 const app = express();
-const port = 3000;
+const port = 4000;
 const bodyParser = require('body-parser')
 app.set('view engine', 'ejs')
 app.use('/assets',(req,res,next) =>{
@@ -41,7 +41,6 @@ app.get('/profile', (req,res)=>{
         name:req.query.name,
         email:req.query.email
     }
-
     res.render('profile', data);
 })
 

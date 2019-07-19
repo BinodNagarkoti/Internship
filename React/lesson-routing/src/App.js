@@ -13,6 +13,8 @@ function App() {
               <Link to="/">Landing</Link>
               <Link to="/about">About</Link>
               <Link to="/mitra">mitra</Link>
+              <Link to="/weather">Weather</Link>
+
           </Navigation>
       </Header>
       <Drawer title="Binod Learns React">
