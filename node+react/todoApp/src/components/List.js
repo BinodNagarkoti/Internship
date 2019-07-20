@@ -6,7 +6,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 import DeleteButton from './deleteButton'
 
 const useStyles = makeStyles(theme => ({
@@ -103,7 +102,7 @@ export default function CheckboxList(props) {
               <div edge="end"
               onMouseEnter={ onMouseOver(value) }
               onMouseLeave={onMouseOut(value)}
-              style={(hover.indexOf(value)) !==-1 ? block : none }  aria-label="Comments">
+              style={(hover.indexOf(value)) !==-1 ? block : none }  aria-label="delete">
                 <DeleteButton />
               </div>
             </ListItemSecondaryAction>

@@ -24,8 +24,7 @@ color:white;
   color:#78c0d3;
 }
 .iconButton{
-display: none;
-flex-direction: 
+display: none; 
 }
 .iconButton:hover{
   display: block;
