@@ -14,9 +14,9 @@ app.get('/get',async (req,res)=>{
     }
 // console.log(req.query.username)
     try{
-        console.log(__dirname+"/todo.csv")
-        if (fs.existsSync(__dirname+'/todo.csv')) {
-            fs.readFile('todo.csv','utf8',(err,data)=>{
+        console.log(__dirname+`/${req.query.user}.csv`)
+        if (fs.existsSync(__dirname+`/${req.query.user}.csv`)) {
+            fs.readFile(__dirname+`/${req.query.user}.csv`,'utf8',(err,data)=>{
                 if(err)  throw err;
                 if(data) {
                    const arr=data.split('\n');
