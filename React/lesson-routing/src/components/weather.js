@@ -81,8 +81,7 @@ export default function AlertDialog() {
           onClose={handleClose}
           TransitionComponent ={Transition}
           aria-labelledby = "alert-dialog-title"
-          aria-describedby = "alert-dialog-descripton" 
-          >
+          aria-describedby = "alert-dialog-descripton" >
             <DialogTitle id="alert-dialog-title">Click Agree, To let this App use your  Location Co-ordinates?</DialogTitle>
             <DialogContent>
             <DialogContentText id="alert-dialog-description">
