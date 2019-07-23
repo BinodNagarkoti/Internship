@@ -33,11 +33,6 @@ class CheckboxList extends React.Component {
       hover: [-1]
     };
   }
-
-  // const [list,setList] =React.useState([])
-  // const [checked, setChecked] = React.useState([-1])
-  // const [strikeThrough, setStrikeThrough] = React.useState([-1])
-  // const [hover,setHover] = React.useState([-1])
   onMouseOver = value => () => {
     const currentIndex = this.state.checked.indexOf(value);
     const newHover = [...this.state.hover];
@@ -49,6 +44,7 @@ class CheckboxList extends React.Component {
     // setHover(newHover);
     this.setState({ hover: newHover });
   };
+  
   onMouseOut = value => () => {
     this.setState({ hover: [] });
   };
@@ -70,8 +66,7 @@ class CheckboxList extends React.Component {
     this.setState({ list: list });
   };
   async fetchLocalData(username) {
-    console.log(username+' Nagarkoti')
-    const res = await fetch(`http://localhost:2000/get?user=${username}`);
+    const res = await fetch(`http://localhost:2000/get?usr=${username}`);
     const jsonD = await res.json();
     for (let i = 0; i < jsonD.length; i++) {
       title[i] = jsonD[i].title;
@@ -90,7 +85,7 @@ class CheckboxList extends React.Component {
           flexDirection: "column"
         }}
       >
-        {this.props.greetings} 
+        {/* {this.props.greetings}  */}
         <TodoLists
           list={title}
           onMouseOver={this.onMouseOver}
@@ -104,7 +99,7 @@ class CheckboxList extends React.Component {
           hover={this.state.hover}
           handleToggle={this.handleToggle}
         />
-        {/* */}
+      
      
         <button onClick={() => this.updateTodo(title)}>Refresh</button>
       </List>

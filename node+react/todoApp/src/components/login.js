@@ -9,84 +9,79 @@ class Login extends React.Component{
         this.state = {
             accessToList : false,
             Username:'',
+            pwd:'',
             msg:''
         }
         this.auth = this.auth.bind(this);
-
+       
       }
-
-//     state={
-//         toTodoList: false,
-//     }
-   
-//       allowOrNot = (status)=>{
-          
-//         this.setState(() => ({
-//             toTodoList: status
-//           }))
-//       }
     auth(authFn){
-        const value=authFn();  
-        if(value !== false){
+        const username=authFn();  
+        // console.log(loginCredentials[1])
+        if(username !== false){
         // console.log(value)
-        this.setState({ accessToList : true,Username:value,msg:`Howdy, ${value}`});
+            this.setState({ accessToList : true, Username:`${username}`, pwd:'enc',msg:`Howdy, ${username}`});
         }else{
-            this.setState({ accessToList : value,Username:'',msg: "sorry Username and password doesn't match",});
-        }
+            this.setState({ accessToList : false,Username:'',pwd:'',msg: "sorry Username and password doesn't match",});
+         }
     }
-
      render(){
-//     //    const useStyles = makeStyles(theme => ({
-//     //         container: {
-//     //           display: "flex",
-//     //           flexWrap: "wrap"
-//     //         },
-//     //         textField: {
-//     //           marginLeft: theme.spacing(1),
-//     //           marginRight: theme.spacing(1)
-//     //         }
-//     //       }));
-// //   const classes = useStyles();
-//   const [username, setUserName] = React.useState({
-//     username: ""
-//   });
-//   const [password, setPassword] = React.useState({
-//     password: ""
-//   });
-if (this.state.accessToList === true) {
-    return <Redirect to={{
+        if (this.state.accessToList === true) {
+            console.log('rendering, wait')
+            return <Redirect to={{
                             pathname:'/todoapp',
-                            state:{msg:this.state.msg,
-                                usr:this.state.Username,
-                            }
+                            state:{
+                                    msg:this.state.msg,
+                                    usr:this.state.Username,
+                                    pwd:this.state.pwd,
+                                }
                         }} />
-  }else{
+            }
+  async function sha256 (message){
 
-  }
+    // encode as UTF-8
+    const msgBuffer = new TextEncoder('utf-8').encode(message);
 
-  function checkCredentials() {
+    // hash the message
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+    // convert ArrayBuffer to Array
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    // convert bytes to hex string
+    const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+    return hashHex;
+}
+  async function checkCredentials() {
     const username=document.getElementById('outlined-username').value
     const password = document.getElementById('outlined-password-input').value
-          if (username === "binod" && password === "binod") {
+    const hash = await sha256(password);
+     console.log(hash)
+   const data={
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body:JSON.stringify({username,hash})
+}
+    const res = await fetch(`http://localhost:2000/login`,data);
+    const jsonD = await res.json();
+    console.log(jsonD)
+    
+    if (jsonD.status===200) {
+
             return username
             //this.handleLogin(document.getElementById('outlined-username').value)
             } else {
                 console.log("error");
                 return false
             }
+    
   }
-//   if (this.state.toTodoList === true) {
-//     return <Redirect to='/todoapp' />
-//   }
-//   const handleUserName = username => event => {
-//     setUserName({ ...username, [username]: event.target.value });
-//   };
-//   const handlePassword = password => event => {
-//     setPassword({ ...password, [password]: event.target.value });
-//   };
+
   return (
     <div>
-      <form className='container' style={{  display: "flex",flexWrap: "wrap"}} noValidate autoComplete="off">
+      {/* <form className='container' style={{  display: "flex",flexDirection: "column"}} noValidate autoComplete="off"> */}
         <div>
             {this.state.msg}
           <TextField
@@ -105,14 +100,16 @@ if (this.state.accessToList === true) {
             label="Password"
             style={{marginRight:'1px', marginLeft:'1px'}}
             type="password"
-     
             margin="normal"
             variant="outlined"
           />
         </div>
-      </form>
-      <button onClick={this.auth.bind(this, checkCredentials)}>Login</button>
-    </div>
+        <div>
+        <button className='loginButton'style={{margin:'5px', height: '50px', borderRadius:'50px',width:'230px' }} onClick={this.auth.bind(this, checkCredentials)}>Login</button>
+
+        </div>
+      {/* </form> */}
+         </div>
   );
   }
 }

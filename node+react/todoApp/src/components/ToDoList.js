@@ -8,7 +8,8 @@ function ToDoList(props){
         
         <List 
         greetings= {props.location.state.msg}
-        usr={props.location.state.usr}
+        usr= {props.location.state.usr}
+        pwd= {props.location.state.pwd}
         />
         </div>
     )
