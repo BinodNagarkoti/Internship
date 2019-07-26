@@ -7,36 +7,73 @@
   height: 40vmin;
   pointer-events: none;
 }
+
 ul{
-  
   list-style: none;
 }
+
 .text-strik{
   font-style: italic;
 }
+
 nav{ 
 padding-top:1px;
 padding-bottom: 20px;
 background-color: #78c0d3;
 color:white;
 }
+
+.loginButton:hover,.regButton:hover{
+  background-color: #78c0d3;
+  color:white;
+}
+
+.loginButton,.regButton{
+  color:#78c0d3;
+  font-size: 21px;
+  cursor: pointer;
+  outline-color: transparent;
+  outline-width: 0px;
+}
+
+.greetings{
+  color:white;
+float:right;  
+margin-top:-50px;
+margin-right:5px;
+text-align: right;
+width:10%
+}
+
+.circle-Button{
+  float: left;
+}
+
+.top-level{
+  width:100%;
+}
+
+.circle-Button{
+  width:100%;
+} 
+
 .list:hover{
   color:#78c0d3;
 }
+
 .iconButton{
 display: none; 
 }
-.loginButton{
-  color:#78c0d3;
-  font-size: 21px;
-}
+
 .iconButton:hover{
   display: block;
   color:rgb(255, 255, 255);
 }
+
 .unique{
   margin:-40px;
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -50,13 +87,4 @@ display: none;
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

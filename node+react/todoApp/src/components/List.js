@@ -5,13 +5,17 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
-import DeleteButton from "./deleteButton";
-var flag = [];
-var title = [];
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddButton from "./addButton";
+import Box from "@material-ui/core/Box";
+
+import TextField from "@material-ui/core/TextField";
+
 class CheckboxList extends React.Component {
   constructor(props) {
     super(props);
-    this.updateTodo = this.updateTodo.bind(this);
+    // this.updateTodo = this.updateTodo.bind(this);
     this.state = {
       textStrikeTrue: {
         textDecorationLine: "line-through"
@@ -19,6 +23,7 @@ class CheckboxList extends React.Component {
       textStrikeFalse: {
         textDecorationLine: "none"
       },
+      firstLoad: true,
       block: {
         display: "block",
         marginLeft: "30%"
@@ -27,7 +32,12 @@ class CheckboxList extends React.Component {
         display: "none",
         marginLeft: "15%"
       },
+      newList: "",
+      username: "",
       list: [],
+      flag: [],
+      onSaveMsg: "",
+      onLoadMsg: "",
       checked: [-1],
       strikeThrough: [-1],
       hover: [-1]
@@ -41,10 +51,9 @@ class CheckboxList extends React.Component {
     } else {
       newHover.splice(currentIndex, 1);
     }
-    // setHover(newHover);
+
     this.setState({ hover: newHover });
   };
-  
   onMouseOut = value => () => {
     this.setState({ hover: [] });
   };
@@ -58,54 +67,116 @@ class CheckboxList extends React.Component {
       newStrikThroung.push(value);
     } else {
       newChecked.splice(currentIndex, 1);
+      console.log();
       newStrikThroung.splice(currentIndex, 1);
     }
     this.setState({ checked: newChecked, strikeThrough: newStrikThroung });
   };
-  updateTodo = list => {
-    this.setState({ list: list });
+  // updateTodo = list => {
+  //   this.setState({ list: list, flag: });
+  // };
+  onChange = e => {
+    let newList = e.target.value;
+    this.setState({ newList: `${newList.replace(/^\s+/, "")}` });
+    console.log(this.state.newList);
   };
+  onAdd = async () => {
+    const data = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        newList: this.state.newList,
+        username: this.state.username
+      })
+    };
+    const res = await fetch(`http://localhost:2000/save`, data);
+    const jsonD = await res.json();
+    this.setState({ onSaveMsg: `${jsonD.msg}` });
+    console.log(this.state.onSaveMsg);
+    this.fetchLocalData(this.state.username);
+  };
+  async deleteItem(idx){
+    const usr=this.props.usr
+    const res = await fetch(`http://localhost:2000/get?usr=${usr}&idx=${idx}`);
+    const jsonD = await res.json();
+  }
   async fetchLocalData(username) {
+    this.setState({ username: `${username}` });
     const res = await fetch(`http://localhost:2000/get?usr=${username}`);
     const jsonD = await res.json();
+    var flag = [];
+    var title = [];
     for (let i = 0; i < jsonD.length; i++) {
       title[i] = jsonD[i].title;
-      flag[i] = jsonD[i].flag;
+      flag[i] = parseInt(jsonD[i].flag, 10);
     }
+    this.setState({ list: title});
+    console.log(this.state.strikeThrough, this.state.checked);
   }
   render() {
-    window.addEventListener("load", this.fetchLocalData(this.props.usr));
+    if (this.state.firstLoad === true) {
+      this.fetchLocalData(this.props.usr);
+      this.setState({ firstLoad: false });
+    }
     return (
-      <List
-        style={{
-          width: "100%",
-          maxWidth: "100%",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column"
-        }}
-      >
-        {/* {this.props.greetings}  */}
-        <TodoLists
-          list={title}
-          onMouseOver={this.onMouseOver}
-          onMouseOut={this.onMouseOut}
-          checked={this.state.checked}
-          strikeThrough={this.state.strikeThrough}
-          textStrikeTrue={this.state.textStrikeTrue}
-          textStrikeFalse={this.state.textStrikeFalse}
-          block={this.state.block}
-          none={this.state.none}
-          hover={this.state.hover}
-          handleToggle={this.handleToggle}
+      <div className="List-Container">
+        <div className="top-level">
+          <div className="greetings"> {this.props.greetings} </div>
+          <div className="circle-Button">
+            {" "}
+            <AddButton onClick={this.onAdd} />
+          </div>
+          <Box
+            fontWeight="fontWeightBold"
+            style={{ fontSize: "24px", color: "Green" }}
+            m={1}
+          >
+            {this.state.onSaveMsg}
+          </Box>
+        </div>
+        <TextField
+          id="outlined-List"
+          label="List"
+          margin="normal"
+          type="text"
+          fullWidth
+          onChange={this.onChange}
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true
+          }}
         />
-      
-     
-        <button onClick={() => this.updateTodo(title)}>Refresh</button>
-      </List>
+        <List
+          style={{
+            width: "100%",
+            maxWidth: "100%",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column"
+          }}
+        >
+          <TodoLists
+            list={this.state.list}
+            onMouseOver={this.onMouseOver}
+            onMouseOut={this.onMouseOut}
+            checked={this.state.checked}
+            strikeThrough={this.state.strikeThrough}
+            textStrikeTrue={this.state.textStrikeTrue}
+            textStrikeFalse={this.state.textStrikeFalse}
+            block={this.state.block}
+            none={this.state.none}
+            hover={this.state.hover}
+            handleToggle={this.handleToggle}
+          />
+          {/* <button onClick={() => this.updateTodo(title)}>Refresh</button> */}
+        </List>
+      </div>
     );
   }
 }
+
 const TodoLists = ({
   list,
   onMouseOver,
@@ -144,7 +215,7 @@ const TodoLists = ({
           style={
             strikeThrough.indexOf(id) !== -1 ? textStrikeTrue : textStrikeFalse
           }
-          primary={`1.${value}`}
+          primary={`${id}. ${value}`}
         />
         <ListItemSecondaryAction>
           <div
@@ -154,8 +225,13 @@ const TodoLists = ({
             style={hover.indexOf(id) !== -1 ? block : none}
             aria-label="delete"
           >
-            <DeleteButton />
-          </div>
+            <Fab disabled aria-label="Delete" style={{
+                                                      width: '35px',
+                                                      height : '0px'
+                                                     }}>
+        <DeleteIcon />
+      </Fab>
+                      </div>
         </ListItemSecondaryAction>
       </ListItem>
     ))}

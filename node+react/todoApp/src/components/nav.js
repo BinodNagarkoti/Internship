@@ -1,10 +1,13 @@
 import React from 'react'
-import AddButton from './addButton'
-export default function nav(){
+
+export default function nav(props){
     return(
         <div>
-<nav><h1> My Todo List</h1>
-</nav>
-<AddButton />
+<nav className=''>
+    <div>{props.greetings}</div>
+    <div><h1> My Todo List</h1>
+    </div>
+    </nav>
+
 </div>
 )}
