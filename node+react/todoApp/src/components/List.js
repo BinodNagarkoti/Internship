@@ -97,10 +97,13 @@ class CheckboxList extends React.Component {
     console.log(this.state.onSaveMsg);
     this.fetchLocalData(this.state.username);
   };
-  async deleteItem(idx){
-    const usr=this.props.usr
+   deleteItem=async(idx)=>{
+    const usr= this.state.username
+    console.log(idx,usr)
     const res = await fetch(`http://localhost:2000/get?usr=${usr}&idx=${idx}`);
     const jsonD = await res.json();
+    console.log(jsonD)
+    this.fetchLocalData(this.state.username);
   }
   async fetchLocalData(username) {
     this.setState({ username: `${username}` });
@@ -118,7 +121,9 @@ class CheckboxList extends React.Component {
   render() {
     if (this.state.firstLoad === true) {
       this.fetchLocalData(this.props.usr);
-      this.setState({ firstLoad: false });
+      this.setState({ 
+        firstLoad: false,
+        username:this.props.usr });
     }
     return (
       <div className="List-Container">
@@ -169,6 +174,7 @@ class CheckboxList extends React.Component {
             none={this.state.none}
             hover={this.state.hover}
             handleToggle={this.handleToggle}
+            deleteItem = {this.deleteItem}
           />
           {/* <button onClick={() => this.updateTodo(title)}>Refresh</button> */}
         </List>
@@ -188,7 +194,8 @@ const TodoLists = ({
   block,
   none,
   hover,
-  handleToggle
+  handleToggle,
+  deleteItem
 }) => (
   <ul>
     {list.map((value, id) => (
@@ -217,18 +224,22 @@ const TodoLists = ({
           }
           primary={`${id}. ${value}`}
         />
-        <ListItemSecondaryAction>
+        <ListItemSecondaryAction onClick={()=>deleteItem(id)}>
           <div
+
             edge="end"
             onMouseEnter={onMouseOver(id)}
             onMouseLeave={onMouseOut(id)}
             style={hover.indexOf(id) !== -1 ? block : none}
             aria-label="delete"
           >
-            <Fab disabled aria-label="Delete" style={{
-                                                      width: '35px',
-                                                      height : '0px'
-                                                     }}>
+            <Fab   
+          
+            disabled aria-label="Delete" 
+            style={{                                    
+                  width: '35px',                                                      
+                  height : '0px'
+                  }}>
         <DeleteIcon />
       </Fab>
                       </div>

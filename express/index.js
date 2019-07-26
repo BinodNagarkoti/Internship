@@ -73,5 +73,4 @@ app.post('/formsubmitpost', urlencodedParser,(req,res)=>{
     console.log(`served ${req.url}`)
     res.render('profile',data)
 })
-
 app.listen(port,()=> console.log( 'server is up and running'))

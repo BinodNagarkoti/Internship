@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add fo0tsal Player</title>
+</head>
+<body>
+        <nav>
+                <%- include('partials/header')%>
+              </nav>
+    <div class="form">
+            <% if (message != '') { %>
+                <p class="text-center text-danger"><%= message %></p>
+            <% } %>
+        <form action="formsubmit/" method="get">
+          <h1> Fo0tsal Player</h1>
+          <div class="firstName">
+            <label for="fname">First name</label>
+            <input type="text" name="fname" id="fname" required/>
+          </div>
+          <div class="lastName">
+            <label for="lname">Last name</label>
+            <input type="text" name="lname" id="lname" required/>
+          </div>
+          <div class="jNumber">
+            <label for="jnumber">Jersey Number</label>
+            <input type="text" name="jnumber" id="jnumber" required/>
+          </div>
+          <div class="position">
+            <label for="position">Position</label>
+            <select id="position" name="position" id="position" required>
+                    <option selected disabled>Choose position</option>
+                    <option>Goalkeeper</option>
+                    <option>Defender</option>
+                    <option>Midfielder</option>
+                    <option>Forward</option>
+                </select>
+          </div>
+          <div class="profile-img">
+                
+                        <label for="profile-img"><b>Player Image</b></label><br>
+                        <input type="file" name="image" id="profile-img" required>
+                    
+          </div>
+          <div>
+            <input type="submit" id="button" value="Sumbit" />
+          </div>
+        </form>
+      </div>
+</body>
+</html>
