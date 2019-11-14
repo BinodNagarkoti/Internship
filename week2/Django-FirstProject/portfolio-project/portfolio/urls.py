@@ -1,4 +1,4 @@
-"""Form URL Configuration
+"""portfolio URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -14,17 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-<<<<<<< HEAD
-from . import views
+from django.urls import path,include
 
 urlpatterns = [
-    path('', views.gotTologinForm),
-=======
-from. import views
-urlpatterns = [
-    path('', views.loginform),
->>>>>>> 2399ba2781be3d76aa15e6bc44b5c0ef933ac6e6
-
-
+    path('myportfolio/', include('myportfolio.urls')),
+    path('admin/', admin.site.urls),
 ]

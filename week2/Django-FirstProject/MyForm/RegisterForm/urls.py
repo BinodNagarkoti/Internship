@@ -15,16 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-<<<<<<< HEAD
-from . import views
-
-urlpatterns = [
-    path('', views.gotTologinForm),
-=======
-from. import views
-urlpatterns = [
-    path('', views.loginform),
->>>>>>> 2399ba2781be3d76aa15e6bc44b5c0ef933ac6e6
-
-
+from .import views
+urlpatterns = [ 
+    path('', views.registerform),
+   
 ]
