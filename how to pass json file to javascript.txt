@@ -1,0 +1,8 @@
+app_name/views.py
+	jsmap=json.dumps(mapdata)
+app_name/templates/htmlfile
+
+	//varible assingment which are passed from bottle 
+	var datainit = "{{ jsmap }}";
+	var data=JSON.parse(datainit.replace(/&quot;/g,'"'));
+

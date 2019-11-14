@@ -1,0 +1,91 @@
+.name{
+  color: rgb(11, 11, 15);
+}
+.post{
+border:1px solid whitesmoke;
+
+width: 450px;  
+margin: 0 auto;
+border-radius: 2px;
+background-color: white;
+height:640px;
+}
+span{
+  margin-left: 5px;
+}
+body{
+  background-color: white;
+  align-items: center;  
+}
+/* .this{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+} */
+.dot{
+width: 15px;
+margin-top: -45px;
+margin-left: 422px;
+}
+.btn1{
+  right:50%;
+  color:red;
+  position: fixed;
+}
+.Red{
+  color:Red;
+}
+.Blue{
+  color:blue;
+}
+.heart{
+  position: absolute;
+  width:1px;
+  height:1px;
+  margin-left:2;
+  margin-top: 2px;
+  /* z-index: +1; */
+}
+
+h2{
+  width:210px;
+}
+.heart:after,
+.heart:before{
+position: absolute;
+content: "";
+width:10px;
+height:15px;
+background:Red;
+
+border-radius: 50px 50px 0 0;
+}
+img{
+  width: 450px;
+  height: 380px;
+  margin-bottom: 10px;
+  /* box-shadow: 2px 3px 10px 1px */
+}
+button{
+  align-content: unset;
+}
+.heart:before{
+left:10px;
+-webkit-transform: rotate(-45deg);
+transform: rotate(-45deg);
+-webkit-transform-origin:0 100%;
+transform-origin:0 100%;
+}
+.heart:after{
+left:0px;
+-webkit-transform: rotate(45deg);
+transform: rotate(45deg);
+-webkit-transform-origin:100% 100%;
+transform-origin:100% 100%;
+}
+.heart-blank:after,
+.heart-blank:before{
+border: 2px solid black;
+/* background:; */
+
+}
